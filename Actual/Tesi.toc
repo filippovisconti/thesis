@@ -1,5 +1,5 @@
-\babel@toc {italian}{}\relax
-\babel@toc {italian}{}\relax
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
 \contentsline {chapter}{Introduzione}{iv}{chapter*.2}%
 \contentsline {chapter}{Indice}{v}{section*.3}%
 \contentsline {chapter}{Elenco delle figure}{vi}{section*.4}%
