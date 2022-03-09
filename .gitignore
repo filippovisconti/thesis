@@ -1,0 +1,23 @@
+# Debug files
+*.dSYM/
+*.DS_Store
+
+.vscode
+
+*.ps
+*.out
+*.lof
+*~
+*.bak
+figure/*.bak
+*.aux
+*.blg
+*.dvi
+*.log
+temp.tex
+*.idx
+*.ilg
+*.ind
+*.gz
+*.fls
+*.fdb_latexmk

@@ -1,0 +1,13 @@
+\babel@toc {italian}{}\relax
+\babel@toc {italian}{}\relax
+\contentsline {chapter}{Introduzione}{iv}{chapter*.2}%
+\contentsline {chapter}{Indice}{v}{section*.3}%
+\contentsline {chapter}{Elenco delle figure}{vi}{section*.4}%
+\contentsline {chapter}{\chapternumberline {1}Esempio di Capitolo}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Questa \`e una Sezione}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Questa \`e una Sottosezione}{1}{subsection.1.1.1}%
+\contentsline {chapter}{\chapternumberline {2}Altro Esempio di Capitolo}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Questa \`e una Sezione}{2}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Questa \`e una Sottosezione}{2}{subsection.2.1.1}%
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{4}{chapter*.5}%
+\contentsline {chapter}{Bibliografia}{5}{chapter*.6}%
