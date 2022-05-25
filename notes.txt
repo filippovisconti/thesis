@@ -1,0 +1,3 @@
+https://www.cyberciti.biz/faq/centos-7-0-set-up-openvpn-server-in-5-minutes/#Installation
+https://github.com/angristan/openvpn-install/
+https://www.cyberciti.biz/faq/how-to-set-up-wireguard-firewall-rules-in-linux/
