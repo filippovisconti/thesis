@@ -1,0 +1,9 @@
+#forward VSFTP to DMZ from internet
+
+iptables -t nat -A PREROUTING -i ens160 -s 0/0 -d 10.222.111.2 -p tcp --dport 21 -j DNAT --to 50.50.50.3:21
+iptables -t nat -A PREROUTING -i ens160 -s 0/0 -d 10.222.111.2 -p tcp --dport 20 -j DNAT --to 50.50.50.3:20
+
+iptables -A ed -p tcp --dport 20 -j ACCEPT
+iptables -A ed -p tcp --dport 20 -j ACCEPT
+iptables -A de -p tcp --sport 21 -j ACCEPT
+iptables -A de -p tcp --sport 21 -j ACCEPT

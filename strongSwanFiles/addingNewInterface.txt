@@ -1,0 +1,159 @@
+root@firewall /etc/sysconfig/network-scripts # modprobe dummy
+
+root@firewall /etc/sysconfig/network-scripts # ip link add strongswan0 type dummy
+
+root@firewall /etc/sysconfig/network-scripts # ip link show strongswan0
+29: strongswan0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 9a:c8:f0:a7:3c:b6 brd ff:ff:ff:ff:ff:ff
+root@firewall /etc/sysconfig/network-scripts # ifconfig strongswan0 hw ether C8:D7:4A:4E:47:50
+root@firewall /etc/sysconfig/network-scripts # ip link show strongswan0
+29: strongswan0: <BROADCAST,NOARP> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether c8:d7:4a:4e:47:50 brd ff:ff:ff:ff:ff:ff
+root@firewall /etc/sysconfig/network-scripts # ip addr add 10.0.2.1/24 brd + dev strongswan0 label strongswan0:0
+root@firewall /etc/sysconfig/network-scripts # ip link set dev strongswan0 up
+
+root@firewall /etc/sysconfig/network-scripts # ifconfig
+ens160: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.222.111.2  netmask 255.255.255.0  broadcast 10.222.111.255
+        inet6 fe80::9d82:c35f:c94:ec6b  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:be:c1:97  txqueuelen 1000  (Ethernet)
+        RX packets 10052101  bytes 5259542627 (4.8 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8833368  bytes 1414753048 (1.3 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens192: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.11.13.121  netmask 255.255.254.0  broadcast 10.11.13.255
+        inet6 fe80::dc84:bb4a:d303:86b3  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:be:c1:a1  txqueuelen 1000  (Ethernet)
+        RX packets 119406  bytes 21882065 (20.8 MiB)
+        RX errors 0  dropped 72  overruns 0  frame 0
+        TX packets 41  bytes 4835 (4.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens224: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 50.50.50.1  netmask 255.255.255.0  broadcast 50.50.50.255
+        inet6 fe80::648c:3392:f56b:923a  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:be:c1:ab  txqueuelen 1000  (Ethernet)
+        RX packets 90389091  bytes 7286720803 (6.7 GiB)
+        RX errors 0  dropped 142  overruns 0  frame 0
+        TX packets 4937238  bytes 2189600352 (2.0 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 1016227  bytes 1012072892 (965.1 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1016227  bytes 1012072892 (965.1 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+strongswan0: flags=195<UP,BROADCAST,RUNNING,NOARP>  mtu 1500
+        inet6 fe80::cad7:4aff:fe4e:4750  prefixlen 64  scopeid 0x20<link>
+        ether c8:d7:4a:4e:47:50  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+strongswan0:0: flags=195<UP,BROADCAST,RUNNING,NOARP>  mtu 1500
+        inet 10.0.2.1  netmask 255.255.255.0  broadcast 10.0.2.255
+        ether c8:d7:4a:4e:47:50  txqueuelen 1000  (Ethernet)
+
+tun0: flags=4305<UP,POINTOPOINT,RUNNING,NOARP,MULTICAST>  mtu 1500
+        inet 10.8.0.1  netmask 255.255.255.0  destination 10.8.0.1
+        inet6 fe80::bae4:dd09:aa32:24a0  prefixlen 64  scopeid 0x20<link>
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 100  (UNSPEC)
+        RX packets 1339  bytes 298091 (291.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1259  bytes 394245 (385.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wg0: flags=209<UP,POINTOPOINT,RUNNING,NOARP>  mtu 1420
+        inet 10.66.66.1  netmask 255.255.255.0  destination 10.66.66.1
+        inet6 fd42:42:42::1  prefixlen 64  scopeid 0x0<global>
+        inet6 fe80::637c:2f65:42c:c2a5  prefixlen 64  scopeid 0x20<link>
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
+        RX packets 7523  bytes 1287944 (1.2 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 24906  bytes 29378240 (28.0 MiB)
+        TX errors 0  dropped 21 overruns 0  carrier 0  collisions 0
+
+root@firewall /etc/sysconfig/network-scripts # ip a show strongswan0
+29: strongswan0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/ether c8:d7:4a:4e:47:50 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.1/24 brd 10.0.2.255 scope global strongswan0:0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::cad7:4aff:fe4e:4750/64 scope link 
+       valid_lft forever preferred_lft forever
+
+
+TO REMOVE
+$ ip addr del 192.168.1.100/24 brd + dev eth0 label eth0:0
+$ ip link delete eth0 type dummy
+$ rmmod dummy
+----------------------------------------------------------------------------------------------------DHCP
+root@firewall ~ # cat /etc/dhcp/dhcpd.conf 
+subnet 10.0.2.0 netmask 255.255.255.0 {
+  range 10.0.2.10 10.0.2.199;
+  option subnet-mask 255.255.255.0;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+# ignora questa subnet
+subnet 10.66.66.0 netmask 255.255.255.0 {
+}
+
+# ignora questa subnet
+subnet 10.11.12.0 netmask 255.255.254.0 {
+}
+
+# ignora questa subnet
+subnet 10.8.0.0 netmask 255.255.255.0 {
+}
+
+# ignora questa subnet
+subnet 50.50.50.0 netmask 255.255.255.0 {
+}
+
+# ignora questa subnet
+subnet 10.222.111.0 netmask 255.255.255.0 {
+}
+--------------------------------------------------------------------------------Generate SSL cert with letsencrypt
+certbot certonly --rsa-key-size 4096 --standalone --agree-tos --no-eff-email --email filippo.visconti23@gmail.com -d firewall.filippovisconti.com
+
+cp /etc/letsencrypt/live/firewall.filippovisconti.com/fullchain.pem /etc/strongswan/ipsec.d/certs/
+cp /etc/letsencrypt/live/firewall.filippovisconti.com/privkey.pem /etc/strongswan/ipsec.d/private/
+cp /etc/letsencrypt/live/firewall.filippovisconti.com/chain.pem /etc/strongswan/ipsec.d/cacerts/
+
+--------------------------------------------------------------------------------IPv4 configuration of IPSec
+vi /etc/ipsec.conf
+config setup
+  charondebug="ike 1, knl 1, cfg 1"
+
+conn strongswanVPN
+  auto=add
+  compress=no
+  type=tunnel
+  keyexchange=ikev2
+  fragmentation=yes
+  forceencaps=yes
+  ike=aes256gcm16-prfsha512-ecp384!
+  esp=aes256gcm16-ecp384!
+  dpdaction=clear
+  dpddelay=300s
+  rekey=no
+  left=%any
+  leftid=firewall.filippovisconti.com
+  leftcert=server.crt
+  leftsendcert=always
+  leftsubnet=0.0.0.0/0
+  right=%any
+  rightid=%any
+  rightauth=eap-tls
+  rightdns=$STRONGSWAN_DNS_NAMESERVERS
+  rightsourceip=%dhcp
+  rightsendcert=never
+  eap_identity=%identity
