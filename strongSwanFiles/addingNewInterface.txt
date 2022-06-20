@@ -1,3 +1,5 @@
+https://github.com/sunknudsen/privacy-guides/blob/master/how-to-self-host-hardened-strongswan-ikev2-ipsec-vpn-server-for-ios-and-macos/README.md
+
 root@firewall /etc/sysconfig/network-scripts # modprobe dummy
 
 root@firewall /etc/sysconfig/network-scripts # ip link add strongswan0 type dummy
@@ -122,16 +124,109 @@ subnet 50.50.50.0 netmask 255.255.255.0 {
 subnet 10.222.111.0 netmask 255.255.255.0 {
 }
 --------------------------------------------------------------------------------Generate SSL cert with letsencrypt
-certbot certonly --rsa-key-size 4096 --standalone --agree-tos --no-eff-email --email filippo.visconti23@gmail.com -d firewall.filippovisconti.com
+root@firewall /etc/strongswan # certbot certonly --rsa-key-size 4096 --standalone --agree-tos --no-eff-email --email filippo.visconti23@gmail.com -d firewall.filippovisconti.com
 
-cp /etc/letsencrypt/live/firewall.filippovisconti.com/fullchain.pem /etc/strongswan/ipsec.d/certs/
-cp /etc/letsencrypt/live/firewall.filippovisconti.com/privkey.pem /etc/strongswan/ipsec.d/private/
-cp /etc/letsencrypt/live/firewall.filippovisconti.com/chain.pem /etc/strongswan/ipsec.d/cacerts/
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator standalone, Installer None
+Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org
+Requesting a certificate for firewall.filippovisconti.com
+Performing the following challenges:
+http-01 challenge for firewall.filippovisconti.com
+Waiting for verification...
+Cleaning up challenges
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/firewall.filippovisconti.com/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/firewall.filippovisconti.com/privkey.pem
+   Your certificate will expire on 2022-09-17. To obtain a new or
+   tweaked version of this certificate in the future, simply run
+   certbot again. To non-interactively renew *all* of your
+   certificates, run "certbot renew"
+
+
+cp /etc/letsencrypt/live/firewall.filippovisconti.com/fullchain.pem /etc/strongswan/ipsec.d/certs/ #server.crt
+cp /etc/letsencrypt/live/firewall.filippovisconti.com/privkey.pem /etc/strongswan/ipsec.d/private/ #server.key
+cp /etc/letsencrypt/live/firewall.filippovisconti.com/chain.pem /etc/strongswan/ipsec.d/cacerts/ #ca.crt
+
+tree /etc/strongswan/ipsec.d/
+
+cd /etc/strongswan/
+mv ipsec.conf ipsec.conf.backup
+
+vim ipsec.secrets and add
+: RSA "privkey.pem"
 
 --------------------------------------------------------------------------------IPv4 configuration of IPSec
-vi /etc/ipsec.conf
+Create a new IPSec VPN tunnel connection named 'strongswanVPN'.
+Specify the IKEv2 and ESP cipher suites for authentication.
+The 'left' server configuration using a domain name 'firewall.filippovisconti.com' and using the letsencrypt certificate 'fullchain.pem' located at the '/etc/strongswan/ipsec.d/certs' directory.
+The 'right' clients/remote setup with the EAP authentication method 'eap-mschapv2', assign ip addresses via dhcp to all connected clients, and using google public DNS.
+
+vi /etc/strongswan/ipsec.conf
 config setup
   charondebug="ike 1, knl 1, cfg 1"
+  uniqueids=no
+
+conn strongswanVPN
+  auto=add
+  compress=no
+  type=tunnel
+  keyexchange=ikev2
+  fragmentation=yes
+  forceencaps=yes
+  ike=aes256-sha256-modp2048,aes128-sha256-modp2048,aes256-sha1-modp2048,aes128-sha1-modp2048,aes256gcm16-prfsha512-ecp384!
+  esp=aes256-sha256-modp2048,aes128-sha256-modp2048,aes256-sha1-modp2048,aes128-sha1-modp2048,aes256gcm16-ecp384!
+  dpdaction=clear
+  dpddelay=300s
+  rekey=no
+  left=%any
+  leftid=@firewall.filippovisconti.com
+  leftcert=fullchain.pem
+  leftsendcert=always
+  leftsubnet=0.0.0.0/0
+  rightfirewall = yes 
+leftfirewall = yes   
+  right=%any
+  rightid=%any
+  rightauth=eap-tls
+  rightdns=8.8.8.8
+  rightsourceip=%dhcp
+  rightsendcert=never
+  eap_identity=%identity
+
+
+--------------------------------------------------------------------------------------other tries
+  config setup
+    charondebug="ike 1, knl 1, cfg 0"
+    uniqueids=no
+
+#define new ipsec connection
+conn hakase-vpn
+    auto=add
+    compress=no
+    type=tunnel
+    keyexchange=ikev2
+    ike=aes128-sha1-modp1024,aes128-sha1-modp1536,aes128-sha1-modp2048,aes128-sha256-ecp256,aes128-sha256-modp1024,aes128-sha256-modp1536,aes128-sha256-modp2048,aes256-aes128-sha256-sha1-modp2048-modp4096-modp1024,aes256-sha1-modp1024,aes256-sha256-modp1024,aes256-sha256-modp1536,aes256-sha256-modp2048,aes256-sha256-modp4096,aes256-sha384-ecp384,aes256-sha384-modp1024,aes256-sha384-modp1536,aes256-sha384-modp2048,aes256-sha384-modp4096,aes256gcm16-aes256gcm12-aes128gcm16-aes128gcm12-sha256-sha1-modp2048-modp4096-modp1024,3des-sha1-modp1024!
+    esp=aes128-aes256-sha1-sha256-modp2048-modp4096-modp1024,aes128-sha1,aes128-sha1-modp1024,aes128-sha1-modp1536,aes128-sha1-modp2048,aes128-sha256,aes128-sha256-ecp256,aes128-sha256-modp1024,aes128-sha256-modp1536,aes128-sha256-modp2048,aes128gcm12-aes128gcm16-aes256gcm12-aes256gcm16-modp2048-modp4096-modp1024,aes128gcm16,aes128gcm16-ecp256,aes256-sha1,aes256-sha256,aes256-sha256-modp1024,aes256-sha256-modp1536,aes256-sha256-modp2048,aes256-sha256-modp4096,aes256-sha384,aes256-sha384-ecp384,aes256-sha384-modp1024,aes256-sha384-modp1536,aes256-sha384-modp2048,aes256-sha384-modp4096,aes256gcm16,aes256gcm16-ecp384,3des-sha1!
+    fragmentation=yes
+    forceencaps=yes
+    dpdaction=clear
+    dpddelay=300s
+    rekey=no
+    left=%any
+    leftid=@firewall.filippovisconti.com
+    leftcert=fullchain.pem
+    leftsendcert=always
+    leftsubnet=0.0.0.0/0
+    right=%any
+    rightid=%any
+    rightauth=eap-mschapv2
+    rightsourceip=10.15.1.0/24
+    rightdns=1.1.1.1,8.8.8.8
+    rightsendcert=never
+    eap_identity=%identity
 
 conn strongswanVPN
   auto=add
@@ -146,7 +241,7 @@ conn strongswanVPN
   dpddelay=300s
   rekey=no
   left=%any
-  leftid=firewall.filippovisconti.com
+  leftid=@firewall.filippovisconti.com
   leftcert=server.crt
   leftsendcert=always
   leftsubnet=0.0.0.0/0
@@ -157,3 +252,101 @@ conn strongswanVPN
   rightsourceip=%dhcp
   rightsendcert=never
   eap_identity=%identity
+--------------------------------------------------------------------------------------END
+
+
+cp /etc/strongswan/strongswan.d/charon-logging.conf /etc/strongswan/strongswan.d/charon-logging.conf.backup
+cat << "EOF" > /etc/strongswan/strongswan.d/charon-logging.conf
+charon {
+  filelog {
+    charon {
+      default = 1
+    }
+  }
+  syslog {
+    auth {
+      default = 1
+    }
+  }
+}
+EOF
+
+cp /etc/strongswan/strongswan.d/charon/dhcp.conf /etc/strongswan/strongswan.d/charon/dhcp.conf.backup
+cat << "EOF" > /etc/strongswan/strongswan.d/charon/dhcp.conf
+dhcp {
+  force_server_address = yes
+  identity_lease = yes
+  interface = strongswan0
+  load = yes
+  server = 10.0.2.1
+}
+EOF
+
+
+sed -i 's/After=syslog.target network-online.target/After=syslog.target dhcpd.service/' /lib/systemd/system/strongswan.service
+systemctl daemon-reload
+
+
+cat << EOF > openssl.cnf
+[ req ]
+distinguished_name = req_distinguished_name
+attributes = req_attributes
+[ req_distinguished_name ]
+countryName = IT
+countryName_min = 2
+countryName_max = 2
+countryName_default = US
+0.organizationName = Filippo Visconti
+0.organizationName_default = strongSwan VPN
+commonName = firewall.filippovisconti.com
+commonName_max = 64
+[ req_attributes ]
+challengePassword = XcrVrzH0AdMBX
+challengePassword_min = 4
+challengePassword_max = 20
+[ ca ]
+subjectKeyIdentifier = hash
+basicConstraints = critical, CA:true
+keyUsage = critical, cRLSign, keyCertSign
+[ server ]
+authorityKeyIdentifier = keyid
+subjectAltName = DNS:firewall.filippovisconti.com
+extendedKeyUsage = serverAuth, 1.3.6.1.5.5.8.2.2
+[ client ]
+authorityKeyIdentifier = keyid
+subjectAltName = email:$STRONGSWAN_CLIENT_NAME@firewall.filippovisconti.com
+extendedKeyUsage = serverAuth, 1.3.6.1.5.5.8.2.2
+EOF
+
+--------------------------------------------------------------------------------------END
+
+$ openssl genrsa -out $STRONGSWAN_CLIENT_NAME.key 4096
+
+$ openssl req -new -config openssl.cnf -extensions client -key $STRONGSWAN_CLIENT_NAME.key -subj "/C=US/O=Self-hosted strongSwan VPN/CN=$STRONGSWAN_CLIENT_NAME@firewall.filippovisconti.com" -out $STRONGSWAN_CLIENT_NAME.csr
+
+$ openssl x509 -req -extfile openssl.cnf -extensions client -in $STRONGSWAN_CLIENT_NAME.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days 3650 -out $STRONGSWAN_CLIENT_NAME.crt
+
+$ openssl pkcs12 -in $STRONGSWAN_CLIENT_NAME.crt -inkey $STRONGSWAN_CLIENT_NAME.key -certfile ca.crt -export -out $STRONGSWAN_CLIENT_NAME.p12
+--------------------------------------------------------------------------------------END
+
+
+`privkey.pem`  : the private key for your certificate.
+`fullchain.pem`: the certificate file used in most server software.
+`chain.pem`    : used for OCSP stapling in Nginx >=1.3.7.
+`cert.pem`     : will break many server configurations, and should not be used
+                 without reading further documentation (see link below).
+
+$ openssl genrsa -out $STRONGSWAN_CLIENT_NAME.key 4096
+
+$ openssl req -new -config openssl.cnf -extensions client -key $STRONGSWAN_CLIENT_NAME.key -subj "/C=US/O=strongSwan VPN/CN=$STRONGSWAN_CLIENT_NAME@firewall.filippovisconti.com" -out $STRONGSWAN_CLIENT_NAME.csr
+
+$ openssl x509 -req -extfile openssl.cnf -extensions client -in $STRONGSWAN_CLIENT_NAME.csr -CA fullchain.pem -CAkey privkey.pem -CAcreateserial -days 3650 -out $STRONGSWAN_CLIENT_NAME.crt
+
+$ openssl pkcs12 -in $STRONGSWAN_CLIENT_NAME.crt -inkey $STRONGSWAN_CLIENT_NAME.key -certfile fullchain.pem -export -out $STRONGSWAN_CLIENT_NAME.p12
+
+
+--------------------------------------------------------------------------------------END
+
+When asked for export password, use output from 
+    openssl rand -base64 24 
+(and store password in password manager).
