@@ -53,14 +53,6 @@ iptables -A FORWARD -d 10.0.2.0/24 -m policy --dir out --pol ipsec --proto esp -
 iptables -A ed -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables -A de -p tcp --sport 22 -m state --state ESTABLISHED     -j ACCEPT
 
-# Forward iperf3 TCP from Internet to DMZ
-iptables -A ed -p tcp --dport 5201 -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables -A de -p tcp --sport 5201 -m state --state NEW,ESTABLISHED -j ACCEPT
-
-# Forward iperf3 TCP from Internet to DMZ
-iptables -A ed -p udp --dport 5201 -j ACCEPT
-iptables -A de -p udp --sport 5201 -j ACCEPT
-
 # NTP client
 iptables -A de -p udp --dport 123 -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables -A ed -p udp --sport 123 -m state --state ESTABLISHED     -j ACCEPT

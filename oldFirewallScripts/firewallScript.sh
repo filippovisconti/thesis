@@ -45,12 +45,10 @@ iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p tcp --dp
 iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p tcp --dport 8443 -j DNAT --to $DMZCLIENT:8443
 
 
-#iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p udp --dport 137 -j DNAT --to $DMZCLIENT:137
-#iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p udp --dport 138 -j DNAT --to $DMZCLIENT:138
-#iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p tcp --dport 139 -j DNAT --to $DMZCLIENT:139
-#iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p tcp --dport 445 -j DNAT --to $DMZCLIENT:445
-
-iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p tcp --dport 64999 -j DNAT --to $DMZCLIENT:5201 # iperf3
+iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p udp --dport 137 -j DNAT --to $DMZCLIENT:137
+iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p udp --dport 138 -j DNAT --to $DMZCLIENT:138
+iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p tcp --dport 139 -j DNAT --to $DMZCLIENT:139
+iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p tcp --dport 445 -j DNAT --to $DMZCLIENT:445
 
 iptables -t nat -A PREROUTING -i $Iexternal -s $EXT -d $FWexternalIP -p tcp --dport 64022 -j DNAT --to $DMZCLIENT:22
 

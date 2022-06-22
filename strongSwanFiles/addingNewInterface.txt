@@ -186,8 +186,8 @@ conn strongswanVPN
   leftcert=fullchain.pem
   leftsendcert=always
   leftsubnet=0.0.0.0/0
+  leftfirewall = yes   
   rightfirewall = yes 
-leftfirewall = yes   
   right=%any
   rightid=%any
   rightauth=eap-tls
@@ -318,6 +318,13 @@ subjectAltName = email:$STRONGSWAN_CLIENT_NAME@firewall.filippovisconti.com
 extendedKeyUsage = serverAuth, 1.3.6.1.5.5.8.2.2
 EOF
 
+
+openssl req -x509 -new -nodes -config openssl.cnf -extensions ca -key ca.key -subj "/C=US/O=strongSwan VPN/CN=firewall.filippovisconti.com" -days 3650 -out ca.crt
+
+openssl req -new -config openssl.cnf -extensions server -key server.key -subj "/C=US/O=strongSwan VPN/CN=firewall.filippovisconti.com" -out server.csr
+
+openssl req -new -config openssl.cnf -extensions client -key $STRONGSWAN_CLIENT_NAME.key -subj "/C=US/O=strongSwan VPN/CN=$STRONGSWAN_CLIENT_NAME@firewall.filippovisconti.com" -out $STRONGSWAN_CLIENT_NAME.csr
+
 --------------------------------------------------------------------------------------END
 
 $ openssl genrsa -out $STRONGSWAN_CLIENT_NAME.key 4096
@@ -350,3 +357,43 @@ $ openssl pkcs12 -in $STRONGSWAN_CLIENT_NAME.crt -inkey $STRONGSWAN_CLIENT_NAME.
 When asked for export password, use output from 
     openssl rand -base64 24 
 (and store password in password manager).
+
+
+# iperf3 client TCP
+iptables -A OUTPUT -p tcp --dport 5201 -o ens224 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT  -p tcp --sport 5201 -i ens224 -m state --state NEW,ESTABLISHED -j ACCEPT
+
+# iperf3 client UDP
+iptables -A OUTPUT -p udp --dport 5201 -o ens224 -j ACCEPT
+iptables -A INPUT  -p udp --sport 5201 -i ens224 -j ACCEPT
+
+
+PostUp = 
+	iptables -A INPUT  -p udp --dport 62873 -i ens160 -j ACCEPT; 
+	iptables -A OUTPUT  -p udp --sport 62873 -o ens160 -j ACCEPT;
+	iptables -A FORWARD -i ens160 -o wg0 -j ACCEPT; 
+	iptables -A FORWARD -i wg0 -j ACCEPT; 
+	iptables -t nat -A POSTROUTING -o ens160 -j MASQUERADE; 
+	iptables -t nat -A POSTROUTING -s 10.66.66.0/24 -o wg0 -j MASQUERADE; 
+	ip6tables -A FORWARD -i wg0 -j ACCEPT; 
+	ip6tables -t nat -A POSTROUTING -o ens160 -j MASQUERADE;
+
+PostDown = 
+	iptables -D INPUT -p udp --dport 62873 -i ens160 -j ACCEPT; 
+	iptables -D OUTPUT  -p udp --sport 62873 -o ens160 -j ACCEPT;
+	iptables -D FORWARD -i ens160 -o wg0 -j ACCEPT; 
+	iptables -D FORWARD -i wg0 -j ACCEPT; 
+	iptables -t nat -D POSTROUTING -o ens160 -j MASQUERADE; 
+	iptables -t nat -D POSTROUTING -s 10.66.66.0/24 -o wg0 -j MASQUERADE; 
+	ip6tables -D FORWARD -i wg0 -j ACCEPT; 
+	ip6tables -t nat -D POSTROUTING -o ens160 -j MASQUERADE; 
+
+PostUp = 
+	ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o ens160 -j MASQUERADE;
+
+PostDown = 
+	ip6tables -D FORWARD -i wg0 -j ACCEPT; 
+	ip6tables -t nat -D POSTROUTING -o ens160 -j MASQUERADE; 
+
+
+wg-quick@wg0 ; systemctl status wg-quick@wg0 -l

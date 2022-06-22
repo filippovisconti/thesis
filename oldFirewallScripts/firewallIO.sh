@@ -29,6 +29,7 @@ iptables -A OUTPUT -p tcp --dport 443 -o $Iexternal -m state --state NEW,ESTABLI
 iptables -A INPUT  -p udp --sport 123 -i $Iexternal -m state --state ESTABLISHED     -j ACCEPT
 iptables -A OUTPUT -p udp --dport 123 -o $Iexternal -m state --state NEW,ESTABLISHED -j ACCEPT
 
+
 # iperf3 server TCP
 iptables -A INPUT  -p tcp --dport 9999 -i $Iexternal -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 9999 -o $Iexternal -m state --state NEW,ESTABLISHED -j ACCEPT
@@ -55,21 +56,6 @@ iptables -A INPUT -p udp --dport 4500 -j ACCEPT
 
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
-
-#iptables -A INPUT  -p udp --dport 62873 -i $Iexternal -j ACCEPT
-#iptables -A OUTPUT -p udp --sport 62873 -o $Iexternal -j ACCEPT
-
-# OpenVPN server TCP
-#iptables -A INPUT  -p tcp --dport 1194 -i $Iexternal -m state --state NEW,ESTABLISHED -j ACCEPT
-#iptables -A OUTPUT -p tcp --sport 1194 -o $Iexternal -m state --state NEW,ESTABLISHED -j ACCEPT
-
-# iperf3 client TCP
-iptables -A OUTPUT -p tcp --dport 5201 -o ens224 -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables -A INPUT  -p tcp --sport 5201 -i ens224 -m state --state NEW,ESTABLISHED -j ACCEPT
-
-# iperf3 client UDP
-iptables -A OUTPUT -p udp --dport 5201 -o ens224 -j ACCEPT
-iptables -A INPUT  -p udp --sport 5201 -i ens224 -j ACCEPT
 
 
 # ICMP on every interface
