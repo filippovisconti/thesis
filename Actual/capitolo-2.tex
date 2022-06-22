@@ -1,18 +1,131 @@
-\section{OpenVPN}\label{se:prima-sezione}
+%--------------------------------------------------------------------------------------------------------------------------------------------VPN
+\section{Virtual Private Networks }
 
+\subsection{Concetti fondamentali}
+Ancora del testo
+
+\subsection{Tipologie disponibili}
+Ancora del testo
+
+\subsection{Soluzioni principali}
+Ancora del testo
+
+\subsection{Perché soddisfano i requisiti}
+Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
+%---------------------------------------------------------------------------------------------------------------------------------------------IPSec
+% BUONO https://pctempo.com/openvpn-vs-ikev2-vs-pptp-vs-l2tp-ipsec-vs-sstp/
+
+% https://it.wikipedia.org/wiki/IPsec https://github.com/sunknudsen/privacy-guides/blob/master/how-to-self-host-hardened-strongswan-ikev2-ipsec-vpn-server-for-ios-and-macos/README.md 
+
+% 1.	Come è nato
+% 2.	Tipo incapsulamento
+% 3.	Overhead - byte sprecati per pacchetto
+% 4.	Livello a cui lavora
+% 5.	Protocolli usati
+% 6.	Cifratura usata ? hw o sw, limitata se non aggiorni hw ma più veloce, e il contrario
+
+\section{IPSec}
+\subsection{Panoramica}
 Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
 
-\subsection{Come funziona}
+\subsection{Protocolli utilizzati}
 Ancora del testo
 
-\subsection{Differenze rispetto a IPSec}
+\subsubsection{Authentication Header}
 Ancora del testo
 
-\subsection{Installazione e configurazione}
+\subsubsection{Encapsulating Security Payload}
 Ancora del testo
 
-\subsection{UDP vs TCP}
+\subsubsection{Internet Key Exchange v2}
+Ancora del testo---IKE è un acronimo per Internet key exchange ed è il protocollo usato per stabilire una security association nella suite di protocolli IPsec. Questo protocollo è definito in RFC 4306. È un protocollo di livello applicazione e utilizza il protocollo UDP come protocollo di trasporto; la porta su cui viene stabilita la connessione è 500. ---
+
+\subsection{Transport mode vs Tunnel mode}
 Ancora del testo
 
-\subsection{Motivazioni delle scelte di configurazione}
+\subsection{Cifratura}
+Ancora del testo
+
+\subsection{Autenticazione}
+Ancora del testo
+
+\subsection{Considerazioni}
+Ancora del testo
+%---------------------------------------------------------------------------------------------------------------------------------------------PPTP
+% https://www.ivpn.net/pptp-vs-ipsec-ikev2-vs-openvpn-vs-wireguard/
+
+\section{PPTP}
+\subsection{Panoramica}
+Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
+
+\subsection{Protocolli utilizzati}
+Ancora del testo
+
+\subsubsection{Something}
+Ancora del testo
+
+\subsection{TCP vs UDP}
+Ancora del testo
+
+\subsection{Cifratura}
+NESSUNA
+
+\subsection{Autenticazione}
+Ancora del testo
+
+\subsection{Considerazioni}
+Ancora del testo
+
+%----------------------------------------------------------------------------------------------------------------------------------------------OpenVPN
+% https://en.wikipedia.org/wiki/OpenVPN 
+\section{OpenVPN}
+\subsection{Panoramica}
+Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
+
+\subsection{Protocolli utilizzati}
+Ancora del testo
+
+\subsubsection{Something}
+Ancora del testo
+
+\subsection{TCP vs UDP}
+Ancora del testo
+
+\subsection{Cifratura}
+Ancora del testo
+
+\subsection{Autenticazione}
+Ancora del testo
+
+\subsection{Misure di sicurezza aggiuntive}
+Ancora del testo
+OpenVPN offers various internal security features. It has up to 256-bit encryption through the OpenSSL library, although some service providers may offer lower rates, effectively providing some of the fastest VPN available to consumers. It runs in userspace instead of requiring IP stack (therefore kernel) operation. OpenVPN has the ability to drop root privileges, use mlockall to prevent swapping sensitive data to disk, enter a chroot jail after initialization, and apply a SELinux context after initialization.
+
+OpenVPN runs a custom security protocol based on SSL and TLS, rather than supporting IKE, IPsec, L2TP or PPTP.
+
+OpenVPN offers support of smart cards via PKCS 11-based cryptographic tokens.
+\subsection{Considerazioni}
+Ancora del testo
+
+%--------------------------------------------------------------------------------------------------------------------------------------------Wireguard
+\section{WireGuard}
+\subsection{Panoramica}
+Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
+
+\subsection{Protocolli utilizzati}
+Ancora del testo
+
+\subsubsection{Something}
+Ancora del testo
+
+\subsection{TCP vs UDP}
+Ancora del testo
+
+\subsection{Cifratura}
+Ancora del testo
+
+\subsection{Autenticazione}
+Ancora del testo
+
+\subsection{Considerazioni}
 Ancora del testo

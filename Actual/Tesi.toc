@@ -5,7 +5,7 @@
 \contentsline {section}{Necessità di un'infrastruttura di rete sicura}{iv}{section*.4}%
 \contentsline {section}{Riassunto dei capitoli}{iv}{section*.5}%
 \contentsline {chapter}{Indice}{v}{section*.6}%
-\contentsline {chapter}{Elenco delle figure}{vii}{section*.7}%
+\contentsline {chapter}{Elenco delle figure}{ix}{section*.7}%
 \contentsline {chapter}{\chapternumberline {1}Requisiti}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Caratteristiche della rete aziendale}{1}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Diagramma di rete}{1}{subsection.1.1.1}%
@@ -34,29 +34,86 @@
 \contentsline {subsubsection}{\numberline {1.3.3.1}Logs}{3}{subsubsection.1.3.3.1}%
 \contentsline {subsection}{\numberline {1.3.4}Compatibilità}{3}{subsection.1.3.4}%
 \contentsline {chapter}{\chapternumberline {2}Stato dell'arte}{4}{chapter.2}%
-\contentsline {section}{\numberline {2.1}OpenVPN}{4}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Come funziona}{4}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Differenze rispetto a IPSec}{4}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Installazione e configurazione}{4}{subsection.2.1.3}%
-\contentsline {subsection}{\numberline {2.1.4}UDP vs TCP}{4}{subsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.1.5}Motivazioni delle scelte di configurazione}{4}{subsection.2.1.5}%
-\contentsline {chapter}{\chapternumberline {3}Realizzazione}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Wireguard}{5}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Differenze rispetto a OpenVPN e IPSec}{5}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Installazione e configurazione}{5}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Utilizzo di una VPN SiteToSite}{5}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Motivazioni delle scelte di configurazione}{5}{subsection.3.1.4}%
-\contentsline {chapter}{\chapternumberline {4}Testing}{6}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Wireguard}{6}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Differenze rispetto a OpenVPN e IPSec}{6}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Installazione e configurazione}{6}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}Utilizzo di una VPN SiteToSite}{6}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Motivazioni delle scelte di configurazione}{6}{subsection.4.1.4}%
-\contentsline {chapter}{\chapternumberline {5}Security concerns}{7}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Wireguard}{7}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Differenze rispetto a OpenVPN e IPSec}{7}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Installazione e configurazione}{7}{subsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.1.3}Utilizzo di una VPN SiteToSite}{7}{subsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.1.4}Motivazioni delle scelte di configurazione}{7}{subsection.5.1.4}%
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{8}{chapter*.8}%
-\contentsline {chapter}{Bibliografia}{9}{chapter*.9}%
+\contentsline {section}{\numberline {2.1}Virtual Private Networks }{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Concetti fondamentali}{4}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Tipologie disponibili}{4}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Soluzioni principali}{4}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Perché soddisfano i requisiti}{4}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}IPSec}{5}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Panoramica}{5}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Protocolli utilizzati}{5}{subsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2.1}Authentication Header}{5}{subsubsection.2.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2.2}Encapsulating Security Payload}{5}{subsubsection.2.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2.3}Internet Key Exchange v2}{5}{subsubsection.2.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.3}Transport mode vs Tunnel mode}{5}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Cifratura}{5}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Autenticazione}{5}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}Considerazioni}{6}{subsection.2.2.6}%
+\contentsline {section}{\numberline {2.3}PPTP}{6}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Panoramica}{6}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Protocolli utilizzati}{6}{subsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.2.1}Something}{6}{subsubsection.2.3.2.1}%
+\contentsline {subsection}{\numberline {2.3.3}TCP vs UDP}{6}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Cifratura}{6}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Autenticazione}{6}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.6}Considerazioni}{6}{subsection.2.3.6}%
+\contentsline {section}{\numberline {2.4}OpenVPN}{7}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Panoramica}{7}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Protocolli utilizzati}{7}{subsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.2.1}Something}{7}{subsubsection.2.4.2.1}%
+\contentsline {subsection}{\numberline {2.4.3}TCP vs UDP}{7}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Cifratura}{7}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.5}Autenticazione}{7}{subsection.2.4.5}%
+\contentsline {subsection}{\numberline {2.4.6}Misure di sicurezza aggiuntive}{7}{subsection.2.4.6}%
+\contentsline {subsection}{\numberline {2.4.7}Considerazioni}{8}{subsection.2.4.7}%
+\contentsline {section}{\numberline {2.5}WireGuard}{8}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Panoramica}{8}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Protocolli utilizzati}{8}{subsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.2.1}Something}{8}{subsubsection.2.5.2.1}%
+\contentsline {subsection}{\numberline {2.5.3}TCP vs UDP}{8}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}Cifratura}{8}{subsection.2.5.4}%
+\contentsline {subsection}{\numberline {2.5.5}Autenticazione}{8}{subsection.2.5.5}%
+\contentsline {subsection}{\numberline {2.5.6}Considerazioni}{8}{subsection.2.5.6}%
+\contentsline {chapter}{\chapternumberline {3}Realizzazione}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Sistemi utilizzati}{9}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Virtualizzatore}{9}{subsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Caratteristiche e funzionamento}{9}{subsubsection.3.1.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.2}VirtualBox}{9}{subsubsection.3.1.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.1.3}VMWare ESXi}{9}{subsubsection.3.1.1.3}%
+\contentsline {section}{\numberline {3.2}Installazione e configurazione dei servizi VPN}{9}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}IPSec - tunnelmode}{10}{subsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.1.1}Installazione di stronSwan}{10}{subsubsection.3.2.1.1}%
+\contentsline {subsubsection}{\numberline {3.2.1.2}Configurazione del Firewall}{10}{subsubsection.3.2.1.2}%
+\contentsline {subsection}{\numberline {3.2.2}OpenVPN over TCP}{10}{subsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2.1}Installazione di openvpn}{10}{subsubsection.3.2.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2.2}Configurazione del Firewall}{10}{subsubsection.3.2.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}WireGuard}{10}{subsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.3.1}Installazione di wireguard}{10}{subsubsection.3.2.3.1}%
+\contentsline {subsubsection}{\numberline {3.2.3.2}Configurazione del Firewall}{10}{subsubsection.3.2.3.2}%
+\contentsline {chapter}{\chapternumberline {4}Testing}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Modalità di esecuzione dei test}{11}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Panoramica di iperf3}{11}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Scelta della configurazione di test}{11}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Criteri di valutazione}{11}{subsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.1}Throughput}{11}{subsubsection.4.1.3.1}%
+\contentsline {subsubsection}{\numberline {4.1.3.2}MTU}{11}{subsubsection.4.1.3.2}%
+\contentsline {subsubsection}{\numberline {4.1.3.3}Packetloss}{12}{subsubsection.4.1.3.3}%
+\contentsline {section}{\numberline {4.2}Misure senza VPN}{12}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Misure con IPSec e IKEv2}{12}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Misure con OpenVPN over TCP}{12}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Misure con WireGuard}{12}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Analisi delle misure}{12}{section.4.6}%
+\contentsline {chapter}{\chapternumberline {5}Security concerns}{13}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Principali problematiche di sicurezza}{13}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Attacchi mirati agli utenti}{13}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Attacchi mirati al sistema}{13}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Multi-factor authentication}{13}{section.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.0.1}Certificato}{13}{subsubsection.5.4.0.1}%
+\contentsline {subsubsection}{\numberline {5.4.0.2}Username e password}{13}{subsubsection.5.4.0.2}%
+\contentsline {subsubsection}{\numberline {5.4.0.3}One Time Password}{14}{subsubsection.5.4.0.3}%
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{15}{chapter*.8}%
+\contentsline {section}{Quale è uscito vincitore}{15}{section*.9}%
+\contentsline {section}{Come migliorare le misure}{15}{section*.10}%
+\contentsline {section}{Test di VPN Peer-To-Peer}{15}{section*.11}%
+\contentsline {subsection}{Zero Tier}{15}{section*.12}%
+\contentsline {chapter}{Bibliografia}{16}{chapter*.13}%
