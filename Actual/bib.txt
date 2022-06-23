@@ -1,0 +1,40 @@
+Bibliografia 
+
+RFCs:
+IP 791
+
+TCP
+https://datatracker.ietf.org/doc/html/rfc793
+UDP
+https://datatracker.ietf.org/doc/html/rfc768
+DNS
+https://www.ietf.org/rfc/rfc1034.txt
+https://www.ietf.org/rfc/rfc1035.txt
+DHCP
+https://datatracker.ietf.org/doc/html/rfc2131
+Firewall
+https://www.ietf.org/rfc/rfc2979.txt
+IPSec
+https://datatracker.ietf.org/doc/html/rfc6071
+HTTP
+https://datatracker.ietf.org/doc/html/rfc2616
+AH 4302
+ESP 4303
+IKEv2 5996
+Router 1812
+
+Software:
+Bind
+Dhcpd
+Squid
+iptables
+Forwarding
+Snort
+FWSnort
+Crowdsec
+strongSwan
+OpenVPN
+WireGuard
+httpd
+nginx 
+Zero tier
