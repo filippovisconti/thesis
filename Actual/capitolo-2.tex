@@ -4,11 +4,23 @@
 \subsection{Concetti fondamentali}
 Ancora del testo
 
-\subsection{Tipologie disponibili}
+\subsection{Architetture disponibili}
 Ancora del testo
 
+\subsubsection{Gateway-to-Gateway}
+VPN gateway may be a dedicated de- vice or just a part of network device, such a router or firewall [11]. VPN
+3 Background 11
+gateway essentially separates internal network from anything over other side of gateway.
+
+
+\subsubsection{Host-to-Host}
+Primarily used to provide secure remote access. The host (IPsec client) uses VPN tunnel to connect to a VPN gateway. Whenever a host wishes to create a VPN connection to a server, he must authenticate and establish a connection with a gateway, which then manages host's connection to a VPN server.
+
+\subsubsection{Host-to-Gateway}
+Quella remote access
+
 \subsection{Soluzioni principali}
-Ancora del testo
+PPTP, IPSec, OpenVPN, WireGuard.
 
 \subsection{Perché soddisfano i requisiti}
 Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
@@ -26,8 +38,7 @@ Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:
 
 \section{IPSec}
 \subsection{Panoramica}
-Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
-
+IPsec is a framework of open standards for ensuring private communications over IP networks which has become the most commonly used network layer security control [11]. IPsec is based on securing Network layer of TCP/IP model. In many environments securing Network layer is a better solution than securing higher Transport or Application layers. It makes a way for network administrators to enforce certain security policies, and also provides a more flexible way in protecting IP information for each packet [11]. Depending on the implementation IPsec can provide a combination of following security measures: confidentiality, integrity, peer authentication, replay protection, traffic analysis protection and access control
 \subsection{Protocolli utilizzati}
 Ancora del testo
 
@@ -49,6 +60,9 @@ Ancora del testo
 \subsection{Autenticazione}
 Ancora del testo
 
+\subsection{Implementazioni}
+StrongSwan is an open source IPsec implementation for the Linux oper- ating system [18]. Maintained by Andreas Steffen, strongSwan supports features, such as IPv6, Android 4+, X.509 public key certificates, certifi- cate revocation lists, RSA private key storage on smartcards, ability to interoperate with various MS Windows and Mac OS X VPN clients, full implementation of IKEv2 protocol, and much more.
+
 \subsection{Considerazioni}
 Ancora del testo
 %---------------------------------------------------------------------------------------------------------------------------------------------PPTP
@@ -56,8 +70,10 @@ Ancora del testo
 
 \section{PPTP}
 \subsection{Panoramica}
-Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
+Point-to-Point Tunneling Protocol (PPTP) is a virtual private network imple- mentation method which uses TCP control channel and a Generic Routing En- capsulation (GRE) tunnel to encapsulate Point-to-Point Protocol (PPP) [16] packets and send them over TCP/IP links. The protocol was developed by a vendor consortium and documented in RFC 2637 [17]. PPTP encapsulated virtual network packets inside the PPP packets, which are then encapsulated
 
+3 Background 13
+inside the GRE packets and these encapsulated inside the TCP control channel. Everything is then sent over IP network on TCP port 1723.
 \subsection{Protocolli utilizzati}
 Ancora del testo
 
@@ -80,7 +96,7 @@ Ancora del testo
 % https://en.wikipedia.org/wiki/OpenVPN 
 \section{OpenVPN}
 \subsection{Panoramica}
-Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
+OpenVPN is an SSL VPN implementation which implements OSI layer 2 or 3 secure network extension using the industry standard TLS proto- col [19].
 
 \subsection{Protocolli utilizzati}
 Ancora del testo
