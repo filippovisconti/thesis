@@ -1,15 +1,31 @@
-\begin{thebibliography}{AHPZ96}
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{CSF{\etalchar{+}}08}
 
-\bibitem[AHPZ96]{AHL:1996}
-Eric Andonoff, Gilles Hubert, Annig~Le Parc, and Gilles Zurfluh.
-\newblock Integrating versions in the omt models.
-\newblock In {\em ER '96: Proceedings of the 15th International Conference on
-  Conceptual Modeling}, pages 472--487, London, UK, 1996. Springer-Verlag.
+\bibitem[Cena]{CENTOS}
+CentOS.
+\newblock \url{https://www.centos.org}.
 
-\bibitem[Box97]{BOX:1997}
-D.~Box.
-\newblock {\em Essential COM}.
-\newblock Addison Wesley Professional, 1997.
+\bibitem[Cenb]{APACHE}
+CentOS.
+\newblock \url{https://httpd.apache.org}.
+
+\bibitem[CSF{\etalchar{+}}08]{RFC5280}
+D.~Cooper, S.~Santesson, S.~Farrell, S.~Boeyen, R.~Housley, and W.~Polk.
+\newblock Internet x.509 public key infrastructure certificate and certificate
+  revocation list (crl) profile.
+\newblock RFC 5280, RFC Editor, May 2008.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc5280.txt}.
+
+\bibitem[Dro97]{RFC2131}
+Ralph Droms.
+\newblock Dynamic host configuration protocol.
+\newblock RFC 2131, RFC Editor, March 1997.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc2131.txt}.
+
+\bibitem[Fre00]{RFC2979}
+N.~Freed.
+\newblock Behavior of and requirements for internet firewalls.
+\newblock RFC 2979, RFC Editor, October 2000.
 
 \bibitem[JS96]{jones96analysis}
 Trevor~H. Jones and Il-Yeol Song.
@@ -17,13 +33,26 @@ Trevor~H. Jones and Il-Yeol Song.
   entity-relationship modeling.
 \newblock {\em Data Knowledge Engineering}, 19(1):39--64, 1996.
 
-\bibitem[oEE90]{IEEE:1990}
-Institute of~Electrical and Electronics Engineers.
-\newblock Ieee standard computer dictionary: A compilation of ieee standard
-  computer glossaries, 1990.
+\bibitem[Lin]{RHEL}
+Red Hat~Enterprise Linux.
+\newblock \url{https://www.redhat.com/en}.
 
-\bibitem[Wik]{WIKI:INTEROP}
-Wikipedia.
-\newblock \url{http://en.wikipedia.org/wiki/Interoperability}.
+\bibitem[Moc87]{RFC1034}
+P.~Mockapetris.
+\newblock Domain names - concepts and facilities.
+\newblock STD~13, RFC Editor, November 1987.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc1034.txt}.
+
+\bibitem[Pos81]{RFC0791}
+Jon Postel.
+\newblock Internet protocol.
+\newblock STD~5, RFC Editor, September 1981.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc791.txt}.
+
+\bibitem[PR85]{RFC0959}
+J.~Postel and J.~Reynolds.
+\newblock File transfer protocol.
+\newblock STD~9, RFC Editor, October 1985.
+\newblock \url{http://www.rfc-editor.org/rfc/rfc959.txt}.
 
 \end{thebibliography}

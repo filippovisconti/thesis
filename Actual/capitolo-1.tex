@@ -1,44 +1,83 @@
 \section{Caratteristiche della rete aziendale}
 La rete su cui siamo stati chiamati a lavorare è illustrata nel diagramma seguente.
 \subsection{Diagramma di rete}
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=14cm]{figure/networkDiagram.pdf}
     \caption{Diagramma di rete}
 \end{figure}
-
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+La porzione di diagramma che rappresenta l'infrastruttura di rete dell'azienda è quella sinistra della nuvola. La porzione destra raffigura, invece, un'altra sottorete, che per fini di testing immaginiamo sia la rete casalinga di un dipendente dell'azienda. La nuvola sta a rappresentare tutta la rete Internet.
 
 \subsection{Descrizione dei componenti fondamentali}
-\subsubsection{Router/Firewall}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
-Ci gira CentOS 7 -- che è quindi un requisito.
+\subsubsection{Router}
+Un componente essenziale all'interno dell'infrastruttura di rete è il router. Il router è un dispositivo di rete che lavora al livello 3 del modello OSI e che permette e gestisce l'instradamento dei pacchetti tra sottoreti diverse.
+Le tabelle d'instradamento, salvate nella memoria interna del router, contengono informazioni che riguardano come raggiungere gli altri nodi della rete e sono lo strumento che permette al router di instradare correttamente i pacchetti.
+Queste tabelle associano il prefisso IP ~\cite[RFC0791]{RFC0791} e relativa maschera della sottorete di destinazione con il \emph{next-hop}, l'indirizzo IP del prossimo router a cui deve essere destinato al pacchetto affinché si avvicini alla sua vera destinazione, e l'interfaccia di rete del router da cui il pacchetto deve essere inoltrato affinché possa raggiungere il \emph{next-hop}.
+Generalmente la funzione di routing è svolta da un componente hardware dedicato, che, se di fascia alta, permette di raggiungere prestazioni pari alla velocità della linea - ossia, spedisce i pacchetti alla stessa velocità alla quale li riceve.
+Tuttavia, è possibile il compito venga svolto da server generici, a patto che siano dotati di un numero adatto di schede di rete, su cui gira un software apposito.
 
-\subsubsection{Le varie lan collegate}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+\subsubsection{Firewall}
+In entrambi i casi, è comune che il router abbia un firewall \cite{RFC2979} integrato.
+Un firewall è un dispositivo fisico, o un software, che ha come obiettivo la regolazione del traffico di una rete.
+Ciò avviene applicando una serie di regole che coinvolgono lo stato, la porta e il protocollo dei pacchetti che lo attraversano.
+L'amministratore di rete ha la responsabilità di inserire regole appropriate al contesto, affinché, tutto ciò che non è strettamente necessario, non venga fatto passare.
+Un esempio di Firewall software molto conosciuto in ambienti UNIX, è \lstinline[columns=fixed]{iptables}.
+Il seguente comando mostra una regola che \emph{consente} il passaggio di un pacchetto in entrata sul firewall dalla scheda di rete \texttt{eth0}, destinato alla porta 22 TCP, e che sia il primo di una comunicazione, o faccia parte di una comunicazione già instaurata.
 
+\begin{verbatim}
+iptables -A INPUT  -p tcp --dport 22 -i eth0 \
+-m state --state NEW,ESTABLISHED -j ACCEPT
+\end{verbatim}
+
+Il sistema a disposizione avrà un router/firewall installato su un server, che ha come sistema operativo CentOS 7 \cite{CENTOS} - la versione gratuita di Red Hat Enterprise Linux \cite{RHEL}.
+
+\subsubsection{Le LAN utilizzate}
+Nella configurazione della rete aziendale corrente è presente soltanto una sottorete, denominata LAN dei server, dove risiedono esclusivamente i server che erogano servizi all'esterno dell'azienda. Tutti i servizi per uso interno, destinati a una ulteriore LAN, in questo esempio sono erogati dal router/firewall stesso.
 
 \subsection{Servizi offerti all'esterno}
-
-Web servers, Database servers, File servers. Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+L'azienda ha necessità di pubblicare
+\begin{itemize}
+    \item un sito web, il cui hosting è effettuato sul web server interno;
+    \item un mail server, che si occupa di inviare e ricevere i messaggi di posta elettronica
+\end{itemize}
 \subsubsection{Web servers}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+Il sito web è servito in HTTP sulla porta 80 e in HTTPS sulla porta 443, e la pubblicazione è affidata a un noto servizio, \emph{Apache Httpd} \cite{APACHE}.
 \subsubsection{Mail servers}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
-\subsubsection{Interfacce di controllo}
 Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
 
 \subsection{Servizi offerti all'interno}
-\subsubsection{DHCP}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
-\subsubsection{DNS}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+\subsubsection{DHCP server}
+Il Dynamic Host Configuration Protocol \cite[RFC2131]{RFC2131} è un protocollo ausiliario che permette l'assegnazione automatica degli indirizzi IP e altri parametri di configurazione ai dispositivi connessi alla rete usando una architettura client-server.
+Il DHCP offre un servizio non connesso e utilizza UDP come protocollo di trasporto. Il server ascolta le richieste (che saranno broadcast, destinate per convenzione all'IP 255.255.255.255) sulla porta 67 UDP, e inoltra le risposte al client sulla porta 68 UDP.
+Altri parametri di configurazione che comunemente accompagnano l'appena assegnato indirizzo IP sono i server DNS \cite[RFC1034]{RFC1034} di default, l'indirizzo IP del default gateway, e la durata per il quale l'IP assegnato è valido.
+
+\subsubsection{DNS server}
+Il Domain Name System è il sistema di assegnazione gerarchico e decentralizzato dei nomi che identificano gli host in rete. Un'analogia che aiuta a comprendere la funzione del DNS è quella della rubrica telefonica.
+Infatti, come nella rubrica telefonica viene mantenuta un'associazione tra un nome - facile da ricordare per una persona -  e il relativo numero di telefono - più difficile da ricordare, e facile da confondere -, così il DNS conserva dei \emph{resource records} composti da un nome - \texttt{example.com} - associato a un indirizzo IPv4 o IPv6 -  \texttt{93.130.23.53}.
+Si tratta di un protocollo di livello 7, che generalmente comunica sulla porta 53 UDP, ma potrebbe sfruttare anche VPN o tunnel, TLS, HTTPS, Tor. È una potenzialità interessante, in quanto le richieste non sono criptate e si potrebbe andare incontro a problemi di sicurezza.
+Il DNS è in grado di memorizzare anche altre informazioni riguardanti un certo dominio, tra cui:
+\begin{itemize}
+    \item i \emph{name servers} che sono autorità per quel dominio - coloro che a loro volta memorizzano i resource records dei vari sottodomini;
+    \item gli indirizzi IP dei mail exchanger di riferimento per quel dominio;
+    \item degli alias, ossia un'associazione tra due nomi di dominio.
+\end{itemize}
+Nella configurazione corrente, il server DNS, che gira sullo stesso server del Firewall, lavora come relay e il suo IP viene distribuito a tutti i client della rete interna via DHCP come DNS resolver.
+Ciò significa che tutti gli host della rete, nel momento in cui devono risolvere un nome, inviano una richiesta al server DNS interno, che si occuperà lui di risolverlo e, una volta ottenuto il risultato, lo restituisce al richiedente.
+Questo comporta diversi vantaggi, tra cui:
+\begin{itemize}
+    \item la comunicazione verso l'esterno per la risoluzione dei nomi avviene da un unico punto della rete;
+    \item si può fare caching, ossia mantenere in memoria per un certo periodo di tempo (che viene specificato nella risposta che il server DNSriceve) le risposte delle varie risoluzioni, cosicché, se di una richiesta si era già trovata la risposta, non dovrà essere fatta di nuovo la risoluzione;
+    \item si possono implementare dei filtri per bloccare la risoluzione di nomi a cui si vuole limitare l'accesso;
+    \item si possono facilmente loggare le varie richieste.
+\end{itemize}
+
 \subsubsection{Web app interne}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+All'interno della rete locale dell'azienda, sono accessibili degli applicativi che permettono la gestione di alcuni sistemi, ad esempio degli apparati di rete.
 \subsubsection{File servers}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+Affinché i dipendenti autorizzati possano collaborare e accedere a file condivisi, è stato predisposto un file server, a cui si può accedere con protocolli quali FTP \cite[RFC0791]{RFC0959} e SFTP. Tuttavia, i file in questione possono contenere dati sensibili. Per questo motivo, è necessario che la risorsa sia adeguatamente protetta, non esposta alla rete esterna e che l'accesso sia regolamentato.
+
 \subsubsection{Database servers}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+Similmente al file server, c'è anche un database server a disposizione dei dipendenti, le cui necessità di sicurezza rispecchiano quelle del file server.
 
 \section{Necessità degli utenti}
 \subsection{Accessi ai servizi interni senza esposizione all'esterno}
