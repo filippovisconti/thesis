@@ -1,17 +1,17 @@
 %--------------------------------------------------------------------------------------------------------------------------------------------VPN
 \section{Virtual Private Networks }
-Una rete privata virtuale consiste in una rete il cui accesso è regolamentato, che si appoggia a un protocollo di trasporto pubblico e condiviso, e che consente di garantire confidenzialità della comunicazione, accesso solo previa autenticazione, integrità dei dati e protezione dagli attacchi, ad esempio di tipo Man-in-the-middle o replay.
-
-
-\subsection{Concetti fondamentali}
-Ancora del testo
+Una rete privata virtuale consiste in una rete il cui accesso è regolamentato, che si appoggia a un protocollo di trasporto pubblico e condiviso, e che consente di garantire confidenzialità della comunicazione, accesso solo previa autenticazione, integrità dei dati e protezione da alcuni tipi di attacchi, ad esempio Man-in-the-middle o attacco replay.
 
 \subsection{Architetture disponibili}
-
-In all three architecture types, in order to connect to the host, typically must authenticate itself. This is usually done either by gateway itself of by consulting a dedicated authentication server.
+Una rete VPN può realizzare diversi tipi di collegamenti, per soddisfare esigenze diverse. Nei paragrafi successivi, si andranno ad analizzare i 3 tipi di architetture più comuni:
+\begin{itemize}
+    \item Gateway-to-Gateway
+    \item Host-to-Host
+    \item Host-to-Gateway
+\end{itemize}
 
 \subsubsection{Gateway-to-Gateway}
-Consiste in una VPN che connette in maniera stabile due reti. Questa configurazione permette ad esempio di estendere una rete privata attraverso diverse location geograficamente separati e distanti a piacere, oppure di garantire un accesso sicuro ad una serie di uffici ad un data center.
+Consiste in una VPN che connette in maniera stabile due reti. Questa configurazione permette ad esempio di estendere una rete privata tra diverse location geograficamente separati e distanti a piacere, oppure di garantire a una serie di uffici un accesso sicuro a un data center.
 
 \subsubsection{Host-to-Host}
 Questa configurazione è la meno comune. Consiste nello stabilire una comunicazione diretta tra due host, in cui uno fa da server VPN e l'altro da client VPN. Un caso d'uso potrebbe essere un amministratore di sistema che deve fare gestione remota di un apparecchio.
@@ -30,14 +30,7 @@ Tra le soluzioni VPN più comuni troviamo:
     \item Mettere Esempio di Web Based SSL VPN %https://www.firewall.cx/cisco-technical-knowledgebase/cisco-services-tech/342-cisco-web-vpn.html
 \end{itemize}
 
-\subsubsection{Secure Socket Layer/Transport Layer Security VPNs}
-Il protocollo Transport Layes Security, originariamente noto come Secure Socket Layer, è un protocollo progettato per garantire una connessione sicura attraverso una rete non sicura. TLS permette autenticazione di client e server, integrità dei dati e confidenzialità. Per l'autenticazione usa i certificati X.509 \cite[RFC5280]{RFC5280} con una crittografia asimmetrica e si occupa di negoziare una chiave di sessione simmetrica.
 
-
-One advantage of SSL VPNs over an IPsec VPNs is that SSL VPNs can connect to more restricted environments where NAT (Network Address Translation) or strict firewall rules are used. The reason for this is because most organizations do not filter the traffic on the TCP port 443, as it is usually used for employees to securely access Internet. For instance, OpenVPN, SSL- based VPN, uses UDP Port 1194 for secure data transmission. However, in the case that port is filtered, OpenVPN can also make use TCP port 443. The advantages of using UDP as a transport protocol are discussed at the beginning of the Chapter 4.
-There are two primary types of SSL VPNs, namely SSL portal VPNs and SSL tunnel VPNs [15].
-• SSL portal VPN works over a single network port, namely TCP 443 and acts as a Transport layer VPN. It allows users to connect with most web browsers to access web related content.
-• SSL tunnel VPN is used to access multiple network services through a tunnel that is running under SSL. The main difference from portal SSL VPNs is that tunnel SSL VPNs allow accessing multiple network services, including applications and protocols that are not web-based. The require- ment for SSL tunnel VPN is that it must be able to handle different active content like Java, JavaScript, Flash, ActiveX [15]. Being able to use more services, this tunnel has more capabilities compared to a portal type VPNs, but it may prevent some users from being able to connect to VPN. The SSL VPN tunnels are created in SSL, but just like in IPsec tunnels, IP traffic is fully protected by the tunnel [15].
 
 \subsection{Perché soddisfano i requisiti}
 Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di
@@ -91,21 +84,16 @@ Ancora del testo
 
 \section{PPTP}
 \subsection{Panoramica}
-Point-to-Point Tunneling Protocol (PPTP) is a virtual private network imple- mentation method which uses TCP control channel and a Generic Routing En- capsulation (GRE) tunnel to encapsulate Point-to-Point Protocol (PPP) [16] packets and send them over TCP/IP links. The protocol was developed by a vendor consortium and documented in RFC 2637 [17]. PPTP encapsulated virtual network packets inside the PPP packets, which are then encapsulated
+Si tratta di uno dei più vecchi protocolli VPN in uso ancora oggi, ma in quanto tale ha alcune gravi criticità date dall'età. Ad esempio, la crittografia a 128 bit e il protocollo usato per l'autenticazione (MS-CHAP) contenente note vulnerabilità lo rendono ormai un protocollo insicuro, da evitare se le informazioni che transitano sono sensibili.
+Tuttavia, è estremamente semplice da configurare e il più veloce dal punto di vista prestazionale, il che lo rende ideale per usi quali streaming video o l'utilizzo di VPN su terminali con potenze di calcolo estremamente limitate.
+È stato sviluppato da Microsoft nel 1999 \cite[RFC2637]{RFC2637} e lavora instaurando un canale di controllo tra i due peers sulla porta 1723 TCP e un tunnel GRE su cui transitano effettivamente i dati.
 
-3 Background 13
-inside the GRE packets and these encapsulated inside the TCP control channel. Everything is then sent over IP network on TCP port 1723.
 \subsection{Protocolli utilizzati}
-Ancora del testo
-
-\subsubsection{Something}
-Ancora del testo
-
-\subsection{TCP vs UDP}
-Ancora del testo
+\subsubsection{Generic Routing Encapsulation}
+GRE è un protocollo di tunneling sviluppato da Cisco Systems che può incapsulare un'ampia varietà di protocolli di livello di rete all'interno di collegamenti Point-to-Point o Point-to-Multipoint virtuali su una rete IP.
 
 \subsection{Cifratura}
-NESSUNA
+PPTP non specifica nessuna
 
 \subsection{Autenticazione}
 Ancora del testo
@@ -117,23 +105,38 @@ Ancora del testo
 % https://en.wikipedia.org/wiki/OpenVPN 
 \section{OpenVPN}
 \subsection{Panoramica}
-OpenVPN is a SSL VPN which implements the OSI layer 2 and 3 secure network extension [19]. It allows any IP subnetwork being tunneled over a single UDP or TCP port and completely relies on the security of OpenSSL. The high-level client-server communication is shown in Fig. 1. Just like other VPNs, the OpenVPN provides the essential security services, such as authentication, encryption, integrity protection, and access control.
-As noted in Chapter 3.1, understanding and selecting the correct networking components largely important. Therefore, in this next chapter, two different OpenVPN networking possibilities are presented.
-The OpenVPN supports two networking modes for connecting networks, namely routing and bridging [31].
-• Routing is essentially an interconnection of independent subnets. The router is a Level 3 (OSI model) device which forwards the packet according to a specified IP address.
-• Bridging is a much simpler infrastructure because it operates only on the same local network (subnet). Bridge is a Layer 2 (OSI model) device which forwards packets based on the physical MAC address instead of IP address.
+OpenVPN è una VPN SSL che permette di incanalare tutto il traffico di una sottorete attraverso una unica porta UDP o TCP, e fa affidamento su OpenSSL. Come le altre soluzioni VPN, OpenVPN servizi essenziali di sicurezza quali autenticazione, cifratura, integrità dei dati e controllo degli accessi.
+Supporta due modalità di lavoro, routing e bridging:
+\begin{itemize}
+    \item[Routing] consiste nell'interconnessione di due sottoreti indipendenti, dove il server VPN (generalmente installato sul router) inoltra i pacchetti all'indirizzo IP specificato in fase di configurazione. Si tratta quindi di un collegamento a livello 3 del modello OSI.
+    \item[Bridging] è una modalità che lavora esclusivamente all'interno di una sottorete; il funzionamento è analogo a quello di uno switch ethernet fisico.
+\end{itemize}
 
-
-On the other end of the spectrum is OpenVPN, a user space TUN/TAP based solution that uses TLS. By virtue of it being in user space, it has very poor performance—since packets must be copied multiple times between kernel space and user space—and a long-lived daemon is required; OpenVPN appears far from stateless to an administrator. While TUN/TAP interfaces (say, tun0) have similar wg0-like benefits as described above, OpenVPN is also enormously complex, supporting the entire plethora of TLS functionality, which exposes quite a bit of code to potential vulnerabilities. OpenVPN is right to be implemented in user space, since ASN.1 and x509 parsers in the kernel have historically been quite problematic (CVE-2008-1673, CVE-2016-2053), and adding a TLS stack would only make that issue worse. TLS also brings with it an enormous state machine, as well as a less clear association between source IP addresses and public keys.
+OpenVPN è una soluzione che lavora in user space, dunque l'overhead generato è maggiore in quanto sono necessarie molteplici copie dei pacchetti affiché siano trasferiti dal kernel space allo user space. Supporta l'intero insieme delle funzionalità di TLS, necessitando di una ampia code base, mostrando un maggior potenziale a soffrire di vulnerabilità.
 
 \subsection{Protocolli utilizzati}
-The OpenVPN utilizes the OpenSSL encryption library which itself imple- ments TLS. Originally known as Secure Socket Layer (SSL), TLS is a protocol designed to provide a secure connection over an insecure network. TLS uses X.509 digital certificates4 with asymmetric cryptography to authenticate coun- terparty and negotiate a symmetric tunnel session key. TLS is most widely known for being used over Hypertext Transfer Protocol (HTTP) to provide en- cryption and authentication, which led to the naming of HTTPS, which stands for HTTP Secure. To establish a secure connection, TLS uses Handshake, ChangeCipherSpec, and Alert subprotocols. Multiple different implementations of TLS, including OpenSSL, were fuzzed and tested by de. Ruiter [6] and there- fore this paper is not concerned about testing security of TLS itself.
-Unlike a vanilla TLS, the OpenVPN gives the user an opportunity to use a static key (or pre-shared passphrase) to generate a what is known as HMAC firewall, which authenticates the whole TLS handshake sequence. The details of HMAC firewall, as well as the security features it provides are explained in Chapter 4.5. The OpenVPN multiplexes the TLS session used for authentication and key exchange (Control Channel) with the actual encryption tunnel data stream (Data Channel)(Fig. 2) [3]. As UDP is connectionless protocol, the encrypted and signed IP packets are tunneled over UDP without any reliability guarantee. The reliability needed for secure authentication is provided by the TLS protocol which uses TCP as its reliability layer. It is important to note that control and data channels are explained separately, however, they are inside the same UDP (or TCP) tunnel hence on the same network layer.
-The general structure of the OpenVPN packet and ensuing encapsulation can be seen in Fig. 3. It is explained in detail further in section 4.1.1. As shown, the OpenVPN data is encapsulated inside the UDP (or less commonly TCP) layer. The structure shown in Fig. 3 applies to all OpenVPN packets, however, different packets will have different OpenVPN payloads. For instance, P CONTROL V1 packets will have TLS protocol data encapsulated inside the OpenVPN payload.
+Come precedentemente acccennato, OpenVPN usa la libreria di OpenSSL, che implementa il protocollo Transport Layer Security, progettato per offrire una connessione sicura attraverso una rete non sicura.
+A differenza del puro TLS, OpenVPN offre all'utente la possibilità di utilizzare una pre-shared key per generare quel che è noto come HMAC firewall, che autentica tutta la sequenza di handshake TLS.
+
+Essendo UDP un protocolllo non connesso, i pacchetti IP criptati e firmati che sono incanalati tramite UDP, non hanno nessuna garanzia di affidabilità. L'affidabilità necessaria per una sicura autenticazione è garantita, però, dal protocollo TLS che utlizza TCP come protocollo di trasporto.
+È importante notare che il canale dati e il canale di controllo transitano all'interno dello stesso tunnel UDP (o TCP). L'incapsulamento dei pacchetti è descritto dal seguente diagramma.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm]{figure/OVPN_packet.png}
+    \caption{Dettaglio di un pacchetto OpenVPN}
+\end{figure}
+
+La struttura mostrata si applica a tutti i pacchetti OpenVPN; tuttavia, differenti pacchetti avranno differenti payloads.
 
 
-\subsubsection{Something}
-Ancora del testo
+\subsubsection{Secure Socket Layer/Transport Layer Security VPNs}
+Il protocollo Transport Layes Security, originariamente noto come Secure Socket Layer, è un protocollo progettato per garantire una connessione sicura attraverso una rete non sicura. TLS permette autenticazione di client e server, integrità dei dati e confidenzialità. Per l'autenticazione usa i certificati X.509 \cite[RFC5280]{RFC5280} con una crittografia asimmetrica e si occupa di negoziare una chiave di sessione simmetrica.
+
+One advantage of SSL VPNs over an IPsec VPNs is that SSL VPNs can connect to more restricted environments where NAT (Network Address Translation) or strict firewall rules are used. The reason for this is because most organizations do not filter the traffic on the TCP port 443, as it is usually used for employees to securely access Internet. For instance, OpenVPN, SSL- based VPN, uses UDP Port 1194 for secure data transmission. However, in the case that port is filtered, OpenVPN can also make use TCP port 443. The advantages of using UDP as a transport protocol are discussed at the beginning of the Chapter 4.
+There are two primary types of SSL VPNs, namely SSL portal VPNs and SSL tunnel VPNs [15].
+• SSL portal VPN works over a single network port, namely TCP 443 and acts as a Transport layer VPN. It allows users to connect with most web browsers to access web related content.
+• SSL tunnel VPN is used to access multiple network services through a tunnel that is running under SSL. The main difference from portal SSL VPNs is that tunnel SSL VPNs allow accessing multiple network services, including applications and protocols that are not web-based. The require- ment for SSL tunnel VPN is that it must be able to handle different active content like Java, JavaScript, Flash, ActiveX [15]. Being able to use more services, this tunnel has more capabilities compared to a portal type VPNs, but it may prevent some users from being able to connect to VPN. The SSL VPN tunnels are created in SSL, but just like in IPsec tunnels, IP traffic is fully protected by the tunnel [15].
 
 \subsection{TCP vs UDP}
 

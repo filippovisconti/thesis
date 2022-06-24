@@ -36,49 +36,46 @@
 \contentsline {subsection}{\numberline {1.3.4}Compatibilità}{6}{subsection.1.3.4}%
 \contentsline {chapter}{\chapternumberline {2}Stato dell'arte}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Virtual Private Networks }{7}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Concetti fondamentali}{7}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Architetture disponibili}{7}{subsection.2.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.2.1}Gateway-to-Gateway}{7}{subsubsection.2.1.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.2.2}Host-to-Host}{8}{subsubsection.2.1.2.2}%
-\contentsline {subsubsection}{\numberline {2.1.2.3}Host-to-Gateway}{8}{subsubsection.2.1.2.3}%
-\contentsline {subsection}{\numberline {2.1.3}Soluzioni principali}{8}{subsection.2.1.3}%
-\contentsline {subsubsection}{\numberline {2.1.3.1}Secure Socket Layer/Transport Layer Security VPNs}{8}{subsubsection.2.1.3.1}%
-\contentsline {subsection}{\numberline {2.1.4}Perché soddisfano i requisiti}{9}{subsection.2.1.4}%
-\contentsline {section}{\numberline {2.2}IPSec}{9}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Panoramica}{9}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Protocolli utilizzati}{10}{subsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.2.1}Authentication Header}{10}{subsubsection.2.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2.2}Encapsulating Security Payload}{10}{subsubsection.2.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.2.3}Internet Key Exchange v2}{10}{subsubsection.2.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.3}Transport mode vs Tunnel mode}{11}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Cifratura}{11}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Autenticazione}{11}{subsection.2.2.5}%
-\contentsline {subsection}{\numberline {2.2.6}Implementazioni}{11}{subsection.2.2.6}%
-\contentsline {subsection}{\numberline {2.2.7}Considerazioni}{11}{subsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.1.1}Architetture disponibili}{7}{subsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.1.1}Gateway-to-Gateway}{7}{subsubsection.2.1.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.1.2}Host-to-Host}{8}{subsubsection.2.1.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.1.3}Host-to-Gateway}{8}{subsubsection.2.1.1.3}%
+\contentsline {subsection}{\numberline {2.1.2}Soluzioni principali}{8}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Perché soddisfano i requisiti}{8}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}IPSec}{8}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Panoramica}{8}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Protocolli utilizzati}{9}{subsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2.1}Authentication Header}{9}{subsubsection.2.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2.2}Encapsulating Security Payload}{9}{subsubsection.2.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2.3}Internet Key Exchange v2}{9}{subsubsection.2.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.3}Transport mode vs Tunnel mode}{10}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Cifratura}{10}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Autenticazione}{10}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}Implementazioni}{10}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.7}Considerazioni}{10}{subsection.2.2.7}%
 \contentsline {section}{\numberline {2.3}PPTP}{11}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Panoramica}{11}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Protocolli utilizzati}{12}{subsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.2.1}Something}{12}{subsubsection.2.3.2.1}%
-\contentsline {subsection}{\numberline {2.3.3}TCP vs UDP}{12}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Cifratura}{12}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Autenticazione}{12}{subsection.2.3.5}%
-\contentsline {subsection}{\numberline {2.3.6}Considerazioni}{12}{subsection.2.3.6}%
+\contentsline {subsection}{\numberline {2.3.2}Protocolli utilizzati}{11}{subsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.2.1}Generic Routing Encapsulation}{11}{subsubsection.2.3.2.1}%
+\contentsline {subsection}{\numberline {2.3.3}Cifratura}{11}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Autenticazione}{11}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Considerazioni}{11}{subsection.2.3.5}%
 \contentsline {section}{\numberline {2.4}OpenVPN}{12}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Panoramica}{12}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Protocolli utilizzati}{13}{subsection.2.4.2}%
-\contentsline {subsubsection}{\numberline {2.4.2.1}Something}{14}{subsubsection.2.4.2.1}%
+\contentsline {subsection}{\numberline {2.4.2}Protocolli utilizzati}{12}{subsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.2.1}Secure Socket Layer/Transport Layer Security VPNs}{13}{subsubsection.2.4.2.1}%
 \contentsline {subsection}{\numberline {2.4.3}TCP vs UDP}{14}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Cifratura}{16}{subsection.2.4.4}%
-\contentsline {subsection}{\numberline {2.4.5}Autenticazione}{16}{subsection.2.4.5}%
-\contentsline {subsection}{\numberline {2.4.6}Misure di sicurezza aggiuntive}{17}{subsection.2.4.6}%
+\contentsline {subsection}{\numberline {2.4.4}Cifratura}{15}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.5}Autenticazione}{15}{subsection.2.4.5}%
+\contentsline {subsection}{\numberline {2.4.6}Misure di sicurezza aggiuntive}{16}{subsection.2.4.6}%
 \contentsline {subsection}{\numberline {2.4.7}Considerazioni}{17}{subsection.2.4.7}%
 \contentsline {section}{\numberline {2.5}WireGuard}{17}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Panoramica}{17}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Protocolli utilizzati}{20}{subsection.2.5.2}%
-\contentsline {subsubsection}{\numberline {2.5.2.1}Something}{20}{subsubsection.2.5.2.1}%
-\contentsline {subsection}{\numberline {2.5.3}TCP vs UDP}{20}{subsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.5.4}Cifratura}{20}{subsection.2.5.4}%
-\contentsline {subsection}{\numberline {2.5.5}Autenticazione}{20}{subsection.2.5.5}%
+\contentsline {subsection}{\numberline {2.5.2}Protocolli utilizzati}{19}{subsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.2.1}Something}{19}{subsubsection.2.5.2.1}%
+\contentsline {subsection}{\numberline {2.5.3}TCP vs UDP}{19}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}Cifratura}{19}{subsection.2.5.4}%
+\contentsline {subsection}{\numberline {2.5.5}Autenticazione}{19}{subsection.2.5.5}%
 \contentsline {subsection}{\numberline {2.5.6}Considerazioni}{20}{subsection.2.5.6}%
 \contentsline {chapter}{\chapternumberline {3}Realizzazione}{21}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Virtualizzatore}{21}{section.3.1}%

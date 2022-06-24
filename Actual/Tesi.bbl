@@ -1,5 +1,5 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
-\begin{thebibliography}{CSF{\etalchar{+}}08}
+\begin{thebibliography}{HPV{\etalchar{+}}99}
 
 \bibitem[Cena]{CENTOS}
 CentOS.
@@ -26,6 +26,11 @@ Ralph Droms.
 N.~Freed.
 \newblock Behavior of and requirements for internet firewalls.
 \newblock RFC 2979, RFC Editor, October 2000.
+
+\bibitem[HPV{\etalchar{+}}99]{RFC2637}
+K.~Hamzeh, G.~Pall, W.~Verthein, J.~Taarud, W.~Little, and G.~Zorn.
+\newblock Point-to-point tunneling protocol (pptp).
+\newblock RFC 2637, RFC Editor, July 1999.
 
 \bibitem[JS96]{jones96analysis}
 Trevor~H. Jones and Il-Yeol Song.
