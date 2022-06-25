@@ -226,8 +226,8 @@ WireGuard si concentra sulla semplicità e su una codebase facilmente ispezionab
 Nell'implementazione di WireGuard, sono utilizzati i seguenti protocolli:
 \begin{itemize}
     \item[ChaCha20] per cifratura simmetrica, autenticata con Poly1305, utilizzando AEAD, come specificato in \cite[RFC7539]{RFC7539}
-    \item[Curve25519] come Elliptic-curve Diffie–Hellman, un protocollo per la negoziazione delle chiavi
-    \item[BLAKE2s] per hashing e hashing con chiave, descritto in \cite[RFC7693]{RFC76}
+    \item[Curve25519] come Elliptic-curve Diffie-Hellman, un protocollo per la negoziazione delle chiavi
+    \item[BLAKE2s] per hashing e hashing con chiave, descritto in \cite[RFC7693]{RFC7693}
     \item[SipHash24] come chiavi per hashtables
     \item[HKDF] cone funzione per la derivazione delle chiavi, come spiegato in \cite[RFC5869]{RFC5869}
 \end{itemize}
@@ -236,7 +236,7 @@ Nell'implementazione di WireGuard, sono utilizzati i seguenti protocolli:
 Dal punto di vista della cifratura utilizzata da WireGuard, rompe la tradizione delle altre soluzioni. Infatti, è intenzionalmente privo di flessibilità per quel che riguarda la scelta dei cifratori e dei protocolli utilizzati. Se vengono trovate falle in quelli scelti in fase di progettazione, tutti i terminali avranno bisogno di essere aggiornati. Come dimostrato dalla continua scoperta di vulnerabilità all'interno del protocollo TLS, dare la possibilità di scegliere quale cifrario usare aumenta enormemente la complessità.
 
 \subsection{Autenticazione}
-Per la distribuzione delle chiavi, WireGuard si ispira a OpenSSH, dove i due peers si scambiano le proprie chiavi pubbliche statiche. Il meccanismo con cui lo scambio avviene è basato sull' handshake \texttt{Noise_IK} di Noise \cite{Noise}. Dopo lo scambio delle chiavi, il peer che non ha iniziato la connessione deve aspettare ad usare la sessione fino a che non riceve un pacchetto cifrato dall'iniziatore, che dà conferma delle chiavi.
+Per la distribuzione delle chiavi, WireGuard si ispira a OpenSSH, dove i due peers si scambiano le proprie chiavi pubbliche statiche. Il meccanismo con cui lo scambio avviene è basato sull' handshake \texttt{Noise IK} di Noise \cite{Noise}. Dopo lo scambio delle chiavi, il peer che non ha iniziato la connessione deve aspettare ad usare la sessione fino a che non riceve un pacchetto cifrato dall'iniziatore, che dà conferma delle chiavi.
 Le chiavi pubbliche sono lunghe 32 bytes e possono essere facilmente rappresentate con una codifica Base64 in 44 caratteri, che semplificha il trasferimento di esse attraverso vari mezzi. È supportata anche la Perfect Forward Secrecy, illustrata precedentemente.
 
 \subsection{Considerazioni}
