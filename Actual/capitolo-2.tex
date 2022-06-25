@@ -20,20 +20,19 @@ Questa configurazione è la meno comune. Consiste nello stabilire una comunicazi
 In questa modalità, il risultato che si ottiene è lo stesso che si avrebbe connettendo un host alla rete locale in cui risiede il server VPN.
 È usata principalmente per offrire un accesso sicuro da remoto alla rete. Quando l'host vuole instaurare una connessione VPN con il server, gli viene richiesto di autenticarsi.
 
+\subsection{Perché soddisfano i requisiti}
+Una VPN in configurazione Host-to-Gateway si prospetta come la soluzione più pratica e funzionale per soddisfare le necessità dell'azienda e dei suoi dipendenti, garantendo loro la possibilità di accedere alle risorse interne attraverso un canale di comunicazione privato, ad accesso controllato, criptato e dove è assicurata l'integrità dei dati.
+
 \subsection{Soluzioni principali}
 Tra le soluzioni VPN più comuni troviamo:
 \begin{itemize}
     \item Point-to-Point Tunneling Protocol
-    \item IP Security Protocol
+    \item Internet Protocol Security
     \item OpenVPN
     \item Wireguard
     \item Mettere Esempio di Web Based SSL VPN %https://www.firewall.cx/cisco-technical-knowledgebase/cisco-services-tech/342-cisco-web-vpn.html
 \end{itemize}
 
-
-
-\subsection{Perché soddisfano i requisiti}
-Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di
 %---------------------------------------------------------------------------------------------------------------------------------------------IPSec
 % BUONO https://pctempo.com/openvpn-vs-ikev2-vs-pptp-vs-l2tp-ipsec-vs-sstp/
 
@@ -46,36 +45,78 @@ Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di
 % 5.	Protocolli usati
 % 6.	Cifratura usata ? hw o sw, limitata se non aggiorni hw ma più veloce, e il contrario
 
-\section{IPSec}
+\section{Internet Protocol Security}
 \subsection{Panoramica}
-IPsec is a framework of open standards for ensuring private communications over IP networks which has become the most commonly used network layer security control [11]. IPsec is based on securing Network layer of TCP/IP model. In many environments securing Network layer is a better solution than securing higher Transport or Application layers. It makes a way for network administrators to enforce certain security policies, and also provides a more flexible way in protecting IP information for each packet [11]. Depending on the implementation IPsec can provide a combination of following security measures: confidentiality, integrity, peer authentication, replay protection, traffic analysis protection and access control.
-
-\subsection{Protocolli utilizzati}
-As noted earlier, IPsec uses multiple additional protocols to establish a secure connection [11]
-
-\subsubsection{Authentication Header}
-Authentication Header (AH) , defined in RFC 4302 [12], provides integrity protection for all packet headers (except few IP header fields) and user authen- tication. Optionally it can provide replay and access protection. AH is not able to encrypt data.
-
-\subsubsection{Encapsulating Security Payload}
-Encapsulating Security Payload (ESP) , defined in RFC 4303 [13], has two modes: tunnel and transport. Tunnel mode can provide encryption and integrity protection for an encapsulated IP packet as well as authentication for ESP header, while transport mode can provide encryption and integrity protection for the payload of an IP packet and integrity protection for the ESP header.
-
-\subsubsection{Internet Key Exchange v2}
-Ancora del testo---IKE è un acronimo per Internet key exchange ed è il protocollo usato per stabilire una security association nella suite di protocolli IPsec. Questo protocollo è definito in RFC 4306. È un protocollo di livello applicazione e utilizza il protocollo UDP come protocollo di trasporto; la porta su cui viene stabilita la connessione è 500. ---
-
-Internet Key Exchange (IKE) is used to negotiate, create and manage Secu- rity Associations (SA) [11]. SA is a set of rules needed to define the features and security mechanisms for the establishing a IPsec connection. It can be defined manually, however it does not scale well with large-scale VPNs. A more common method is using one of the five possible IKE exchange modes - main, aggres- sive, quick, informational or group. The modes differ in speed and the usage of their cryptographic primitives for establishing a secure connection. IKEv2 is the newest version of IKE, and it improves the protocol in the following ar- eas: clearly defined RFC (RFC 5996 [14]), simplicity, reliable message delivery, protection against Denial of Service (DoS) attacks, and improved usage of IKE with Network Address Translation (NAT) gateways [11].
-
+IP Security è una suite di protocolli il cui obiettivo è rendere sicura la comunicazione tra due computer attraverso una rete IP.
+Contiene protocolli per la mutua autenticazione degli host e per la negoziazione delle chiavi di cifratura da usare durante la sessione.
+In molti contesti, rendere sicuro il livello di rete (L3 OSI) è una soluzione migliore rispetto a rendere sicuro il livello di trasporto (L4 OSI) o di presentazione (L7 OSI), in quanto offre un ulteriore punto di controllo per gli amministratori e più flessibilità nell'analizzare, e gestire, ogni singolo pacchetto IP.
+IPSec supporta l'autenticazione a livello di rete, autenticazione del mittente, integrità dei dati, cifratura, e protezione dagli attacchi replay, protezione dall'analisi del traffico e controllo degli accessi.
 
 \subsection{Transport mode vs Tunnel mode}
-Ancora del testo
+The IPsec protocols AH and ESP can be implemented in a host-to-host transport mode, as well as in a network tunneling mode.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=8cm]{figure/ipsec_modes.png}
+    \caption{Transport mode vs Tunnel mode diagram}
+\end{figure}
+
+
+\subsubsection{Transport mode}
+In transport mode, generalmente solo il payload del pacchetto IP è cifrato o autenticato. L'indirizzamento non cambia, dato che l'header IP non è né modificato né cifrato; tuttavia, quanto si usa il protocollo Authentication Header - approfondito in seguito - l'indirizzo IP non può essere modificato da Network Address Translation, in quanto una modifica al campo invaliderebbe l'hash. Il livello di trasporto e di applicazione sono sempre certificati da un hash, quindi il loro contenuto non può essere modificato in alcun modo, ad esempio utilizzando una traduzione dei numeri delle porte.
+Un superamento delle problematiche causate dall'attraversamento di NAT è definito dalle RFC che descrivono il meccanismo NAT-T, ma che va oltre gli scopi di questa tesi.
+
+\subsubsection{Tunnel mode}
+In tunnel mode, l'intero pacchetto è cifrato e autenticato. È dunque incapsulato all'interno di un nuovo pacchetto IP con un nuovo header IP.
+Generando un nuovo header IP, non si incontra nessuna difficoltà nell'attraversamento di NAT.
+
+
+\subsection{Protocolli utilizzati}
+IPSec utilizza i seguenti protocolli per stabilire una connessione sicura. Sia AH che ESP, descritti in seguito, possono lavorare in tunnel mode o in transport mode.
+
+\subsubsection{Authentication Header}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/ah_tun_trasp.png}
+    \caption{Authentication Header packet formats}
+\end{figure}
+
+Authentication Header \cite[RFC4302]{RFC4302} garantisce integrità per tutti gli header dei pacchetti, ad eccezione di alcuni campi dell'header IP, e autenticazione del mittente. Se configurato, è anche possibile utilizzarlo per offrire protezione dagli attacchi replay. AH si interfaccia direttamente con IP, utilizzamndo il protocollo IP numero 51.
+AH autentica l'intero datagramma, ad eccezione dei campi variabili. Tuttavia, le informazioni contenute nel datagramma sono trasferite in chiaro e, dunque, leggibili da uno sniffer. Per questo motivo, AH non soddisfa i requisiti di sicurezza richiesti.
+
+\subsubsection{Encapsulating Security Payload}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/esp_tun_trasp.png}
+    \caption{Encapsulating Security Payload packet formats}
+\end{figure}
+Encapsulating Security Payload \cite[RFC4303]{RFC4303} offre confidenzialità dei fati, autenticazione del mittente, controllo di integrità e protezione da attacchi relay.
+In Transport mode, non autentica né cifra l'header IP: cioè potrebbe esporre le informazioni contenute a potenziali attacchi mentre il pacchetto è in transito.
+Tuttavia, la Transport mode necessita di meno potenza computazionale, ottenendo un overhead minore della tunnel mode, rinunciando a una maggior sicurezza.
+
+In Tunnel mode, viene creato un nuovo header IP e usato come header esterno del pacchetto, eguito dall'header ESP e poi il pacchetto originale (sia header IP che payload originale).
+L'ESP Trailer e gli opzionali dati di autenticazione sono aggiunti dopo il payload.
+Quando si usano cifratura e autenticazione contemporaneamente, ESP protegge completamente il pacchetto orginale, perché diventa il payload del nuovo pacchetto ESP.
+Da notare è che non viene protetto il nuovo header IP.
+Un gateway deve necessariamente usare ESP in Tunnel mode.
+
+\subsubsection{Internet Key Exchange v2}
+Ancora del testo---IKE è un acronimo per Internet key exchange ed è il protocollo usato per stabilire una security association nella suite di protocolli IPsec. Questo protocollo è definito in RFC 4306.  ---
+
+Internet Key Exchange \cite[RFC4306]{RFC4306} è un protocollo che svolge la funzione di negoziazione, gestione e creazione delle Security Associations. Una SA è un insieme di regole necessarie a definire le funzionalità e i sistemi di sicurezza per stabilire una connessione IPSec. Può essere definita manualmente, anche se non scala dovutamente con VPN di grandi dimensioni. Un metodo più comune è quello di usare una delle cinque possibili modalità di scambio: main, aggressive, quick, informational e group.
+Le modalità sono differenti per velocità e l'uso di funzioni di cifratura. IKEv2 è la versione più recende di IKE e migliora il protocollo rendendolo più sempice, garantendo affidabilità nel recapito dei messaggi, protezione contro attacchi di tipo DenialOfService e migliora l'uso di IKE su gateways NAT.
+È un protocollo di livello applicazione e utilizza il protocollo UDP come protocollo di trasporto; la porta su cui viene stabilita la connessione è 500.
 
 \subsection{Cifratura}
-Ancora del testo
+IPSec supporta diversi protocolli di cifratura, tra cui AES, Blowfish, Triple DES, ChaCha e DES-CBC. Inoltre, usa due tipi di cifratura: simmetrica e asimmetrica. In una codifica simmetrica, una chiave è condivisa tra gli utenti, mentre una asimmetrica fa affidamento su entrambe le chiavi pubbliche e private. La codifica asimmetrica è considerata più sicura: molti utenti condividono la chiave pubblica, ma la sicurezza fa affidamento sulla chiave privata - protetta a tutti costi - che non ha bisogno di essere condivisa con nessuno (a differenza di una chiave simmetrica).
+IPSec usa la cifratura asimmetrica per instaurare una connessione sicura, per poi sfruttare quella simmetrica per migliorare la velocità di collegamento. Per quello che riguarda il collegamento, è compatibile sia con UDP che con TCP.
+
 
 \subsection{Autenticazione}
-Ancora del testo
+L'autenticazione a chiave pubblica e privata assicura che mittenti e destinatari stiano effettivamente comunicando con il giusto partner. IPSec support molteplici sistemi di autenticazione, tra cui: HMAC-SHA1/SHA2, certificate authorities (CAs), RSA, ECDSA, e pre-shared key (PSK). Ogni tipologia ha i suoi pregi e difetti e casi d'uso in cui è preferibile. Ogni protocollo punta a garantire che i dati rimangano sicuri e affidabili attraverso il loro tragitto.
 
 \subsection{Implementazioni}
-StrongSwan is an open source IPsec implementation for the Linux oper- ating system [18]. Maintained by Andreas Steffen, strongSwan supports features, such as IPv6, Android 4+, X.509 public key certificates, certifi- cate revocation lists, RSA private key storage on smartcards, ability to interoperate with various MS Windows and Mac OS X VPN clients, full implementation of IKEv2 protocol, and much more.
+StrongSwan è una implementazione open-source di IPSec per Linux. Supporta funzionalità come IPv6, certificati X.509 a chiave pubblica, liste di certificati revocati, storage di chiavi RSA private su smartcard e implementazione completa del protocollo IKEv2.re.
 
 \subsection{Considerazioni}
 Ancora del testo
@@ -132,21 +173,11 @@ La struttura mostrata si applica a tutti i pacchetti OpenVPN; tuttavia, differen
 
 \subsubsection{Secure Socket Layer/Transport Layer Security VPNs}
 Il protocollo Transport Layes Security, originariamente noto come Secure Socket Layer, è un protocollo progettato per garantire una connessione sicura attraverso una rete non sicura. TLS permette autenticazione di client e server, integrità dei dati e confidenzialità. Per l'autenticazione usa i certificati X.509 \cite[RFC5280]{RFC5280} con una crittografia asimmetrica e si occupa di negoziare una chiave di sessione simmetrica.
+Un vantaggio delle VPN SSL rispetto a quelle basate su IPSec è che riescono a lavorare anche in reti protette da firewall molto stringenti, in quanto la maggior parte delle aziende non filtra il traffico TCP sulla porta 443, essendo normalmente usato dai dipendenti per accedere a Internet. OpenVPN di default utilizza la porta 1194 UDP, ma, nel caso quella porta fosse chiusa, può utilizzare la 443 TCP.
 
-One advantage of SSL VPNs over an IPsec VPNs is that SSL VPNs can connect to more restricted environments where NAT (Network Address Translation) or strict firewall rules are used. The reason for this is because most organizations do not filter the traffic on the TCP port 443, as it is usually used for employees to securely access Internet. For instance, OpenVPN, SSL- based VPN, uses UDP Port 1194 for secure data transmission. However, in the case that port is filtered, OpenVPN can also make use TCP port 443. The advantages of using UDP as a transport protocol are discussed at the beginning of the Chapter 4.
-There are two primary types of SSL VPNs, namely SSL portal VPNs and SSL tunnel VPNs [15].
-• SSL portal VPN works over a single network port, namely TCP 443 and acts as a Transport layer VPN. It allows users to connect with most web browsers to access web related content.
-• SSL tunnel VPN is used to access multiple network services through a tunnel that is running under SSL. The main difference from portal SSL VPNs is that tunnel SSL VPNs allow accessing multiple network services, including applications and protocols that are not web-based. The require- ment for SSL tunnel VPN is that it must be able to handle different active content like Java, JavaScript, Flash, ActiveX [15]. Being able to use more services, this tunnel has more capabilities compared to a portal type VPNs, but it may prevent some users from being able to connect to VPN. The SSL VPN tunnels are created in SSL, but just like in IPsec tunnels, IP traffic is fully protected by the tunnel [15].
 
 \subsection{TCP vs UDP}
-
-TCP is the main protocol in TCP/IP networks. The IP protocol process data packets while TCP allow two hosts to exchange data streams and establish a connection. TCP guarantees that packets will arrive their destination in the same order in which they were sent [7].
-UDP provides unreliable, minimum, best-effort, message delivery to upper-layer protocols and applications. UDP do not setup a permanent connection between two end points [8].
-IV. COMPARISON BETWEEN TCP AND UDP
-The adjustments between TCP and UDP regardless of VPN usage is always said to be the same: Speed is sacrifice for reliability as UDP is connectionless and the server sending the data theoretically does not ensure if it reaches the des- tination or not. TCP is a connection-oriented protocol [9], which implies that end-to-end communications is set up using handshaking. Once the connection is established, data can be transferred bi-directionally over the link. UDP is a connec- tionless protocol and therefore less complex message based [10] when compared to TCP, which includes that the point-to- point connection is not dedicated and data is transferred uni- directional from the source to its destination without checking whether the receiver is active. TCP regulate retransmission, message acknowledgment, and timeout [11]. TCP deliver lost messages along the way upon multiple attempts. In TCP, there is no missing data, and if ever there are multiple timeouts, the connection is dropped. When a UDP message is sent there is no guarantee that the message will reach its destination; it could get drop along the way. There is no retransmission, timeout and acknowledgment. When two data packets are sent in sequence, the first message will reach the destination first. When data segments arrive in the wrong order, TCP buffers hold the data until all data are re-ordered before being transmitted; when using UDP the order in which messages arrive cannot be predicted.
-The TCP protocol has extensive algorithms to ensure correct delivery of the data. Having two TCP connections stacked together will thus force the algorithms of both TCP con- nections to work in parallel [12]. TCP was not designed to work this way and problems are likely to occur in different situations. The retransmission problems, TCP meltdown and double retransmit, are problems caused by tunneling TCP in TCP. The problems can occur when both of the stacked con- nections are retransmitting packets. In previous work, related to TCP in TCP tunneling, it is not entirely clear, how severe the retransmission problems really are. TCP protocol suite allows automatic recovery of any dropped or lost data even if a host goes down in the network. When TCP packets are transmitted from one end to a remote end across the network, the data packets are reordered in the same sequence created by the sender. The protocol notifies when segments of the data stream have been corrupted, reordered, discarded or duplicated by the network [11]. TCP is a reliable protocol as the sender can retransmit damaged segments. However retransmission creates latency.
-TCP was designed to make an efficient protocol with little overhead, a protocol set having a basic amount of ’extra’ data being transferred. This extra data is named as overhead,
-and they package the data that needs to be transferred. TCP tunnel is a technology that combines and transmits packets sent between end hosts as a single TCP connection. When using a TCP tunnel, the fairness among aggregated flows can be improved and several protocols can be transparently transmitted through a firewall
+Il protocollo TCP utilizza notevoli algoritmi per assicurare un recapito correto dei dati al destinatario. Avere due connessioni TCP una dentro l'altra forzera gli algoritmi di entrambe le connessioni a lavorare in parallelo. Non essendo TCP progettato per lavorare in quella condizione, si potrebbe andare incontro a problemi quali il \emph{retransmission problem}, \emph{TCP meltdown} e doppia ritrasmissione. Questi problemi potrebbero verificarsi nel momento in cui entrambe le connessioni stanno tentando di ritrasmettere pacchetti.
 
 \subsection{Cifratura}
 Ancora del testo
