@@ -176,14 +176,19 @@ Il protocollo Transport Layes Security, originariamente noto come Secure Socket 
 Un vantaggio delle VPN SSL rispetto a quelle basate su IPSec è che riescono a lavorare anche in reti protette da firewall molto stringenti, in quanto la maggior parte delle aziende non filtra il traffico TCP sulla porta 443, essendo normalmente usato dai dipendenti per accedere a Internet. OpenVPN di default utilizza la porta 1194 UDP, ma, nel caso quella porta fosse chiusa, può utilizzare la 443 TCP.
 
 
-\subsection{TCP vs UDP}
+\subsection{Tunnel TCP vs UDP}
+Premesso che attraverso i tunnel VPN passa traffico sia TCP che UDP, anche i tunnel stessi possono essere realizzati con connessioni TCP o UDP.
+
 Il protocollo TCP utilizza notevoli algoritmi per assicurare un recapito correto dei dati al destinatario. Avere due connessioni TCP una dentro l'altra forzera gli algoritmi di entrambe le connessioni a lavorare in parallelo. Non essendo TCP progettato per lavorare in quella condizione, si potrebbe andare incontro a problemi quali il \emph{retransmission problem}, \emph{TCP meltdown} e doppia ritrasmissione. Questi problemi potrebbero verificarsi nel momento in cui entrambe le connessioni stanno tentando di ritrasmettere pacchetti.
+
+Tutto ciò non vale per il protocollo UDP, che come descritto precedentemente, è un protocollo non connesso senza nessuna garanzia che il messaggio raggiunga correttamente il destinatario. A discapito dell'affidabilità, si possono ottenere velocità di trasmissione notevolmente superiori.
+
 
 \subsection{Cifratura}
 Ancora del testo
 
 \subsection{Autenticazione}
-In contrast to pre-share static key mode, TLS mode uses TLS protocol to authen- ticate, establish secure channel and exchange the symmetric tunnel session key between peers.
+In contrast to pre-share static key mode, TLS mode uses TLS protocol to authenticate, establish secure channel and exchange the symmetric tunnel session key between peers.
 Just like in pre-shared static key mode, session key is used to en- crypt the data tunnel, however, the authentication and symmetric key exchange take place using TLS protocol.
 This not only provides an automatic and secure way of distributing symmetric keys, but also a way to renew the symmetric key at any point during the communication.
 The aforementioned aspect of the TLS mode provides the Perfect Forward Secrecy, which is not present in pre-shared static key mode.
@@ -197,12 +202,8 @@ The tunnel session key derivation TLS packet structure is shown in Tab. 3.
 In order to successfully construct a OpenVPN client, it is important to un- derstand the key differences explained in this chapter between the TLS modes, key methods and their respective packet structures.
 
 \subsection{Misure di sicurezza aggiuntive}
-Ancora del testo
-OpenVPN offers various internal security features. It has up to 256-bit encryption through the OpenSSL library, although some service providers may offer lower rates, effectively providing some of the fastest VPN available to consumers. It runs in userspace instead of requiring IP stack (therefore kernel) operation. OpenVPN has the ability to drop root privileges, use mlockall to prevent swapping sensitive data to disk, enter a chroot jail after initialization, and apply a SELinux context after initialization.
+OpenVPN offre diverse funzionalità di sicurezza: cifratura fino a 256-bit attraverso la libreria OpenSSL, anziché supportare IKE; lavora in user space, senza quindi necessità di effettuare operazioni sullo stack IP, e quindi operazioni kernel; ha la possibilià di far cadere i privilegi di root; entrare in una \emph{chroot jail} dopo l'inizializzazione; applicare un SELinux context dopo l'inizializzazione; offre supporto alle smartcard attraverso i token basati su PKCS 11.
 
-OpenVPN runs a custom security protocol based on SSL and TLS, rather than supporting IKE, IPsec, L2TP or PPTP.
-
-OpenVPN offers support of smart cards via PKCS 11-based cryptographic tokens.
 \subsection{Considerazioni}
 Ancora del testo
 

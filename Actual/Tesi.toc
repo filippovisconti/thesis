@@ -66,13 +66,13 @@
 \contentsline {subsection}{\numberline {2.4.1}Panoramica}{14}{subsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.4.2}Protocolli utilizzati}{14}{subsection.2.4.2}%
 \contentsline {subsubsection}{\numberline {2.4.2.1}Secure Socket Layer/Transport Layer Security VPNs}{15}{subsubsection.2.4.2.1}%
-\contentsline {subsection}{\numberline {2.4.3}TCP vs UDP}{16}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.3}Tunnel TCP vs UDP}{16}{subsection.2.4.3}%
 \contentsline {subsection}{\numberline {2.4.4}Cifratura}{16}{subsection.2.4.4}%
 \contentsline {subsection}{\numberline {2.4.5}Autenticazione}{16}{subsection.2.4.5}%
 \contentsline {subsection}{\numberline {2.4.6}Misure di sicurezza aggiuntive}{17}{subsection.2.4.6}%
 \contentsline {subsection}{\numberline {2.4.7}Considerazioni}{17}{subsection.2.4.7}%
-\contentsline {section}{\numberline {2.5}WireGuard}{17}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Panoramica}{17}{subsection.2.5.1}%
+\contentsline {section}{\numberline {2.5}WireGuard}{18}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Panoramica}{18}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}Protocolli utilizzati}{20}{subsection.2.5.2}%
 \contentsline {subsubsection}{\numberline {2.5.2.1}Something}{20}{subsubsection.2.5.2.1}%
 \contentsline {subsection}{\numberline {2.5.3}TCP vs UDP}{20}{subsection.2.5.3}%
