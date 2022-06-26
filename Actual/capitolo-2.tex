@@ -23,6 +23,12 @@ In questa modalità, il risultato che si ottiene è lo stesso che si avrebbe con
 \subsection{Perché soddisfano i requisiti}
 Una VPN in configurazione Host-to-Gateway si prospetta come la soluzione più pratica e funzionale per soddisfare le necessità dell'azienda e dei suoi dipendenti, garantendo loro la possibilità di accedere alle risorse interne attraverso un canale di comunicazione privato, ad accesso controllato, criptato e dove è assicurata l'integrità dei dati.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/vpn_noVPN.pdf}
+    \caption{Modello logico di connessione con e senza VPN}
+\end{figure}
+
 \subsection{Soluzioni principali}
 Tra le soluzioni VPN più comuni troviamo:
 \begin{itemize}
@@ -30,7 +36,6 @@ Tra le soluzioni VPN più comuni troviamo:
     \item Internet Protocol Security
     \item OpenVPN
     \item Wireguard
-    \item Mettere Esempio di Web Based SSL VPN %https://www.firewall.cx/cisco-technical-knowledgebase/cisco-services-tech/342-cisco-web-vpn.html
 \end{itemize}
 
 %---------------------------------------------------------------------------------------------------------------------------------------------IPSec
@@ -119,7 +124,7 @@ L'autenticazione a chiave pubblica e privata assicura che mittenti e destinatari
 StrongSwan è una implementazione open-source di IPSec per Linux. Supporta funzionalità come IPv6, certificati X.509 a chiave pubblica, liste di certificati revocati, storage di chiavi RSA private su smartcard e implementazione completa del protocollo IKEv2.re.
 
 \subsection{Considerazioni}
-Ancora del testo
+Questa suite di protocolli consente di implementare una soluzione VPN accademicamente perfetta, robusta dal punto di vista della sicurezza ed efficace. L'unico impedimento che ha è che richiede l'utilizzo di due porte dedicate i due protocolli ausiliari utilizzati (AH/ESP e IKE), che potrebbero rendere l'utilizzo più difficoltoso in ambienti con firewall molto limitanti. 
 %---------------------------------------------------------------------------------------------------------------------------------------------PPTP
 % https://www.ivpn.net/pptp-vs-ipsec-ikev2-vs-openvpn-vs-wireguard/
 
@@ -220,7 +225,7 @@ I due step principali del protocollo TLS, a grandi linee, sono:
 OpenVPN offre diverse funzionalità di sicurezza: cifratura fino a 256-bit attraverso la libreria OpenSSL, anziché supportare IKE; lavora in user space, senza quindi necessità di effettuare operazioni sullo stack IP, e quindi operazioni kernel; ha la possibilià di far cadere i privilegi di root; entrare in una \emph{chroot jail} dopo l'inizializzazione; applicare un SELinux context dopo l'inizializzazione; offre supporto alle smartcard attraverso i token basati su PKCS 11.
 
 \subsection{Considerazioni}
-Ancora del testo
+Si tratta di una soluzione per VPN matura e flessibile, con supporto a meccanismi di sicurezza all'altezza.
 
 %--------------------------------------------------------------------------------------------------------------------------------------------Wireguard
 \section{WireGuard}
@@ -233,6 +238,7 @@ WireGuard è in grado di instaurare esclusivamente tunnel di livello 3. Con ques
 
 WireGuard si concentra sulla semplicità e su una codebase facilmente ispezionabile, essendo allo stesso tempo estremamente performante e adatto a diversi ambienti. Combinando lo scambio di chiavi e la cifratura a livello 3 in un unico meccanismo e utilizzando un'interfaccia di rete virtuale anzichè un livello di trasformazione, WireGuard rompe con la tradizione per perseguire una soluzione ingegneristicamente solida apparentemente più pratica e sicura.
 
+A partire dalla versione 5.6 del kernel Linux, WireGuard verrà incluso nel kernel stesso. 
 \subsection{Protocolli utilizzati}
 Nell'implementazione di WireGuard, sono utilizzati i seguenti protocolli:
 \begin{itemize}
@@ -251,4 +257,4 @@ Per la distribuzione delle chiavi, WireGuard si ispira a OpenSSH, dove i due pee
 Le chiavi pubbliche sono lunghe 32 bytes e possono essere facilmente rappresentate con una codifica Base64 in 44 caratteri, che semplificha il trasferimento di esse attraverso vari mezzi. È supportata anche la Perfect Forward Secrecy, illustrata precedentemente.
 
 \subsection{Considerazioni}
-Ancora del testo
+La semplicità di installazione è sicuramente un fattore che in ambienti piccoli ha la sua rilevanza; insieme alle prestazioni elevate, la rendono una soluzione da valutare al momento di installare un servizio VPN. 

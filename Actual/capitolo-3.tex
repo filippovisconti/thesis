@@ -114,12 +114,19 @@ Per la creazione della Certificate Authority e di tutti i certificati, sono stat
 \subsection{Configurazione del profilo VPN per un client}
 Affinché un client possa connettersi alla VPN, è necessario che egli sia in possesso di un profilo contenente tutti i dettagli tecnici necessari ad instaurare una connessione corretta con il server, e il suo certificato personale. In particolare, devono combaciare porta e protocollo utilizzato, gli algoritmi di cifratura, le funzioni di digest e i parametri per TLS.
 
-
-
 \section{Installazione e configurazione WireGuard}
-Ancora del testo
-\subsection{Installazione di wireguard}
-Ancora del testo
+L'installazione di WireGuard si effettua semplicemente con il comando \texttt{dnf install wireguard}, che si generi la chiave del server e che si inserisca all'interno del file di configurazione, insieme all'IP che utilizzerà il server stesso per interfacciarsi con la VPN. In automatico viene creata un'interfaccia di rete virtuale \texttt{wg0}, a cui viene assegnato l'IP scelto. 
+Ogni client avrà sempre lo stesso IP, in quanto vengono assegnati nella fase di creazione del profilo di connessione.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/Wireguard-roadwarrior.png}
+    \caption{Architettura di installazione di WireGuard}
+\end{figure}
+
+
+\subsection{Configurazione del profilo VPN per un client}
+Affinché un client possa connettersi alla VPN, è necessario che nel file di configurazione del server sia presente la chiave pubblica del client, e nel profilo di connessione del client sia presente l'IP pubblico del server, la sua chiave pubblica e l'indirizzo IP che il client assumerà.
 
 \section{Configurazione del Firewall}
 Nelle policies del firewall, sono state aggiunte delle voci che autorizzano il traffico proveniente dalle interfacce di rete virtuali strongswan0, tun0 e wg0 a navigare su Internet e a comunincare sulla porta 5201 TCP/UDP con la LAN dei server. Questa sarà la porta utilizzata da un servizio di misura delle performance che sarà in esecuzione sul Web Server, iperf3.
