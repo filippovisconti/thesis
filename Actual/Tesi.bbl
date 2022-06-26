@@ -88,6 +88,10 @@ Y.~Nir and A.~Langley.
 Noise.
 \newblock \url{http://noiseprotocol.org/noise.pdf}.
 
+\bibitem[Ora]{virtualbox}
+Oracle.
+\newblock \url{https://www.virtualbox.org}.
+
 \bibitem[Pos81]{RFC0791}
 Jon Postel.
 \newblock Internet protocol.
@@ -104,5 +108,13 @@ J.~Postel and J.~Reynolds.
 M-J. Saarinen and J-P. Aumasson.
 \newblock The blake2 cryptographic hash and message authentication code (mac).
 \newblock RFC 7693, RFC Editor, November 2015.
+
+\bibitem[str]{strongSwan}
+strongSwan.
+\newblock \url{https://www.strongswan.org}.
+
+\bibitem[vmw]{esxi}
+vmware.
+\newblock \url{https://www.vmware.com/it/products/esxi-and-esx.html}.
 
 \end{thebibliography}

@@ -134,13 +134,24 @@ Tuttavia, è estremamente semplice da configurare e il più veloce dal punto di 
 GRE è un protocollo di tunneling sviluppato da Cisco Systems che può incapsulare un'ampia varietà di protocolli di livello di rete all'interno di collegamenti Point-to-Point o Point-to-Multipoint virtuali su una rete IP.
 
 \subsection{Cifratura}
-PPTP non specifica nessuna
+Microsoft Point-to-Point Encryption (MPPE) may be used with PPTP to provide an encrypted connection but PPTP itself doesn't use encryption. MPPE uses the RC4 algorithm with either 40 or 128-bit keys. All keys are derived from the cleartext authentication password of the user. RC4 is stream cipher; therefore, the sizes of the encrypted and decrypted frames are the same size as the original frame.
+
+Con PPTP, è possibile usare Microsoft Point-to-Point Encryption (MPPE) per instaurare una connessione cifrata, ma PPTP di base non usa cifratura. MMPE usa l'algoritmo RC4 con chiavi da 40 o 128-bit. Tutte le chiavi sono derivate dalla password in chiaro dell'utente. Tuttavia, la RFC7465 proibisce l'uso di RC4 in quanto non robusto a sufficienza
 
 \subsection{Autenticazione}
-Ancora del testo
+Per quel che riguarda l'autenticazione degi utenti, PPTP può usare uno dei seguenti protocolli:
+\begin{itemize}
+    \item Extensible Authentication Protocol (EAP),
+    \item Microsoft Challenge Handshake Authentication Protocol (MSCHAP) version 1 and version 2,
+    \item Challenge Handshake Authentication Protocol (CHAP),
+    \item Shiva Password Authentication Protocol (SPAP),
+    \item Password Authentication Protocol (PAP).
+\end{itemize}
+
+MSCHAP version 2 e EAP-Transport Layer Security (TLS) sono protocolli migliori rispetto agli altri supportati perché offrono mutua autenticazione, dove sia il client che il server verificano l'identità dell'altro. Se un client si autentica attraverso uno degli altri protocolli, il server verifica l'identità del client, ma il client non ha modo di verificare quella del server.
 
 \subsection{Considerazioni}
-Ancora del testo
+Non offrendo una cifratura adeguata, PPTP non è una soluzione ritenuta accettabile per il caso d'uso in questione.
 
 %----------------------------------------------------------------------------------------------------------------------------------------------OpenVPN
 % https://en.wikipedia.org/wiki/OpenVPN 

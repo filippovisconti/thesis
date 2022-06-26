@@ -82,8 +82,9 @@ wg0: flags=209<UP,POINTOPOINT,RUNNING,NOARP>  mtu 1420
         TX packets 24906  bytes 29378240 (28.0 MiB)
         TX errors 0  dropped 21 overruns 0  carrier 0  collisions 0
 
-root@firewall /etc/sysconfig/network-scripts # ip a show strongswan0
-29: strongswan0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default qlen 1000
+root@firewall ~ # ip a show strongswan0
+
+29: strongswan0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 [...] qlen 1000
     link/ether c8:d7:4a:4e:47:50 brd ff:ff:ff:ff:ff:ff
     inet 10.0.2.1/24 brd 10.0.2.255 scope global strongswan0:0
        valid_lft forever preferred_lft forever
