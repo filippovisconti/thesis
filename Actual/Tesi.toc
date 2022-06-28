@@ -106,9 +106,9 @@
 \contentsline {subsubsection}{\numberline {4.1.4.3}Packetloss}{31}{subsubsection.4.1.4.3}%
 \contentsline {section}{\numberline {4.2}Misure senza VPN}{31}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Misure con IPSec e IKEv2}{31}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Misure con OpenVPN over TCP}{32}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Misure con WireGuard}{32}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Analisi delle misure}{32}{section.4.6}%
+\contentsline {section}{\numberline {4.4}Misure con OpenVPN over TCP}{31}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Misure con WireGuard}{31}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Analisi delle misure}{31}{section.4.6}%
 \contentsline {chapter}{\chapternumberline {5}Security concerns}{34}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Principali problematiche di sicurezza}{34}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Attacchi mirati agli utenti}{34}{section.5.2}%

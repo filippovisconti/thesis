@@ -1,0 +1,42 @@
+1380 bytes from 79.61.138.204: icmp_seq=0 ttl=55 time=8.600 ms
+1385 bytes from 79.61.138.204: icmp_seq=1 ttl=55 time=8.569 ms
+1390 bytes from 79.61.138.204: icmp_seq=2 ttl=55 time=8.563 ms
+1395 bytes from 79.61.138.204: icmp_seq=3 ttl=55 time=8.472 ms
+1400 bytes from 79.61.138.204: icmp_seq=4 ttl=55 time=8.425 ms
+1405 bytes from 79.61.138.204: icmp_seq=5 ttl=55 time=8.256 ms
+1410 bytes from 79.61.138.204: icmp_seq=6 ttl=55 time=8.294 ms
+1415 bytes from 79.61.138.204: icmp_seq=7 ttl=55 time=8.520 ms
+1420 bytes from 79.61.138.204: icmp_seq=8 ttl=55 time=8.473 ms
+1425 bytes from 79.61.138.204: icmp_seq=9 ttl=55 time=8.640 ms
+1430 bytes from 79.61.138.204: icmp_seq=10 ttl=55 time=8.876 ms
+1435 bytes from 79.61.138.204: icmp_seq=11 ttl=55 time=8.798 ms
+1440 bytes from 79.61.138.204: icmp_seq=12 ttl=55 time=8.502 ms
+1445 bytes from 79.61.138.204: icmp_seq=13 ttl=55 time=8.812 ms
+1450 bytes from 79.61.138.204: icmp_seq=14 ttl=55 time=8.942 ms
+1455 bytes from 79.61.138.204: icmp_seq=15 ttl=55 time=8.692 ms
+1460 bytes from 79.61.138.204: icmp_seq=16 ttl=55 time=8.793 ms
+1465 bytes from 79.61.138.204: icmp_seq=7 ttl=55 time=8.721 ms
+1466 bytes from 79.61.138.204: icmp_seq=8 ttl=55 time=8.730 ms
+1467 bytes from 79.61.138.204: icmp_seq=9 ttl=55 time=8.514 ms
+1468 bytes from 79.61.138.204: icmp_seq=10 ttl=55 time=8.467 ms
+1469 bytes from 79.61.138.204: icmp_seq=11 ttl=55 time=8.613 ms
+1470 bytes from 79.61.138.204: icmp_seq=12 ttl=55 time=8.619 ms
+1471 bytes from 79.61.138.204: icmp_seq=13 ttl=55 time=8.705 ms
+1472 bytes from 79.61.138.204: icmp_seq=14 ttl=55 time=8.769 ms
+Request timeout for icmp_seq 15
+Request timeout for icmp_seq 16
+Request timeout for icmp_seq 17
+Request timeout for icmp_seq 18
+Request timeout for icmp_seq 19
+Request timeout for icmp_seq 20
+Request timeout for icmp_seq 21
+ping: sendto: Message too long
+Request timeout for icmp_seq 22
+ping: sendto: Message too long
+Request timeout for icmp_seq 23
+ping: sendto: Message too long
+Request timeout for icmp_seq 24
+ping: sendto: Message too long
+Request timeout for icmp_seq 25
+ping: sendto: Message too long
+

@@ -1,0 +1,210 @@
+❯ ping firewall.filippovisconti.com -g 1372 -G 2000 -h 5 -D                    # DONT FRAGMENT SET
+PING firewall.filippovisconti.com (79.61.138.204): (1372 ... 2000) data bytes
+1380 bytes from 79.61.138.204: icmp_seq=0 ttl=55 time=8.600 ms
+1385 bytes from 79.61.138.204: icmp_seq=1 ttl=55 time=8.569 ms
+1390 bytes from 79.61.138.204: icmp_seq=2 ttl=55 time=8.563 ms
+1395 bytes from 79.61.138.204: icmp_seq=3 ttl=55 time=8.472 ms
+1400 bytes from 79.61.138.204: icmp_seq=4 ttl=55 time=8.425 ms
+1405 bytes from 79.61.138.204: icmp_seq=5 ttl=55 time=8.256 ms
+1410 bytes from 79.61.138.204: icmp_seq=6 ttl=55 time=8.294 ms
+1415 bytes from 79.61.138.204: icmp_seq=7 ttl=55 time=8.520 ms
+1420 bytes from 79.61.138.204: icmp_seq=8 ttl=55 time=8.473 ms
+1425 bytes from 79.61.138.204: icmp_seq=9 ttl=55 time=8.640 ms
+1430 bytes from 79.61.138.204: icmp_seq=10 ttl=55 time=8.876 ms
+1435 bytes from 79.61.138.204: icmp_seq=11 ttl=55 time=8.798 ms
+1440 bytes from 79.61.138.204: icmp_seq=12 ttl=55 time=8.502 ms
+1445 bytes from 79.61.138.204: icmp_seq=13 ttl=55 time=8.812 ms
+1450 bytes from 79.61.138.204: icmp_seq=14 ttl=55 time=8.942 ms
+1455 bytes from 79.61.138.204: icmp_seq=15 ttl=55 time=8.692 ms
+1460 bytes from 79.61.138.204: icmp_seq=16 ttl=55 time=8.793 ms
+1465 bytes from 79.61.138.204: icmp_seq=7 ttl=55 time=8.721 ms
+1466 bytes from 79.61.138.204: icmp_seq=8 ttl=55 time=8.730 ms
+1467 bytes from 79.61.138.204: icmp_seq=9 ttl=55 time=8.514 ms
+1468 bytes from 79.61.138.204: icmp_seq=10 ttl=55 time=8.467 ms
+1469 bytes from 79.61.138.204: icmp_seq=11 ttl=55 time=8.613 ms
+1470 bytes from 79.61.138.204: icmp_seq=12 ttl=55 time=8.619 ms
+1471 bytes from 79.61.138.204: icmp_seq=13 ttl=55 time=8.705 ms
+1472 bytes from 79.61.138.204: icmp_seq=14 ttl=55 time=8.769 ms
+Request timeout for icmp_seq 15
+Request timeout for icmp_seq 16
+Request timeout for icmp_seq 17
+Request timeout for icmp_seq 18
+Request timeout for icmp_seq 19
+Request timeout for icmp_seq 20
+Request timeout for icmp_seq 21
+ping: sendto: Message too long
+Request timeout for icmp_seq 22
+ping: sendto: Message too long
+Request timeout for icmp_seq 23
+ping: sendto: Message too long
+Request timeout for icmp_seq 24
+ping: sendto: Message too long
+Request timeout for icmp_seq 25
+ping: sendto: Message too long
+Request timeout for icmp_seq 26
+ping: sendto: Message too long
+Request timeout for icmp_seq 27
+ping: sendto: Message too long
+Request timeout for icmp_seq 28
+ping: sendto: Message too long
+Request timeout for icmp_seq 29
+
+--- firewall.filippovisconti.com ping statistics ---
+31 packets transmitted, 15 packets received, 51.6% packet loss
+
+❯ ping firewall.filippovisconti.com -g 992 -G 3500 -h 50
+PING firewall.filippovisconti.com (79.61.138.204): (992 ... 3500) data bytes
+1000 bytes from 79.61.138.204: icmp_seq=0 ttl=55 time=8.793 ms
+1050 bytes from 79.61.138.204: icmp_seq=1 ttl=55 time=8.080 ms
+1100 bytes from 79.61.138.204: icmp_seq=2 ttl=55 time=8.228 ms
+1150 bytes from 79.61.138.204: icmp_seq=3 ttl=55 time=8.578 ms
+1200 bytes from 79.61.138.204: icmp_seq=4 ttl=55 time=8.360 ms
+1250 bytes from 79.61.138.204: icmp_seq=5 ttl=55 time=9.066 ms
+1300 bytes from 79.61.138.204: icmp_seq=6 ttl=55 time=8.855 ms
+1350 bytes from 79.61.138.204: icmp_seq=7 ttl=55 time=8.745 ms
+1400 bytes from 79.61.138.204: icmp_seq=8 ttl=55 time=8.757 ms
+1450 bytes from 79.61.138.204: icmp_seq=9 ttl=55 time=8.968 ms
+1500 bytes from 79.61.138.204: icmp_seq=10 ttl=55 time=8.884 ms
+1550 bytes from 79.61.138.204: icmp_seq=11 ttl=55 time=8.734 ms
+1600 bytes from 79.61.138.204: icmp_seq=12 ttl=55 time=9.120 ms
+1650 bytes from 79.61.138.204: icmp_seq=13 ttl=55 time=8.812 ms
+1700 bytes from 79.61.138.204: icmp_seq=14 ttl=55 time=8.977 ms
+1750 bytes from 79.61.138.204: icmp_seq=15 ttl=55 time=8.669 ms
+1800 bytes from 79.61.138.204: icmp_seq=16 ttl=55 time=9.140 ms
+1850 bytes from 79.61.138.204: icmp_seq=17 ttl=55 time=9.131 ms
+1900 bytes from 79.61.138.204: icmp_seq=18 ttl=55 time=9.281 ms
+1950 bytes from 79.61.138.204: icmp_seq=19 ttl=55 time=8.960 ms
+2000 bytes from 79.61.138.204: icmp_seq=20 ttl=55 time=8.924 ms
+2050 bytes from 79.61.138.204: icmp_seq=21 ttl=55 time=9.214 ms
+2100 bytes from 79.61.138.204: icmp_seq=22 ttl=55 time=8.902 ms
+2150 bytes from 79.61.138.204: icmp_seq=23 ttl=55 time=9.295 ms
+2200 bytes from 79.61.138.204: icmp_seq=24 ttl=55 time=9.312 ms
+2250 bytes from 79.61.138.204: icmp_seq=25 ttl=55 time=9.307 ms
+2300 bytes from 79.61.138.204: icmp_seq=26 ttl=55 time=9.159 ms
+2350 bytes from 79.61.138.204: icmp_seq=27 ttl=55 time=9.749 ms
+2400 bytes from 79.61.138.204: icmp_seq=28 ttl=55 time=9.014 ms
+2450 bytes from 79.61.138.204: icmp_seq=29 ttl=55 time=9.225 ms
+2500 bytes from 79.61.138.204: icmp_seq=30 ttl=55 time=9.497 ms
+2550 bytes from 79.61.138.204: icmp_seq=31 ttl=55 time=9.838 ms
+2600 bytes from 79.61.138.204: icmp_seq=32 ttl=55 time=9.579 ms
+2650 bytes from 79.61.138.204: icmp_seq=33 ttl=55 time=9.858 ms
+2700 bytes from 79.61.138.204: icmp_seq=34 ttl=55 time=10.130 ms
+2750 bytes from 79.61.138.204: icmp_seq=35 ttl=55 time=9.834 ms
+2800 bytes from 79.61.138.204: icmp_seq=36 ttl=55 time=9.736 ms
+2850 bytes from 79.61.138.204: icmp_seq=37 ttl=55 time=10.278 ms
+2900 bytes from 79.61.138.204: icmp_seq=38 ttl=55 time=10.517 ms
+2950 bytes from 79.61.138.204: icmp_seq=39 ttl=55 time=10.279 ms
+3000 bytes from 79.61.138.204: icmp_seq=40 ttl=55 time=10.391 ms
+3050 bytes from 79.61.138.204: icmp_seq=41 ttl=55 time=10.272 ms
+3100 bytes from 79.61.138.204: icmp_seq=42 ttl=55 time=10.416 ms
+3150 bytes from 79.61.138.204: icmp_seq=43 ttl=55 time=10.548 ms
+3200 bytes from 79.61.138.204: icmp_seq=44 ttl=55 time=10.857 ms
+3250 bytes from 79.61.138.204: icmp_seq=45 ttl=55 time=10.431 ms
+3300 bytes from 79.61.138.204: icmp_seq=46 ttl=55 time=10.888 ms
+3350 bytes from 79.61.138.204: icmp_seq=47 ttl=55 time=10.365 ms
+3400 bytes from 79.61.138.204: icmp_seq=48 ttl=55 time=10.429 ms
+3450 bytes from 79.61.138.204: icmp_seq=49 ttl=55 time=10.701 ms
+3500 bytes from 79.61.138.204: icmp_seq=50 ttl=55 time=10.730 ms
+
+--- firewall.filippovisconti.com ping statistics ---
+51 packets transmitted, 51 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 8.080/9.487/10.888/0.746 ms
+
+
+❯ ping firewall.filippovisconti.com -g 492 -G 5000 -h 50
+PING firewall.filippovisconti.com (79.61.138.204): (492 ... 5000) data bytes
+500 bytes from 79.61.138.204: icmp_seq=0 ttl=55 time=7.466 ms
+550 bytes from 79.61.138.204: icmp_seq=1 ttl=55 time=7.403 ms
+600 bytes from 79.61.138.204: icmp_seq=2 ttl=55 time=7.485 ms
+650 bytes from 79.61.138.204: icmp_seq=3 ttl=55 time=7.551 ms
+700 bytes from 79.61.138.204: icmp_seq=4 ttl=55 time=7.854 ms
+750 bytes from 79.61.138.204: icmp_seq=5 ttl=55 time=7.476 ms
+800 bytes from 79.61.138.204: icmp_seq=6 ttl=55 time=7.687 ms
+850 bytes from 79.61.138.204: icmp_seq=7 ttl=55 time=7.597 ms
+900 bytes from 79.61.138.204: icmp_seq=8 ttl=55 time=7.916 ms
+950 bytes from 79.61.138.204: icmp_seq=9 ttl=55 time=8.021 ms
+1000 bytes from 79.61.138.204: icmp_seq=10 ttl=55 time=8.157 ms
+1050 bytes from 79.61.138.204: icmp_seq=11 ttl=55 time=8.395 ms
+1100 bytes from 79.61.138.204: icmp_seq=12 ttl=55 time=8.309 ms
+1150 bytes from 79.61.138.204: icmp_seq=13 ttl=55 time=8.681 ms
+1200 bytes from 79.61.138.204: icmp_seq=14 ttl=55 time=8.146 ms
+1250 bytes from 79.61.138.204: icmp_seq=15 ttl=55 time=8.362 ms
+1300 bytes from 79.61.138.204: icmp_seq=16 ttl=55 time=8.150 ms
+1350 bytes from 79.61.138.204: icmp_seq=17 ttl=55 time=8.107 ms
+1400 bytes from 79.61.138.204: icmp_seq=18 ttl=55 time=8.391 ms
+1450 bytes from 79.61.138.204: icmp_seq=19 ttl=55 time=8.033 ms
+1500 bytes from 79.61.138.204: icmp_seq=20 ttl=55 time=8.769 ms
+1550 bytes from 79.61.138.204: icmp_seq=21 ttl=55 time=8.892 ms
+1600 bytes from 79.61.138.204: icmp_seq=22 ttl=55 time=8.607 ms
+1650 bytes from 79.61.138.204: icmp_seq=23 ttl=55 time=8.869 ms
+1700 bytes from 79.61.138.204: icmp_seq=24 ttl=55 time=8.740 ms
+1750 bytes from 79.61.138.204: icmp_seq=25 ttl=55 time=9.338 ms
+1800 bytes from 79.61.138.204: icmp_seq=26 ttl=55 time=8.787 ms
+1850 bytes from 79.61.138.204: icmp_seq=27 ttl=55 time=9.335 ms
+1900 bytes from 79.61.138.204: icmp_seq=28 ttl=55 time=8.659 ms
+1950 bytes from 79.61.138.204: icmp_seq=29 ttl=55 time=8.905 ms
+2000 bytes from 79.61.138.204: icmp_seq=30 ttl=55 time=9.420 ms
+2050 bytes from 79.61.138.204: icmp_seq=31 ttl=55 time=9.156 ms
+2100 bytes from 79.61.138.204: icmp_seq=32 ttl=55 time=9.534 ms
+2150 bytes from 79.61.138.204: icmp_seq=33 ttl=55 time=9.666 ms
+2200 bytes from 79.61.138.204: icmp_seq=34 ttl=55 time=9.189 ms
+2250 bytes from 79.61.138.204: icmp_seq=35 ttl=55 time=9.558 ms
+2300 bytes from 79.61.138.204: icmp_seq=36 ttl=55 time=9.304 ms
+2350 bytes from 79.61.138.204: icmp_seq=37 ttl=55 time=9.183 ms
+2400 bytes from 79.61.138.204: icmp_seq=38 ttl=55 time=9.591 ms
+2450 bytes from 79.61.138.204: icmp_seq=39 ttl=55 time=9.405 ms
+2500 bytes from 79.61.138.204: icmp_seq=40 ttl=55 time=9.891 ms
+2550 bytes from 79.61.138.204: icmp_seq=41 ttl=55 time=9.466 ms
+2600 bytes from 79.61.138.204: icmp_seq=42 ttl=55 time=9.617 ms
+2650 bytes from 79.61.138.204: icmp_seq=43 ttl=55 time=9.473 ms
+2700 bytes from 79.61.138.204: icmp_seq=44 ttl=55 time=10.227 ms
+2750 bytes from 79.61.138.204: icmp_seq=45 ttl=55 time=10.020 ms
+2800 bytes from 79.61.138.204: icmp_seq=46 ttl=55 time=10.476 ms
+2850 bytes from 79.61.138.204: icmp_seq=47 ttl=55 time=10.797 ms
+2900 bytes from 79.61.138.204: icmp_seq=48 ttl=55 time=10.000 ms
+2950 bytes from 79.61.138.204: icmp_seq=49 ttl=55 time=10.124 ms
+3000 bytes from 79.61.138.204: icmp_seq=50 ttl=55 time=10.423 ms
+3050 bytes from 79.61.138.204: icmp_seq=51 ttl=55 time=10.406 ms
+3100 bytes from 79.61.138.204: icmp_seq=52 ttl=55 time=10.417 ms
+3150 bytes from 79.61.138.204: icmp_seq=53 ttl=55 time=10.230 ms
+3200 bytes from 79.61.138.204: icmp_seq=54 ttl=55 time=10.275 ms
+3250 bytes from 79.61.138.204: icmp_seq=55 ttl=55 time=10.305 ms
+3300 bytes from 79.61.138.204: icmp_seq=56 ttl=55 time=10.296 ms
+3350 bytes from 79.61.138.204: icmp_seq=57 ttl=55 time=10.262 ms
+3400 bytes from 79.61.138.204: icmp_seq=58 ttl=55 time=10.576 ms
+3450 bytes from 79.61.138.204: icmp_seq=59 ttl=55 time=10.610 ms
+3500 bytes from 79.61.138.204: icmp_seq=60 ttl=55 time=10.716 ms
+3550 bytes from 79.61.138.204: icmp_seq=61 ttl=55 time=10.672 ms
+3600 bytes from 79.61.138.204: icmp_seq=62 ttl=55 time=10.490 ms
+3650 bytes from 79.61.138.204: icmp_seq=63 ttl=55 time=11.039 ms
+3700 bytes from 79.61.138.204: icmp_seq=64 ttl=55 time=10.693 ms
+3750 bytes from 79.61.138.204: icmp_seq=65 ttl=55 time=11.463 ms
+3800 bytes from 79.61.138.204: icmp_seq=66 ttl=55 time=10.806 ms
+3850 bytes from 79.61.138.204: icmp_seq=67 ttl=55 time=11.408 ms
+3900 bytes from 79.61.138.204: icmp_seq=68 ttl=55 time=11.667 ms
+3950 bytes from 79.61.138.204: icmp_seq=69 ttl=55 time=10.946 ms
+4000 bytes from 79.61.138.204: icmp_seq=70 ttl=55 time=11.547 ms
+4050 bytes from 79.61.138.204: icmp_seq=71 ttl=55 time=11.584 ms
+4100 bytes from 79.61.138.204: icmp_seq=72 ttl=55 time=11.266 ms
+4150 bytes from 79.61.138.204: icmp_seq=73 ttl=55 time=11.582 ms
+4200 bytes from 79.61.138.204: icmp_seq=74 ttl=55 time=11.381 ms
+4250 bytes from 79.61.138.204: icmp_seq=75 ttl=55 time=12.010 ms
+4300 bytes from 79.61.138.204: icmp_seq=76 ttl=55 time=12.001 ms
+4350 bytes from 79.61.138.204: icmp_seq=77 ttl=55 time=11.422 ms
+4400 bytes from 79.61.138.204: icmp_seq=78 ttl=55 time=11.528 ms
+Request timeout for icmp_seq 79
+Request timeout for icmp_seq 80
+Request timeout for icmp_seq 81
+Request timeout for icmp_seq 82
+Request timeout for icmp_seq 83
+Request timeout for icmp_seq 84
+Request timeout for icmp_seq 85
+4800 bytes from 79.61.138.204: icmp_seq=86 ttl=55 time=12.019 ms
+Request timeout for icmp_seq 87
+Request timeout for icmp_seq 88
+Request timeout for icmp_seq 89
+5000 bytes from 79.61.138.204: icmp_seq=90 ttl=55 time=12.283 ms
+
+--- firewall.filippovisconti.com ping statistics ---
+91 packets transmitted, 81 packets received, 11.0% packet loss
+round-trip min/avg/max/stddev = 7.403/9.685/12.283/1.323 ms
