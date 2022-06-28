@@ -36,11 +36,6 @@ Nella misurazione di esempio, è stato richiesto l'invio di 10 pacchetti (\textt
 Per gli hop 9, 10 e 11, si ha un risultato anomalo: nessun IP restituito e 100\% di packet loss.
 Questo risultato non mostra problemi di connessione, ma indica semplicemente che l'host non ha risposto alle richieste indirizzate a lui (per i motivi più disparati, da un carico di lavoro troppo altro, a un firewall che fa cadere quel tipo di pacchetto), e che però, visto che l'hop 12 risponde correttamente, ha inoltrato correttamente quelle destinate a chi gli succede.
 
-
-
-\subsection{Scelta della configurazione di test}
-Ancora del testo
-
 \subsection{Criteri di valutazione}
 Per dare una valutazione complessiva alle tre soluzioni testate, si andranno a tenere in considerazione i seguenti parametri: throughput, percentuale di packet loss per un pacchetto di grandi dimensioni e latenza media.
 
@@ -57,29 +52,25 @@ Quando un pacchetto non riesce a raggiungere la destinazione prevista, si verifi
 Un utente avverte questo problema come interruzioni della rete, perdita di connettività e una velocità di connessione rallentata.
 Le situazioni in cui si soffre maggiormente questo problema sono tutte quelle in cui è richiesta elaborazione di dati in real-time, dove i ritardi non sono tollerati.
 
-The Transmission Control Protocol (TCP) detects packet loss and performs retransmissions to ensure reliable messaging. Packet loss in a TCP connection is also used to avoid congestion and thus produces an intentionally reduced throughput for the connection.
+Nel caso di una connessione TCP, la perdita di un pacchetto non comporta perdita di dati, in quanto il protocollo è in grado di chiedere la ritrasmissione del pacchetto perduto; tuttavia, ciò comporta comunque un aumento della latenza e una riduzione del throughput generale.
 
-In real-time applications like streaming media or online games, packet loss can affect a user's quality of experience (QoE).
-Causes[edit]
-The Internet Protocol (IP) is designed according to the end-to-end principle as a best-effort delivery service, with the intention of keeping the logic routers must implement, as simple as possible. If the network made reliable delivery guarantees on its own, that would require store and forward infrastructure, where each router devotes a significant amount of storage space to packets while it waits to verify that the next node properly received them. A reliable network would not be able to maintain its delivery guarantees in the event of a router failure. Reliability is also not needed for all applications. For example, with live streaming media, it is more important to deliver recent packets quickly than to ensure that stale packets are eventually delivered. An application or user may also decide to retry an operation that is taking a long time, in which case another set of packets will be added to the burden of delivering the original set. Such a network might also need a command and control protocol for congestion management, adding even more complexity.
+Un pacchetto potrebbe essere scartato anche se, ad esempio, l'IPv4 header checksum o l'Ethernet frame check sequence indicano che il pacchetto è stato corrotto.
 
-To avoid all of these problems, the Internet Protocol allows for routers to simply drop packets if the router or a network segment is too busy to deliver the data in a timely fashion. This is not ideal for speedy and efficient transmission of data, and is not expected to happen in an uncongested network.[4] Dropping of packets acts as an implicit signal that the network is congested, and may cause senders to reduce the amount of bandwidth consumed, or attempt to find another path. For example, using perceived packet loss as feedback to discover congestion, the Transmission Control Protocol (TCP) is designed so that excessive packet loss will cause the sender to throttle back and stop flooding the bottleneck point with data.
+La perdita dei pacchetti viene misurata come la percentuale dei pacchetti che una rete ha effettivamente gestito, rispetto a quanti ne avrebbe in teoria dovuto gestire.
 
-Packets may also be dropped if the IPv4 header checksum or the Ethernet frame check sequence indicates the packet has been corrupted. Packet loss can also be caused by a packet drop attack.
-
-Measurement[edit]
-Packet loss may be measured as frame loss rate defined as the percentage of frames that should have been forwarded by a network but were not.[8]
-
-Acceptable packet loss[edit]
-Packet loss is closely associated with quality of service considerations. The amount of packet loss that is acceptable depends on the type of data being sent. For example, for voice over IP traffic, one commentator reckoned that "[m]issing one or two packets every now and then will not affect the quality of the conversation. Losses between 5% and 10% of the total packet stream will affect the quality significantly."[9] Another described less than 1% packet loss as "good" for streaming audio or video, and 1–2.5% as "acceptable".[10]
 
 \subsubsection{Latenza}
-Network latency:
+La latenza di una rete, a volte chiamata anche lag, è un termine che descrive i ritardi di comunicazione attraverso una rete. In particolare, si intente il tempo necessario affinché un pacchetto venga catturato, trasmesso, processato attraverso molteplici apparati, ricevuto dal destinatario e decodificato.
 
-The latency data is shown in the last five columns of the report (the second column shows the progressive number of the ICMP packets sent). Normally the latency increases proportionally to the test execution time. If the growth is proportional and does not present significant jumps, this means that there are no problems on the network. They do not indicate anomalies nor peak values on the single node 6.
+La latenza è generalmente misurata in millisecondi. Minore è la latenza, migliori sono le performance. Una latenza inferiore ai 100ms è considerata accettabile, ma per buone performace si desidera un valore inferiore ai 40ms. Ovviamente, un valore prossimo agli 0ms sarebbe ideale.
 
-Conversely, if from node 8 onwards high latency values are found (compared to the first 6 hops), which persist until the last hops, it could indicate the presence of numerous problems on the network, such as inadequate configurations of network cards or routers, abnormally working services or network congestion.
+\subsection{Scelta della configurazione di test}
+Per effettuare i test, sono stati scelti i seguenti parametri:
+\texttt{iperf3 -c [IP ADDRESS] -p 5201 -t 300s -i 5}
+Si effettuerà un test lungo 300 secondi, con report ogni 5 secondi.
 
+\texttt{mtr [IP ADDRESS] -s 5000 -c 500}
+Si invi
 
 \section{Misure senza VPN}
 \begin{figure}[ht]
