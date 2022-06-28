@@ -18,6 +18,13 @@ In questo modo, gli utenti possono determinare il throughput effettivamente util
 \texttt{mtr} è un altro software di misurazione delle performance di una rete, che sostanzialmente unisce i risultati di traceroute e ping.
 I test effettuati da mtr sono unidirezionali, dunque è opportuno effettuare misurazioni manualmente in entrambe le direzioni, in quanto i risultati differire in maniera sostanziale. Per avere una misurazione affidabile, è consigliabile far durare il test almeno 10 minuti.
 
+
+MTR relies on Internet Control Message Protocol (ICMP) Time Exceeded (type 11, code 0) packets coming back from routers, or ICMP Echo Reply packets when the packets have hit their destination host. MTR also has a User Datagram Protocol (UDP) mode (invoked with "-u" on the command line or pressing the "u" key in the curses interface) that sends UDP packets, with the time to live (TTL) field in the IP header increasing by one for each probe sent, toward the destination host. When the UDP mode is used, MTR relies on ICMP port unreachable packets (type 3, code 3) when the destination is reached.
+
+MTR also supports IPv6 and works in a similar manner but instead relies on ICMPv6 messages.
+
+The tool is often used for network troubleshooting. By showing a list of routers traversed, and the average round-trip time as well as packet loss to each router, it allows users to identify links between two given routers responsible for certain fractions of the overall latency or packet loss through the network.[4] This can help identify network overuse problems.[5]
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/mtrSample.png}
@@ -66,10 +73,16 @@ La latenza è generalmente misurata in millisecondi. Minore è la latenza, migli
 
 \subsection{Scelta della configurazione di test}
 Per effettuare i test, sono stati scelti i seguenti parametri:
+
+
 \texttt{iperf3 -c [IP ADDRESS] -p 5201 -t 300s -i 5}
+
+
 Si effettuerà un test lungo 300 secondi, con report ogni 5 secondi.
 
 \texttt{mtr [IP ADDRESS] -s 5000 -c 500}
+
+
 Si invi
 
 \section{Misure senza VPN}
