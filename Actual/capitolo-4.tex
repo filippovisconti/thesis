@@ -4,14 +4,48 @@ Le prestazioni verranno valutate analizzando il throughput, la sua stabilità e 
 I software che sono stati utilizzati per effettuare le misurazioni questi dati sono \texttt{iPerf3} e \texttt{mrt}.
 
 \subsection{Panoramica di \texttt{iPerf3}}
-iPerf, che è l'abbreviazione di Gruppo di lavoro sulle prestazioni di Internet, è un test di velocità open source e uno strumento di misurazione delle prestazioni di rete. Il meccanismo è abbastanza semplice: crea TCP e UDP flussi e invia il traffico da un host a un altro, quindi segnala la larghezza di banda massima all'utente. Ciò consente agli utenti di determinare il throughput di rete e la velocità massima della larghezza di banda.
-Testing throughput di rete con iPerf è solitamente il primo passo per determinare la velocità e la funzionalità della rete. Poiché è uno strumento da riga di comando open source e produce misurazioni delle prestazioni standardizzate indipendentemente dalla rete, iPerf è diventato uno strumento popolare e accessibile. È anche flessibile: può testare TCP, UDP e SCTP.
+\texttt{iPerf} è uno strumento open source che permette di misurare le prestazioni di una rete.
+Per effettuare le misurazioni, iPerf crea dei flussi di dati su TCP, UDP o SCTP e invia traffico da un host all'altro; al termine del trasferimento, oltre a un report dettagliato in base al tipo di misurazione richiesta, mostra la larghezza di banda media disponibile.
+In questo modo, gli utenti possono determinare il throughput effettivamente utilizzabile.
 
-Le principali informazioni che gli utenti desiderano da iPerf sono il throughput, ma possono anche fornire informazioni sulla perdita di pacchetti, sul jitter e sulla distribuzione del traffico.
-
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/iperfSample.png}
+    \caption{Esempio di output di iPerf3}
+\end{figure}
 
 \subsection{Panoramica di \texttt{mrt}}
-Ancora del testo
+\texttt{mtr} è un altro software di misurazione delle performance di una rete, che sostanzialmente unisce i risultati di traceroute e ping.
+I test effettuati da mtr sono unidirezionali, dunque è opportuno effettuare misurazioni manualmente in entrambe le direzioni, in quanto i risultati differire in maniera sostanziale. Per avere una misurazione affidabile, è consigliabile far durare il test almeno 10 minuti.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/mtrSample.png}
+    \caption{Esempio di output di mrt}
+\end{figure}
+
+\subsubsection{Spiegazione del formato dell'output}
+Nella prima colonna, si legge un numero e un indirizzo IP: il numero corrisponde alla distanza in hop tra l'host da cui parte il test e l'IP indicato alla sua destra.
+La seconda colonna, \texttt{Loss\%}, indica la percentuale di pacchetti che quell'IP ha perso. È auspicabile un valore inferiore all'1\% per una connessione affidabile.
+La terza colonna, \texttt{Snt}, indica il numero di pacchetti inviati a quell'IP.
+Le successive 4 colonne indicano il valore dell'ultimo, del medio, del migliore e del peggiore round-trip-time in millisencondi - ossia il tempo necessario affinché un pacchetto parta dal mittente, raggiunga il destinatario, e torni indietro.
+L'ultima colonna indica la deviazione standard tra questi ultimi 4 valori.
+I valori dalla terza colonna in poi forniscono dunque informazioni sulla latenza della rete. È desiderabile il valore più basso possibile. Tuttavia,  spesso la latenza dipende da fattori esterni alla rete locale.
+
+\subsubsection{Packet loss}
+Nella misurazione di esempio, è stato richiesto l'invio di 10 pacchetti (\texttt{-c 10}) di dimensione 5000 byte (\texttt{-s 5000})
+On the first column of the report, for each Hop, the percentage of packages that have not reached the destination host is indicated. If in the report we find a single Hop with a high percentage of lost packets this certainly does not represent a network problem. It is generally observed at the ISP address and is caused by bandwidth limits set by the ISP itself or by the fact that the router CPU is busy.
+
+Bandwidth of our ISP causes, on the Mtr report, the presence of a small packet loss in the first hops. These data are very often observable but do not indicate malfunctions or network problems.
+
+A significant loss of data from hop 8 to 13 indicates a serious connection problem and certainly deserves further investigation.
+
+\subsubsection{Latenza}
+Network latency:
+
+The latency data is shown in the last five columns of the report (the second column shows the progressive number of the ICMP packets sent). Normally the latency increases proportionally to the test execution time. If the growth is proportional and does not present significant jumps, this means that there are no problems on the network. They do not indicate anomalies nor peak values on the single node 6.
+
+Conversely, if from node 8 onwards high latency values are found (compared to the first 6 hops), which persist until the last hops, it could indicate the presence of numerous problems on the network, such as inadequate configurations of network cards or routers , abnormally working services or network congestion.
 
 \subsection{Scelta della configurazione di test}
 Ancora del testo
@@ -22,7 +56,7 @@ Ancora del testo
 \subsubsection{Throughput}
 Il throughput di un canale di comunicazione misura la quantità di dati che può essere trasferita tra mittente e destinatario in una data unità di tempo. In ambito reti, si è soliti utilizzare come unità di tempo il secondo e come quantità di dati il bit, o suoi multipli (Kbit, Mbit, Gbit).
 
-So, how do we define throughput? Again, network throughput refers to how much data can be transferred from source to destination within a given timeframe. Throughput measures how many packets arrive at their destinations successfully. For the most part, throughput capacity is measured in bits per second, but it can also be measured in data per second. 
+So, how do we define throughput? Again, network throughput refers to how much data can be transferred from source to destination within a given timeframe. Throughput measures how many packets arrive at their destinations successfully. For the most part, throughput capacity is measured in bits per second, but it can also be measured in data per second.
 
 Packet arrival is key to high-performance service within a network. When people use programs or software, they want their requests to be heard and responded to in a timely fashion. Packets lost in transit lead to poor or slow network performance, and low throughput indicates problems like packet loss. Using throughput to measure network speed is good for troubleshooting because it can root out the exact cause of a slow network and alert administrators to problems specifically in regard to packet loss.
 
@@ -100,7 +134,7 @@ In real-time applications like streaming media or online games, packet loss can 
 Causes[edit]
 The Internet Protocol (IP) is designed according to the end-to-end principle as a best-effort delivery service, with the intention of keeping the logic routers must implement, as simple as possible. If the network made reliable delivery guarantees on its own, that would require store and forward infrastructure, where each router devotes a significant amount of storage space to packets while it waits to verify that the next node properly received them. A reliable network would not be able to maintain its delivery guarantees in the event of a router failure. Reliability is also not needed for all applications. For example, with live streaming media, it is more important to deliver recent packets quickly than to ensure that stale packets are eventually delivered. An application or user may also decide to retry an operation that is taking a long time, in which case another set of packets will be added to the burden of delivering the original set. Such a network might also need a command and control protocol for congestion management, adding even more complexity.
 
-To avoid all of these problems, the Internet Protocol allows for routers to simply drop packets if the router or a network segment is too busy to deliver the data in a timely fashion. This is not ideal for speedy and efficient transmission of data, and is not expected to happen in an uncongested network.[4] Dropping of packets acts as an implicit signal that the network is congested, and may cause senders to reduce the amount of bandwidth consumed, or attempt to find another path. For example, using perceived packet loss as feedback to discover congestion, the Transmission Control Protocol (TCP) is designed so that excessive packet loss will cause the sender to throttle back and stop flooding the bottleneck point with data.[3]: 282–283 </ref>
+To avoid all of these problems, the Internet Protocol allows for routers to simply drop packets if the router or a network segment is too busy to deliver the data in a timely fashion. This is not ideal for speedy and efficient transmission of data, and is not expected to happen in an uncongested network.[4] Dropping of packets acts as an implicit signal that the network is congested, and may cause senders to reduce the amount of bandwidth consumed, or attempt to find another path. For example, using perceived packet loss as feedback to discover congestion, the Transmission Control Protocol (TCP) is designed so that excessive packet loss will cause the sender to throttle back and stop flooding the bottleneck point with data.
 
 Packets may also be dropped if the IPv4 header checksum or the Ethernet frame check sequence indicates the packet has been corrupted. Packet loss can also be caused by a packet drop attack.
 
