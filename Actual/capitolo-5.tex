@@ -39,8 +39,6 @@ Alcuni modi per prevenire il furto di credenziali sono:
 
 \subsection{Social Engineering}
 
-Social engineering is a manipulation technique that exploits human error to gain private information, access, or valuables. In cybercrime, these “human hacking” scams tend to lure unsuspecting users into exposing data, spreading malware infections, or giving access to restricted systems. Attacks can happen online, in-person, and via other interactions.
-
 Con social engineering si intende quell'insieme di tecniche di manipolazione che vanno a sfruttare l'errore umano per ottenere informazioni riservate, accesso a sistemi protetti o oggetti di valore. Sono particolarmente efficaci contro utenti ingenui e/o ignoranti in materia, che non si aspettano un pericolo. Questo tipo di attacchi può avvenire online, ma anche di persona o al telefono.
 
 \subsubsection{Phishing e Spear Phishing}
@@ -66,18 +64,30 @@ Di seguito, alcune bandiere rosse per identificare un messaggio fraudolento:
     \item errori ortigrafici e grammaticali: ad esempio, è difficile che una banca invii un messaggio non curato
     \item messaggi contenenti richieste di infromazioni personali: ad esempio richieste di credenziali per accedere a un servizio
     \item messaggi estremamente orgenti: ad esempio, un messaggio inaspettato contenente una minaccia di chiudere l'account della vittima
-    \item email contenenti mittenti sospetti: ad esempio, una email proveniente da john@mybankofamerica.com, quando il dominio usuale è @bankofamerica.com
+    \item email contenenti mittenti sospetti: ad esempio, una email proveniente da
+
+          john@mybankofamerica.com, quando il dominio usuale è @bankofamerica.com
 \end{itemize}
 
 \section{Attacchi mirati al sistema}
+Nel mirino dei malintenzionati, non c'è solo l'utente finale. Un altro punto di ingresso possibile si ottiene sfruttando le possibili vulnerabilità non mitigate presenti sui sistemi della vittima, sia essa un utente singolo o un'intera azienda.
+Infatti, nessun software è privo di bug, ed essi a volte portano a falle di sicurezza, di varie gravità. Nelle situazioni più drammatiche, una falla permette a un utente non autorizzato di eseguire codice arbitrario sul sistema colpito dalla falla.
+
 \subsection{Versione non aggiornata}
+Le software house, non appena vengono a conoscenza delle falle di cui sopra, si mettono al lavoro per rilasciare un aggiornamento che chiuda la falla.
+I tempi di rilascio variano, in base a diversi fattori. È in ogni caso compito dell'amministratore di sistema essere aggiornato sulle vulnerabilità che si presentano e mantenere sempre aggiornati i software in esecuzione, o trovare altri sistemi per mitigare le falle nell'attesa che venga rilasciata una patch ufficiale.
+Nel caso delle soluzioni VPN in esame, esse hanno una potente arma in loro favore.
+Essendo tutte e tre open-source, il codice è pubblico per la sua interezza e tutti possono ispezionarlo e modificarlo.
+L'idea di fondo è: più persone esperte lavorano su quel codice, più sarà facile che le vulnerabilità vengano scoperte prima che vengano utilizzate per scopi malevoli.
+Inoltre, potendo inserire modifiche, la platea di sviluppatori che potenzialmente ha le conoscenze per risolvere la falla si amplia.
+
 \subsection{Exploit di vulnerabilità zero-day}
+Una vulnerabilità senza patch è tra i casi più gravi e potenzialmente difficili da gestire. Una vulnerabilità zero-day è proprio questo, una vulnerabilità conosciuta ma senza una patch disponibile.
 
 \section{Multi-factor authentication}
-Among the main reasons you should ensure additional VPN security is the trend of phishing attacks, which are successfully performed by criminals in up to 17\% of cases, according to the Duo report.
-Phishing is a  social engineering technique when a hacker contacts a person either via email, SMS, or a phone call, pretends to be a reputable organization representative, and persuades their victim to provide their credentials. Often the phishing email or message may contain an attachment with malware or a link that leads to the fake website, anyway, the main goal of the hacker, who performs the phishing attack is to get the user credentials.
-If the phishing attack is successful, the hacker may get the login and password required to connect to the corporate system through the VPN. Then, the hacker would be able to enter this user's profile, and install the malware, or steal sensitive data from the server computer.
-An extra layer of authentication guarantees that the network cannot be breached by outside players, even if they possess the stolen credentials. VPN two-factor authentication verifies the identity of the user not only by a single password but by a time-based one-time password. It is much harder to steal and use such a one-time password as it's valid only for 30 seconds, thus guarding against phishing and other security threats (brute force, keyloggers, MITM attacks, etc).
+A seguito di un tentativo di phishing riuscito, un malintenzionato è in possesso delle credenziali di accesso di un utente ad un servizio. Se il servizio in questione è quello della VPN aziendale, egli ha accesso alla porzione di rete a cui è autorizzato ad accedere l'utente vittima.
+Per diminuire drasticamente l'efficacia del phishing, uno strumento potente ed efficace è quello dell'autenticazione a più fattori.
+L'autenticazione a più fattori richiede che, affinché il login abbia successo, vengano inseriti, oltre ad email e password, altre "proof of identity", che possono essere un certificato, un'impronta digitale, una smart card, o una password monouso temporanea.
 
 \begin{figure}[ht]
     \centering
@@ -85,60 +95,31 @@ An extra layer of authentication guarantees that the network cannot be breached 
     \caption{MFA}
 \end{figure}
 
-\subsubsection{Certificato}
-Certificates can be used for authenticating VPN gateways and the Stonesoft VPN Client.
+\subsection{Certificato}
 
-In site-to-site VPNs, you can use both pre-shared keys and certificates as the authentication method. In mobile VPNs, certificates are always needed when the Stonesoft VPN Client is involved. However, if you use the hybrid authentication method with the Stonesoft VPN Client, only the gateway needs a certificate.
+I certificati possono essere utilizzati per autenticare sia i server VPN che i client. Generalmente, è sempre richiesto che un client che si vuole connettere sia autorizzato da un certificato.
 
-What VPN certificates do
+Essi non contengono informazioni specifiche di una particolare VPN. Sono rilasciati da una Certificate Authority come prova di identità. I gateway che realizzano il tunnel VPN sono configurati in modo tale da accettare la CA che ha firmato il certificato partner come fidata. Tutti i certificati rilasciati da una CA autorizzata sono ritenuti validi, dunque si possono aggiungere e rinnovare senza alcun effetto collaterale sulla VPN. Lo stesso certificato potrebbe, anche se dipende dalla configurazione, essere utilizzato su diversi dispositivi.
 
-Certificates do not contain information that is specific to a particular VPN. You can use certificates for authentication in both the policy-based and route-based VPNs. A certificate authority (CA) issues certificates as proof of identity. Gateways that form a VPN tunnel are configured to trust the CA that signed the other gateway's certificate. All certificates issued by a trusted CA are accepted as valid, so certificates can be added, renewed, and changed without affecting the VPN as long as the actual identity information is correct. The same certificate can be used for any number of VPNs with any number of gateways and VPN clients.
+I certificati riducono la manutenzione richiesta perché non devono essere cambiati così frequentemente come le Pre-shared keys. Tutti i certificati nascono con una data di scadenza, oltre la quale il certificato non è più valido. Dopo la scadenza, è necessario creare un nuovo certificato.
 
-Certificates are always required for gateways to which the Stonesoft VPN Client connects. Certificates can optionally be used to identify VPN clients, but are not mandatory.
+I certificati per VPN possono essere generati sia da una CA esterna che da una interna, a patto che i gateway siano configurati in modo tale da accettarla come fidata.
 
-Certificates reduce the required maintenance work, because they do not have to be changed as frequently as pre-shared keys. All certificates are created with an expiration date, after which the certificate is no longer valid. Certificates signed by an Internal RSA CA for Gateways or an Internal ECDSA CA for Gateways are valid for three years from their creation. When a certificate expires, a new certificate is needed.
-
-Certificate management
-
-Certificate-related tasks in the SMC mostly involve VPN Gateways that represent firewalls. VPN certificates can be generated by any internal or external certificate authorities that both gateways are configured to trust. There are several options for signing VPN Gateway certificates:
-
-The Management Server includes a dedicated Internal RSA CA for Gateways and optionally an Internal ECDSA CA for Gateways for signing VPN certificates. You use these certificate authorities through the Management Client.
-One Internal CA for Gateways can be selected as the default CA. Certificate management can be automatic if the certificate is signed using the Management Server's internal default CA.
-You can create certificate requests in the Management Client, export them, sign them using an external CA, and then import the signed certificate back into the SMC.
-RSA certificates can be created and renewed automatically using the default CA. Some manual steps are required in the following cases:
-
-You have both an Internal RSA CA for Gateways and an Internal ECDSA CA for Gateways. Only one Internal CA for Gateways can be selected as the default certificate authority. You must manually create and renew any certificates that are not signed by the default CA.
-You use DSA certificates.
-You want to use an external CA to sign certificates.
-The Internal RSA CA for Gateways or Internal ECDSA CA for Gateways can also sign certificate requests created by external components. This feature is meant to support VPN client deployments. If you have used the Internal RSA CA for Gateways or Internal ECDSA CA for Gateways to sign certificate requests, you cannot cancel the issued certificates. Consider how widely you can use them for signing external certificate requests within your organization.
-
-Limitations
-
-All gateways in the same VPN must support the same CA algorithm. Otherwise, VPN communication fails. For example, if you use an Internal ECDSA CA for Gateways as the default CA, all other gateways used in the same VPN must support ECDSA.
-Certificates created for VPN gateways for establishing the VPN are stored on the VPN gateway devices (Firewalls). These certificates are not included in the Management Server backup, and are not changed in any way when a Management Server backup is restored.
-Certificates can become unusable if the private key for that certificate is lost. The key can be lost, for example, if the NGFW Engine hardware fails and must be replaced. Firewall Clusters share each VPN certificate and can synchronize the private key from node-to-node as needed. If the private key is erased from a Single Firewall or from all the nodes of a Firewall Cluster, a new certificate must be created.
-Externally issued VPN certificates can be revoked by the certificate authority that issued them. This safety measure is used when the certificate is suspected to be compromised.
-
-\subsubsection{Username e password}
-Password authentication is the easiest way to use for identifying and authenticating users. A password is established for the user if using password authentication.
-Users will be refused to be accessed, if the password doesn't match when they attempt to connect to VPN. Users can change the password registered in VPN Server themselves at any time using VPN Client. For details see 4.9 Other Functions.
-The passwords for password authentication are registered in the configuration database of SoftEther VPN Server. At this time the password is hashed by hash function, so the original password no longer exists. When conducting password authentication, SoftEther VPN protocol checks passwords for user authentication by challenge and response authentication (digest authentication). At this time the original password is not transmitted on the network.
-The drawbacks of password authentication are as follows.
-If there are few users, operation can be conducted with no problem, but if there are more than several hundred users, it takes effort to register/delete users. In such cases, RADIUS authentication, NT domain or Active Directory authentication is used.
-The password base authentication method is connected with weaknesses such as the possibility of the password being guessed. Certificate authentication is used if corporate security policy does not recommend the password base authentication method and higher security is required.
+Come controindicazione, si ha che tutti i client VPN devono supportare l'algoritmo della CA, altrimenti è impossibile instaurare una comunicazione.
 
 
-\subsubsection{One Time Password}
-Two-factor authentication (2FA) prevents hackers from having access to your network using compromised credentials. 2FA calls for customers to validate their identification by supplying a 2nd safety component in addition to their password. When connecting to a company network, users have to first input their Active Directory credentials, followed by a time-factor based one-time password (OTP) or HMAC. This OTP is displayed on something that a user “owns”, including a specialized cell phone application known as an authenticator or a programmable hardware token. Ultimately, this provides an additional layer of security for your systems against unauthorized access.
+\subsection{Username e password}
 
-2FA with mobile token
+L'autenticazione con username e password è il metodo più semplice per identificare e autenticare gli utenti. Se la password immessa dall'utente non corrisponde a quella memorizzata nel sistema, l'accesso è ovviamente negato.
 
-How VPN security is achieved with 2FA?
-VPNs are a vital part of many businesses' security infrastructures, providing employees with secure remote access to company resources. However, VPNs can also be vulnerable to attack if they are not properly secured.One way to help secure a VPN is to use Two-Factor Authentication (2FA) for all users. 2FA requires users to provide more than one form of authentication to access a system or resource. For example, a user might need to enter a password and also use a fingerprint reader or mobile device for two-factor authentication.2FA can be used to help secure both the client-side and server-side of a VPN connection. On the client side, 2FA can be used to authenticate the user before the VPN client software is even launched. This helps prevent attackers from launching the VPN client software with stolen credentials.On the server side, 2FA can be used to authenticate VPN users when they attempt to connect to the server. This helps ensure that only authorized users are able to access the server and helps prevent man-in-the-middle attacks. 2FA is not a perfect solution, but it can be an effective way for your VPN security.
+La password non viene mai memorizzata in chiaro, bensì viene memorizzato il suo hash, tramite un algoritmo di hashing scelto. Un algoritmo di hash consiste in una funzione che prende un input e restituisce un output indecifrabile e incomprensibile, da cui è impossibile ricostruire l'input, se non tramite brute-force. Tuttavia, ogni volta che l'algoritmo viene eseguito con uno stesso input, l'output è sempre uguale.
+Quando l'utente inserisce la password, dunque, viene calcolato l'hash e viene confrontato l'hash calcolato con quello memorizzato sul server.
 
-One-time tokens are typically generated with an authentication app such as Google Authenticator, or a piece of hardware with a small display. These apps cycle through six-digit tokens, which the user reads and then enters along with the password when logging in, for example “123456mypassword”.
+Gli svantaggi consistono principalmente nel fatto che, se il numero di utenti cresce, la manutenzione diventa particolarmente complessa. Infatti, in quei casi si è soliti ricorrere a soluzioni quali l'autenticazione di Active Directory.
 
-Because the password is transmitted via PAP, the RADIUS server can see the entire password field and can split the value “123456mypassword” into two parts. The token part: “123456” is verified against the OTP token server. The password part “mypassword” is verified against the user directory such as LDAP or Active Directory in the usual way. If either check fails, the user is rejected. If both checks pass, the user is authenticated.
+\subsection{One Time Password}
+L'autenticazione a due fattori impedisce a malintenzionati di avere accesso ai sistemi della vittima utilizzando le credenziali rubate. Infatti, l'autenticazione con OTP richiede all'utente di validare la propria identificazione inserendo una password monouso temporanea (One-Time-Password).
+Questa OTP viene mostrata su qualcosa che l'utente possiede (un device apposito o una applicazione sul suo smartphone) noto come authenticator.
 
 
 
