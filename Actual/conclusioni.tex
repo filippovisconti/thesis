@@ -8,4 +8,43 @@ Ancora del testo
 Ancora del testo
 
 \subsection{Zero Tier}
-Ancora del testo
+ZeroTier is a smart Ethernet switch for planet Earth.
+
+It’s a distributed network hypervisor built atop a cryptographically secure global peer to peer network. It provides advanced network virtualization and management capabilities on par with an enterprise SDN switch, but across both local and wide area networks and connecting almost any kind of app or device.
+
+The ZeroTier network hypervisor (currently found in the node/ subfolder of the ZeroTierOne git repository) is a self-contained network virtualization engine that implements an Ethernet virtualization layer similar to VXLAN on top of a global encrypted peer to peer network.
+
+The ZeroTier protocol is original, though aspects of it are similar to VXLAN and IPSec. It has two conceptually separate but closely coupled layers in the OSI model sense: VL1 and VL2. VL1 is the underlying peer to peer transport layer, the “virtual wire,” while VL2 is an emulated Ethernet layer that provides operating systems and apps with a familiar communication medium.
+
+In conventional networks L1 (OSI layer 1) refers to the actual CAT5/CAT6 cables or wireless radio channels over which data is carried and the physical transceiver chips that modulate and demodulate it. VL1 is a peer to peer network that does the same thing by using encryption, authentication, and a lot of networking tricks to create virtual wires on a dynamic as-needed basis.
+
+VL1 is designed to be zero-configuration. A user can start a new ZeroTier node without having to write configuration files or provide the IP addresses of other nodes. It’s also designed to be fast. Any two devices in the world should be able to locate each other and communicate almost instantly.
+
+To achieve this VL1 is organized like DNS. At the base of the network is a collection of always-present root servers whose role is similar to that of DNS root name servers. Roots run the same software as regular endpoints but reside at fast stable locations on the network and are designated as such by a world definition. World definitions come in two forms: the planet and one or more moons. The protocol includes a secure mechanism allowing world definitions to be updated in-band if root servers’ IP addresses or ZeroTier addresses change.
+
+% -------
+
+First off, you can compare them like dropbox and hosting your own FTP server. Sure, before dropbox came along, people thought there wasn't any use for dropbox since people could host their own FTP servers and access them from anywhere. Now, people who know how to setup an FTP server use dropbox for the convenience.
+I'll start with the similarities:
+Both of them can be used for in-house streaming, VLAN for gaming, etc.
+Both of them are secure and you don't have to worry about transport security.
+Both of them introduce overhead to your network but in different levels, depending on your situation.
+Now, the dissimilarities:
+The most important difference is that ZeroTier is supposed to be a peer-to-peer connectivity system. It does this by doing something called UDP hole punching. Which is basically tricking the router into letting someone access a port on the computer directly without TCP connection establishment. But OpenVPN routes ALL of the traffic meant for a client on the same network through the server. This usually results in better speed and bandwidth savings for your server in the cloud, because in Zerotier, two clients directly communicate with each other and that is one less server to traverse through.
+Time to setup. It takes less than 2 minutes to set-up Zerotier unless you aren't experienced with networking stuff, in which case the the zerotier console setting would take a minute more. OpenVPN, is a bit of a pain, and you can easily make a mistake.
+Getting around network restrictions. You'll have to figure out by yourself how to get across your network if there are strict rules. You'll have to manually decide what port to use, TCP or UDP, etc. But zerotier tests different ports, starting with 9993/udp then eventually to 443/tcp which most networks should let you do. (This won't work of you have a whitelisted firewall or have something like BlueCoat)
+Free! For openvpn you'll have to set up your own server, and configure, maintain, etc. You WILL have to pay for this, unless you have a static public IP. But zerotier needs no managing and will be cheaper, since for the connection establishment, the root servers are used which are managed by zerotier.
+I could go into performance, latency, etc. But that will mostly depend of location, your network's restrictiveness, and other things. OpenVPN could be more performant and vice-versa.
+And you would not really have a need to use them together. Let me know if I need to explain anything further. A simple way to decide would be:
+Are you okay with setting up a openvpn server by yourself and do everything needed with ALL of your devices? If yes, then OpenVPN.
+Do you have a HARD latency requirement? Then, you'll have to do some testing to figure out which will be faster.
+
+
+
+\section{PAM vs VPN}
+To minimize the security risks of VPN, third parties should only be granted access to the systems they need to perform their jobs successfully. Unfortunately this level of layered control cannot be done effectively through VPN alone. Corporates should look into the privileged access solutions, such as privileged access management (PAM). PAM allows organizations to give vendors access to their network without a VPN connection and enables IT staff to control, monitor and manage access to critical systems by privileged users, including third-party vendors. This allows organizations to see who their privileged administrators are and gives insight into how those accounts are used. By introducing the appropriate level of privileged access controls, PAM helps to reduce organization's attack surface. It helps preventing the damage arising from external attacks as well as from negligence inside the organization.
+
+Per minimizzare i rischi correlati all'accesso con VPN, è opportuno che ogni client che si colleghi abbia accesso solo ed esclusivamente ai sistemi di cui effettivamente necessitano per portare a termine il loro lavoro con successo.
+Purtroppo, questo controllo a grana fine non è raggiungibile in maniera efficente utilizzando soltanto una soluzione VPN. In soccorso arrivano soluzioni per gestire gli accessi privilegiati, quali PAM - privileged access management.
+
+% https://www.gb-advisors.com/vpn-vs-pam-which-remote-access-technologies-more-secure-business/

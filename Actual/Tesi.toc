@@ -113,14 +113,20 @@
 \contentsline {chapter}{\chapternumberline {5}Security concerns}{38}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Principali problematiche di sicurezza}{38}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Attacchi mirati agli utenti}{38}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Attacchi mirati al sistema}{38}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Multi-factor authentication}{38}{section.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.0.1}Certificato}{40}{subsubsection.5.4.0.1}%
-\contentsline {subsubsection}{\numberline {5.4.0.2}Username e password}{42}{subsubsection.5.4.0.2}%
-\contentsline {subsubsection}{\numberline {5.4.0.3}One Time Password}{42}{subsubsection.5.4.0.3}%
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{44}{chapter*.9}%
-\contentsline {section}{Quale è uscito vincitore}{44}{section*.10}%
-\contentsline {section}{Come migliorare le misure}{44}{section*.11}%
-\contentsline {section}{Test di VPN Peer-To-Peer}{44}{section*.12}%
-\contentsline {subsection}{Zero Tier}{44}{section*.13}%
-\contentsline {chapter}{Bibliografia}{45}{chapter*.14}%
+\contentsline {subsection}{\numberline {5.2.1}Furto di credenziali}{39}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Social Engineering}{40}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.1}Phishing e Spear Phishing}{40}{subsubsection.5.2.2.1}%
+\contentsline {section}{\numberline {5.3}Attacchi mirati al sistema}{42}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Versione non aggiornata}{42}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Exploit di vulnerabilità zero-day}{42}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Multi-factor authentication}{42}{section.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.0.1}Certificato}{42}{subsubsection.5.4.0.1}%
+\contentsline {subsubsection}{\numberline {5.4.0.2}Username e password}{45}{subsubsection.5.4.0.2}%
+\contentsline {subsubsection}{\numberline {5.4.0.3}One Time Password}{46}{subsubsection.5.4.0.3}%
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{48}{chapter*.9}%
+\contentsline {section}{Quale è uscito vincitore}{48}{section*.10}%
+\contentsline {section}{Come migliorare le misure}{48}{section*.11}%
+\contentsline {section}{Test di VPN Peer-To-Peer}{48}{section*.12}%
+\contentsline {subsection}{Zero Tier}{48}{section*.13}%
+\contentsline {section}{PAM vs VPN}{50}{section*.14}%
+\contentsline {chapter}{Bibliografia}{52}{chapter*.15}%

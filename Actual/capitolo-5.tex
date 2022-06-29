@@ -1,11 +1,77 @@
 \section{Principali problematiche di sicurezza}
-Ancora del testo
+
+Combinare una soluzione VPN sicura con una suddivisione della rete interna in compartimenti isolati sarebbe certamente ideale dal punto di vista della sicurezza.
+Tuttavia, l'accesso di terze parti alla rete interna di un'organizzazione - siano essi dipendenti, clienti esterni, o altro, aggiunge delle sfide impegnative nel garantire sicurezza.
+Ad esempio, se il dispositivo di un dipendente o di un cliente viene compromesso, e questa persona aveva instaurato una connessione VPN con l'azienda, coloro che hanno portato a termine l'attacco possono sfruttare il tunnel VPN come ponte per effettuare attività di ricognizione sulla rete interna dell'azienda, nonostante tutte le misure di sicurezza possibilmente implementate dall'azienda stessa.
+
+Tuttavia, implementando una soluzione VPN moderna, è possibile monitorare il traffico, chi lo ha generato, che tipo di traffico è, e come viene usato. Tenere traccia di queste attività tramite il monitoring delle session riduce i rischi, in quanto permette alle organizzazioni di identificare la sorgente del traffico sospetto e terminarlo se ritenuto opportuno.
 
 \section{Attacchi mirati agli utenti}
-Ancora del testo
+
+Il primo step per ridurre i rischi e proteggere i dati sensibili dell'azienda è assicurarsi che tutti i dipendenti, o chiunque altro sia coinvolto nell'uso delle VPN, sappia che la sicurezza dei dati è una priorità.
+Per fare questo, è necessario assicurare un'adeguata formazione a tutti loro, che copra tutti i maggiori pericoli, e le misure di difesa, che potrebbero incontrare.
+
+È indiscutibile il fatto che alla base ci deve essere un'infrastruttura adeguadata e che i dispositivi utilizzati supportino i più elevati standard di sicurezza. Infatti, i conduttori di un potenziale attacco vanno appositamente alla ricerca di, ad esempio, reti WiFI non protette, o cifrature banali da rompere.
+
+\subsection{Furto di credenziali}
+Il furto di credenziali è un tipo di crimine che consiste nel trafugare qualcosa che permette alla vittima di certificare la propria identità - ad esempio, email e password.
+Una volta rubate le credenziali, colui che le ha rubate avrà gli stessi permessi e gli stessi privilegi della vittima.
+Permette al ladro di resettare password, impedire alla vittima di accedere ai suoi stessi account, scaricare dati privati, ottenere accesso agli altri computer nella rete della vittima, distruggere backup, e via dicendo.
+
+Gestire questo tipo di furti, e le loro conseguenze, dovrebbe avere altissima priorità per tutte le aziende, ma anche per i singoli utenti.
+
+Esistono dei servizi, quali https://haveibeenpwned.com, che permettono agli utenti, inserendo il proprio indirizzo email, di verificare se sono stati coinvolti in un data breach - una divulgazione non autorizzata di dati sensibili in seguito ad un attacco ad una azienda. Questi servizi, che lo fanno a fin di bene, ottengono questi dati attraverso il dark web, così come lo fanno dei malintenzionati. Sapere di essere stato coinvolto in un furto di credenziali permette di prevenire un uso scorretto di esse, cambiando la password e aggiungendo misure di sicurezza più efficaci, quali ad esempio una One-Time-Password.
+
+Le credenziali possono essere rubate sotto varie forme: hashes, tokens o anche testo in chiaro. Per trarre in inganno gli utenti, i malintenzionati spesso utilizzano la tecnica del phishing o dello spearphishing. Si tratta di soluzioni economiche ed efficienti, perché si fondando sull'interazione umana, sulla manipolazione e sull'inganno, anziché sullo sfruttamento di vulnerabilità software.
+
+Nel caso di furto di credenziali aziendali, i criminali effettuano una ricognizione per capire chi sono le persone che posseggono i privilegi necessari a raggiungere il loro scopo, e indirizzeranno a loro i tentativi di phishing.
+
+Alcuni modi per prevenire il furto di credenziali sono:
+\begin{itemize}
+    \item Autenticazione a più fattori
+    \item Formazione degli utenti su come riconoscere i tentativi di Phishing
+    \item Formazione degli utenti su come impostare password sicurezza
+    \item Limitare l'utilizzo delle credenziali aziendali ad applicativi sicuri e controllati
+    \item Mantenere aggiornati i sistemi operativi e i software utilizzati
+    \item Effettuare regolarmente valutazioni sulle vulnerabilità
+    \item Utilizzare strumenti di monitoring del traffico
+\end{itemize}
+
+\subsection{Social Engineering}
+
+Social engineering is a manipulation technique that exploits human error to gain private information, access, or valuables. In cybercrime, these “human hacking” scams tend to lure unsuspecting users into exposing data, spreading malware infections, or giving access to restricted systems. Attacks can happen online, in-person, and via other interactions.
+
+Con social engineering si intende quell'insieme di tecniche di manipolazione che vanno a sfruttare l'errore umano per ottenere informazioni riservate, accesso a sistemi protetti o oggetti di valore. Sono particolarmente efficaci contro utenti ingenui e/o ignoranti in materia, che non si aspettano un pericolo. Questo tipo di attacchi può avvenire online, ma anche di persona o al telefono.
+
+\subsubsection{Phishing e Spear Phishing}
+
+Il phishing è un tipo di truffa facente parte delle tecniche di social engineering che è comunemente camuffata in email o sms fraudolenti. La truffa consiste nel far raggiungere alla vittima la pagina di login di un sito web, dall'aspetto identica a quella del servizio di cui si vogliono rubare le credenziali, che però, anziché portare correttamente a termine il login, inoltra le credenziali al truffatore.
+Tra le informazioni nel mirino dei truffatori si ha:
+\begin{itemize}
+    \item Username
+    \item Password
+    \item Indirizzo Email
+    \item Residenza
+    \item Numeri di carte di credito
+    \item Data di nascita
+\end{itemize}
+
+Lo Spear Phishing è un caso particolare di phishing in cui il malintenzionato ha studiato la vittima e le sue abitudini. Per aumentare le possibilità di successo, infatti, includerà nel messaggio fraudolento quante più informazioni personalizzate possibili in modo da far abbassare la guardia della vittima.
+
+Nonostante alcuni tentativi di phishing siano effettivamente ben costruiti, la maggior parte è facilmente riconoscibile.
+
+Di seguito, alcune bandiere rosse per identificare un messaggio fraudolento:
+
+\begin{itemize}
+    \item errori ortigrafici e grammaticali: ad esempio, è difficile che una banca invii un messaggio non curato
+    \item messaggi contenenti richieste di infromazioni personali: ad esempio richieste di credenziali per accedere a un servizio
+    \item messaggi estremamente orgenti: ad esempio, un messaggio inaspettato contenente una minaccia di chiudere l'account della vittima
+    \item email contenenti mittenti sospetti: ad esempio, una email proveniente da john@mybankofamerica.com, quando il dominio usuale è @bankofamerica.com
+\end{itemize}
 
 \section{Attacchi mirati al sistema}
-Ancora del testo
+\subsection{Versione non aggiornata}
+\subsection{Exploit di vulnerabilità zero-day}
 
 \section{Multi-factor authentication}
 Among the main reasons you should ensure additional VPN security is the trend of phishing attacks, which are successfully performed by criminals in up to 17\% of cases, according to the Duo report.
