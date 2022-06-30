@@ -31,10 +31,9 @@
 \contentsline {section}{\numberline {1.3}Requisiti di sicurezza}{6}{section.1.3}%
 \contentsline {subsection}{\numberline {1.3.1}Controllo del traffico}{6}{subsection.1.3.1}%
 \contentsline {subsubsection}{\numberline {1.3.1.1}Proxy interno obbligatorio}{6}{subsubsection.1.3.1.1}%
-\contentsline {subsection}{\numberline {1.3.2}Trasmissione sicura dei dati}{6}{subsection.1.3.2}%
-\contentsline {subsubsection}{\numberline {1.3.2.1}Evitare intercettazioni}{6}{subsubsection.1.3.2.1}%
-\contentsline {subsection}{\numberline {1.3.3}Controllo dei dispositivi}{6}{subsection.1.3.3}%
-\contentsline {subsubsection}{\numberline {1.3.3.1}Logs}{7}{subsubsection.1.3.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Trasmissione sicura dei dati}{7}{subsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.2.1}Evitare intercettazioni}{7}{subsubsection.1.3.2.1}%
+\contentsline {subsection}{\numberline {1.3.3}Controllo dei dispositivi}{7}{subsection.1.3.3}%
 \contentsline {subsection}{\numberline {1.3.4}Compatibilità}{7}{subsection.1.3.4}%
 \contentsline {chapter}{\chapternumberline {2}Stato dell'arte}{8}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Virtual Private Networks }{8}{section.2.1}%

@@ -81,14 +81,21 @@ Similmente al file server, c'è anche un database server a disposizione dei dipe
 
 \section{Necessità degli utenti}
 \subsection{Accesso ai servizi interni senza esposizione all'esterno}
-Router, Firewall, IDS, IPS, VPN. Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+Per quel che riguarda i dipendenti dell'azienda, hanno necessità di poter lavorare in modo automo da casa. Dunque devono poter accedere in maniera sicura a tutte le risorse disponibili all'interno della rete privata da qualsiasi parte del mondo.
 \subsubsection{Remote work}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+Lavorare da remoto è un qualcosa che sta prendendo sempre più piede nel mondo di oggi. Specialmente con la pandemia da Covid-19, si è visto come sia fondamenta offrire strumenti adeguati ai dipendenti per svolgere le proprie mansioni indipendentemente dalla loro posizione.
+Tutto ciò, tuttavia, non deve avvenire a discapito della sicurezza.
 
 \section{Requisiti di sicurezza}
+Tra i requisiti principali di sicurezza, si ha: la possibilità di controllare il traffico, di avere una trasmissione sicura dei dati, di effettuare un controllo dei dispositivi aziendali.
+
 \subsection{Controllo del traffico}
 \subsubsection{Proxy interno obbligatorio}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+Un valido strumento per effettuare controllo del traffico e tenerne traccia tramite log è rappresentato dai proxy.
+Un proxy è un server che si pone come intermediario tra la LAN interna e la rete esterna, generalmente per le comunicazioni che avvengono sulle porte TCP 21, 80 e 443, ossia quelle che utilizzano i protocolli FTP, HTTP e HTTPS.
+Utilizzando un server proxy, i client, anziché comunicare direttamente con l'host di destinazione, inviano la richiesta al proxy, che si occupa di comunicare con l'host di destinazione e di restituire la risposta ottenuta all'iniziatore della richiesta.
+Con questo tipo di intermediazione, è triviale registrare tutta l'attività che avviene e filtrare richieste ritenute non opportune.
+Il filtraggio in questione è noto come url filtering. Il funzionamento si basa su delle blacklist (o whitelist, nel caso inverso), contenenti url a cui si vuole impedire ai client di accedere. Quando arriva una richiesta al server proxy, questa passerà e verrà inoltrata solo nel caso l'url della richiesta non sia contenuto nella blacklist.
 
 \subsection{Trasmissione sicura dei dati}
 Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
@@ -97,8 +104,6 @@ Vedi Cina con il Great Firewall
 
 \subsection{Controllo dei dispositivi}
 Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
-\subsubsection{Logs}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
 
 \subsection{Compatibilità}
-Deve essere compatibile con i 3 OS desktop e i 2 mobile principali
+Il sistema da realizzare deve garantire compatibilità con le ultime versioni dei 3 sistemi operativi per desktop principali - macOS, Windows e le distro principali linux -  e dei 2 sistemi operativi principali per mobile - iOS e Android.
