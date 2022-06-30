@@ -3,29 +3,44 @@ Questa è l'introduzione.
 % https://www.sciencedirect.com/topics/computer-science/security-architecture
 \section{Pericoli di esporre un server su internet}
 
-The Security Architecture of the OSI Reference Model (ISO 7498-2) considers five main classes of security services: authentication, access control, confidentiality, integrity and non-repudiation. These services are defined as follows: The authentication service verifies the supposed identity of a user or a system. The access control service protects the system resources against non-authorized users. The confidentiality service protects the data against non-authorized revelations. The integrity service protects the data against non-authorized modifications, insertions or deletions. The non-repudiation service prevents an entity from denying previous commitments or actions.
+L'architettura di sicurezza del Modello OSI considera 5 classi principali di servizi di sicurezza. Tra queste si hanno: autenticazione, controllo degli accessi, confidenzialità, integrità e non ripudio.
+In particolare, questi servizi sono definiti come segue:
+\begin{itemize}
+    \item autenticazione - il servizio di autenticazione verifica l'identita di un utente o di un sistema
+    \item controllo degli accessi - il servizio protegge le risorse di sistema da utenti non autorizzati
+    \item confidenzialità - il servizio protegge i dati da rivelazioni non autorizzate
+    \item integrità - il servizio protegge i dati da modifiche, aggiunte o rimozioni non autorizzate
+    \item non ripudio a.k.a non-repudiation - il servizio assicura che il mittente dell'informazione abbia una notifica di consegna e il destinatario riceva una prova di identità del mittente, in modo tale che nessuno dei due possa successivamente negare di aver processato tali dati
+\end{itemize}
 
 
-\section{Termini di base}
+\section{Concetti di base}
+\subsubsection{Tipologie di reti}
+Parlando di una rete di calcolatori, si intende una rete a cui sono connessi due o più computer tramite cui è possibile condividere dati, dispositivi, connessione ad internet, e via dicendo.
 
-Computer networks there are a variety of the following types of computer network based on scope. The scope here is how big the computer network will be built. Based on spaces in scope, a computer network can be distinguished into two, namely [1] : a) Local Area Network (LAN), is a computer network which is built in the room a small scope as a single building or group of buildings. LAN is built in a limited scope and usually owned by organizations that already have the devices installed. An internal data rate of the LAN is usually much greater than the WAN. Wide Area Network (WAN), is a network that covers a large geographic area requires delimiters and rely at least partly on the circuit provided by public operators. Typically, a WAN consists of a number of switching node interconnects. A transmission from one of the devices is channeled through the internal node to the device purpose. This node (including node limit) does not affect the contents of the data, their goal was to
-provide a switching facility will move data from node to node until they reach their destination. Traditionally, WAN has been implemented using one of the two technologies: circuit switching and packet switching. Recently, frame relay and ATM networks have assumed the lead role which uses it [2].
-2.2 Virtual Private Network
-Virtual Private Network (VPN) is a computer network where connections between its nodes utilize public networks (internet/WAN) as it may be in certain cases or conditions do not allow it to build its own infrastructure. When the Connect VPN, the interconnection between the node such as an independent network that has actually created a special line pass through connection or a public network. At every company site, workstations, servers, and databases connected by one or more local area network (LAN) a LAN is under the control of the network manager and can be configured and tuned for cost-effective. The Internet or other public networks can be used to connect the sites, provide cost savings over the use of private networks and reduction of the burden of wide area network traffic to providers of public networks [2].
+Esistono varie tipologie di reti di calcolatori, distinte in base al loro target, che consiste nell'estensione della rete. In base a questo parametro, è possibile distinguere le reti in Local Area Network, Metropolitan Area Network e Wide Area Network. Tutte e tre le tipologie sono relative a una rete fisica.
 
-PILA ISO OSI
+Un altro tipo di reti è composto dalle reti private virtuali, o Virtual Private Networks, che consiste in una rete di calcolatori le cui connessioni tra i nodi utilizzano reti pubbliche (WAN) come fondamenta su cui realizzare una rete virtuale. Questo tipo di reti permette di realizzare collegamenti privati tra location geograficamente anche molto distanti senza la necessità di posare cavi fisici, ma avvalendosi dell'infrastruttura esistente, garantendo comunque integrità e cifratura dei dati, controllo degli accessi e confidenzialità.
 
-TCP is the main protocol in TCP/IP networks. The IP protocol process data packets while TCP allow two hosts to exchange data streams and establish a connection. TCP guarantees that packets will arrive their destination in the same order in which they were sent [7].
-UDP provides unreliable, minimum, best-effort, message delivery to upper-layer protocols and applications. UDP do not setup a permanent connection between two end points [8].
+\subsubsection{Il modello OSI}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/osi.png}
+    \caption{Modello OSI a strati}
+\end{figure}
 
-The adjustments between TCP and UDP regardless of VPN usage is always said to be the same: Speed is sacrifice for reliability as UDP is connectionless and the server sending the data theoretically does not ensure if it reaches the destination or not.
-TCP is a connection-oriented protocol, which implies that end-to-end communications is set up using handshaking. Once the connection is established, data can be transferred bi-directionally over the link.
-UDP is a connectionless protocol and therefore less complex message based when compared to TCP, which includes that the point-to-point connection is not dedicated and data is transferred uni-directional from the source to its destination without checking whether the receiver is active.
-TCP regulate retransmission, message acknowledgment, and timeout. TCP deliver lost messages along the way upon multiple attempts.
-In TCP, there is no missing data, and if ever there are multiple timeouts, the connection is dropped.
-When a UDP message is sent there is no guarantee that the message will reach its destination; it could get dropped along the way. There is no retransmission, timeout and acknowledgment. When two data packets are sent in sequence, the first message will reach the destination first.
-When data segments arrive in the wrong order, TCP buffers hold the data until all data are re-ordered before being transmitted; when using UDP the order in which messages arrive cannot be predicted.
-When TCP packets are transmitted from one end to a remote end across the network, the data packets are reordered in the same sequence created by the sender. The protocol notifies when segments of the data stream have been corrupted, reordered, discarded or duplicated by the network. TCP is a reliable protocol as the sender can retransmit damaged segments. However retransmission creates latency.
+La pila ISO OSI è uno strumento estremamente efficace nel modellare il funzionamento di una rete di calcolatori.
+Si basa su 7 livelli, ognuno dei quali svolge il proprio lavoro utilizzando un'interfaccia standard offerta dal livello inferiore e offrendo a sua volta un'interfaccia al livello superiore.
+Tutti e 7 i livelli collaborano per rendere possibile il funzionamento della rete.
+
+I compiti dei sette livelli sono, in breve, i seguenti:
+\begin{enumerate}
+    \item Livello fisico: è composto dall'infrastruttura fisica - cavi in rame, fibra ottica, ponti radio - e dai componenti hardware che codificano e decodificano i bit
+    \item Livello Data-link: si occupa di effettuare controlli sul livello fisico, specialmente sull'integrità dei dati
+    \item Livello di rete: è il regno del protocollo IP, pilastro delle reti di calcolatori, che si occupa dello smistamento dei pacchetti e di portarli a destinazione
+    \item Livello di trasporto: astrae il funzionamento del protocollo IP, offrendo alle applicazioni vari protocolli che si occupano della comunicazione tra due host, indipendentemente da come sono collegati o da quanto sono distanti; può garantire il recapito corretto delle informazioni
+    \item Livello di sessione, livello di presentazione, livello di applicazione: sono gli strati più prossimi all'utente finale, e si occupano di gestire la comunicazione dei processi utilizzati dall'utente con il livello di trasporto
+\end{enumerate}
 
 
 \section{Necessità di un'infrastruttura di rete sicura}

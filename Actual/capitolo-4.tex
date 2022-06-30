@@ -80,7 +80,7 @@ Per effettuare i test, sono stati scelti i seguenti parametri:
 
 Si effettuerà un test lungo 300 secondi, con report ogni 5 secondi.
 
-\texttt{mtr [IP ADDRESS] -s 5000 -c 500}
+\texttt{mtr [IP ADDRESS] -s 5000 -c 1000}
 
 
 Si invi
@@ -96,7 +96,7 @@ Nella configurazione base, senza VPN, si può osservare come il throughput sia s
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/mrt_16min_noVPN.png}
-    \caption{mrt con 1000 pacchetti da 5000 byte}
+    \caption{mrt senza VPN}
 \end{figure}
 
 In questo grafico invece, si può notare come, fino all'ottavo hop, la latenza sia generalmente bassa e la percentuale di packet loss irrisoria. Gli hop 9, 10 e 11 non rispondono, ma ciò non vuol dire che non funzionino. L'ultimo hop, quello del router di destinazione, ha una percentuale di packetloss molto elevata (più del 50\%) e una latenza più elevata, seppur ancora accettabile.
@@ -112,7 +112,7 @@ Ripetendo lo stesso test attraverso un tunnel IPSec, si nota come il throughput 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/mtr_16min_ipsec.png}
-    \caption{mrt con 1000 pacchetti da 5000 byte}
+    \caption{mrt su IPSec}
 \end{figure}
 Il secondo test invece riporta una packetloss a destinazione nulla, ossia nessun pacchetto è stato perso, e una latenza media migliore rispetto a quella del test precedente.
 
@@ -128,7 +128,7 @@ Con OpenVPN, il primo test registra un throughput medio marginalmente più alto 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/mtr_16min_ovpn.png}
-    \caption{mrt con 1000 pacchetti da 5000 byte}
+    \caption{mrt su OpenVPN}
 \end{figure}
 Nel secondo test, si ha ugualmente lo 0\% di packetloss, ma una latenza media maggiore di 10ms; si tratta comunque di un valore ampiamente accettabile.
 
@@ -141,20 +141,30 @@ Nel secondo test, si ha ugualmente lo 0\% di packetloss, ma una latenza media ma
 \end{figure}
 Utilizzando WireGuard, nel primo test si raggiunge il risultato migliore, con un throughput medio che sfiora i 43 Mbit/s.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/mrt_16min_wg.png}
+    \caption{mrt su WireGuard}
+\end{figure}
+
+Nel secondo test, come nelle altre soluzioni VPN, la percentuale di packetloss è a 0, e la latenza è pari a quella ottenuta tramite la soluzione con IPSec, dunque molto buona.
+
 \section{Analisi delle misure}
+Questo grafico sovrappone i dati grezzi del primo test, riguardante il throughput medio. Essendo campionato ogni secondo, sono presenti molte oscillazioni che rendono il grafico confuso.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=14cm]{figure/rawThroughput.png}
     \caption{Confronto dei throughput grezzi}
 \end{figure}
-Questo grafico sovrappone i dati grezzi del primo test, riguardante il throughput medio. Essendo campionato ogni secondo, sono presenti molte oscillazioni che rendono il grafico confuso.
+
+Campionando invece ogni 5 secondi, si riducono le oscillazioni, che essendo di lieve entità sono poco significative, e diventa chiara la classifica di performance in termini di throughput tra i 4 casi.
+
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=14cm]{figure/fineThroughput.png}
     \caption{Confronto dei throughput raffinati}
 \end{figure}
-Campionando invece ogni 5 secondi, si riducono le oscillazioni, che essendo di lieve entità sono poco significative, e diventa chiara la classifica di performance in termini di throughput tra i 4 casi.
 In questo caso, escluso il caso senza VPN che ovviamente utilizza tutta la banda disponibile per trasferire dati, la soluzione più performante è WireGuard, seguita da OpenVPN e IPSec
 
 \begin{figure}[ht]
