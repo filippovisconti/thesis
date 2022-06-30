@@ -38,12 +38,6 @@ K.~Hamzeh, G.~Pall, W.~Verthein, J.~Taarud, W.~Little, and G.~Zorn.
 \newblock Point-to-point tunneling protocol (pptp).
 \newblock RFC 2637, RFC Editor, July 1999.
 
-\bibitem[JS96]{jones96analysis}
-Trevor~H. Jones and Il-Yeol Song.
-\newblock Analysis of binary/ternary cardinality combinations in
-  entity-relationship modeling.
-\newblock {\em Data Knowledge Engineering}, 19(1):39--64, 1996.
-
 \bibitem[Kau05]{RFC4306}
 C.~Kaufman.
 \newblock Internet key exchange (ikev2) protocol.

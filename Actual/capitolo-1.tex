@@ -43,7 +43,7 @@ L'azienda ha necessità di pubblicare
 \subsubsection{Web servers}
 Il sito web è servito in HTTP sulla porta 80 e in HTTPS sulla porta 443, e la pubblicazione è affidata a un noto servizio, \emph{Apache Httpd} \cite{APACHE}.
 \subsubsection{Mail servers}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+L'azienda ha un mail server che si occupa di inviare, ricevere ed archiviare i messaggi di posta dei dipendenti dell'azienda.
 
 \subsection{Servizi offerti all'interno}
 \subsubsection{DHCP server}
@@ -98,12 +98,15 @@ Con questo tipo di intermediazione, è triviale registrare tutta l'attività che
 Il filtraggio in questione è noto come url filtering. Il funzionamento si basa su delle blacklist (o whitelist, nel caso inverso), contenenti url a cui si vuole impedire ai client di accedere. Quando arriva una richiesta al server proxy, questa passerà e verrà inoltrata solo nel caso l'url della richiesta non sia contenuto nella blacklist.
 
 \subsection{Trasmissione sicura dei dati}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+Come è possibile immaginare, per un'azienda è fondamentale poter contare su di un'infrastruttura che garantisca che i dati che transitano su di essa non vengano compromessi.
+
 \subsubsection{Evitare intercettazioni}
 Vedi Cina con il Great Firewall
 
+Senza la garanzia di una trasmissione sicura dei dati, dove "sicura" si riferisce a tutte le diverse sfaccettature dell'ambito, si è esposti a eavesdropping attacks. Questi attacchi consistono nell'ascoltare, senza farsi notare, le comunicazioni altrui, tramite strumenti di sniffing posti a vari livelli. Un'analogia esplicativa è quella delle \emph{cimici} posizionate all'interno dell'abitazione di un indagato, per registrare le sue comunicazioni.
+
 \subsection{Controllo dei dispositivi}
-Ancora del testo. Come si afferma in~\cite{jones96analysis} molto lavoro deve ancora essere fatto.
+L'azienda ha bisogno di poter controllare e gestire i dispositivi concessi in uso ai suoi dipendenti, affinché il software installato sia sempre e solo quello autorizzato, e le loro configurazioni siano quelle più adatte agli elevati standard di sicurezzi richiesti.
 
 \subsection{Compatibilità}
 Il sistema da realizzare deve garantire compatibilità con le ultime versioni dei 3 sistemi operativi per desktop principali - macOS, Windows e le distro principali linux -  e dei 2 sistemi operativi principali per mobile - iOS e Android.
