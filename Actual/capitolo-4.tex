@@ -91,7 +91,15 @@ Si invi
     \includegraphics[width=12cm]{figure/vpn_thr.png-1.png}
     \caption{Throughput senza VPN su 300 secondi}
 \end{figure}
+Nella configurazione base, senza VPN, si può osservare come il throughput sia stabile tra i 44 e i 45 Mbit/s, eccetto per i primi istanti, dovuti ad un periodo di assestamento.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/mrt_16min_noVPN.png}
+    \caption{mrt con 1000 pacchetti da 5000 byte}
+\end{figure}
+
+In questo grafico invece, si può notare come, fino all'ottavo hop, la latenza sia generalmente bassa e la percentuale di packet loss irrisoria. Gli hop 9, 10 e 11 non rispondono, ma ciò non vuol dire che non funzionino. L'ultimo hop, quello del router di destinazione, ha una percentuale di packetloss molto elevata (più del 50\%) e una latenza più elevata, seppur ancora accettabile.
 
 \section{Misure con IPSec e IKEv2}
 \begin{figure}[ht]
@@ -99,6 +107,15 @@ Si invi
     \includegraphics[width=12cm]{figure/vpn_thr.png-2.png}
     \caption{IPSec Throughput su 300 secondi}
 \end{figure}
+Ripetendo lo stesso test attraverso un tunnel IPSec, si nota come il throughput sia calato e oscilli tra i 41 e i 42 Mbit/s.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/mtr_16min_ipsec.png}
+    \caption{mrt con 1000 pacchetti da 5000 byte}
+\end{figure}
+Il secondo test invece riporta una packetloss a destinazione nulla, ossia nessun pacchetto è stato perso, e una latenza media migliore rispetto a quella del test precedente.
+
 
 \section{Misure con OpenVPN over TCP}
 \begin{figure}[ht]
@@ -106,6 +123,15 @@ Si invi
     \includegraphics[width=12cm]{figure/vpn_thr.png-3.png}
     \caption{OpenVPN Throughput su 300 secondi}
 \end{figure}
+Con OpenVPN, il primo test registra un throughput medio marginalmente più alto di IPSec, anche se con oscillazioni leggermente più ampie.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/mtr_16min_ovpn.png}
+    \caption{mrt con 1000 pacchetti da 5000 byte}
+\end{figure}
+Nel secondo test, si ha ugualmente lo 0\% di packetloss, ma una latenza media maggiore di 10ms; si tratta comunque di un valore ampiamente accettabile.
+
 
 \section{Misure con WireGuard}
 \begin{figure}[ht]
@@ -113,6 +139,7 @@ Si invi
     \includegraphics[width=12cm]{figure/vpn_thr.png-4.png}
     \caption{WireGuard Throughput su 300 secondi}
 \end{figure}
+Utilizzando WireGuard, nel primo test si raggiunge il risultato migliore, con un throughput medio che sfiora i 43 Mbit/s.
 
 \section{Analisi delle misure}
 \begin{figure}[ht]
@@ -120,12 +147,15 @@ Si invi
     \includegraphics[width=14cm]{figure/rawThroughput.png}
     \caption{Confronto dei throughput grezzi}
 \end{figure}
+Questo grafico sovrappone i dati grezzi del primo test, riguardante il throughput medio. Essendo campionato ogni secondo, sono presenti molte oscillazioni che rendono il grafico confuso.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=14cm]{figure/fineThroughput.png}
     \caption{Confronto dei throughput raffinati}
 \end{figure}
+Campionando invece ogni 5 secondi, si riducono le oscillazioni, che essendo di lieve entità sono poco significative, e diventa chiara la classifica di performance in termini di throughput tra i 4 casi.
+In questo caso, escluso il caso senza VPN che ovviamente utilizza tutta la banda disponibile per trasferire dati, la soluzione più performante è WireGuard, seguita da OpenVPN e IPSec
 
 \begin{figure}[ht]
     \centering

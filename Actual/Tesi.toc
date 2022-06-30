@@ -107,26 +107,26 @@
 \contentsline {subsection}{\numberline {4.1.4}Scelta della configurazione di test}{34}{subsection.4.1.4}%
 \contentsline {section}{\numberline {4.2}Misure senza VPN}{34}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Misure con IPSec e IKEv2}{35}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Misure con OpenVPN over TCP}{35}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Misure con WireGuard}{35}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Analisi delle misure}{35}{section.4.6}%
-\contentsline {chapter}{\chapternumberline {5}Security concerns}{38}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Principali problematiche di sicurezza}{38}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Attacchi mirati agli utenti}{38}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Furto di credenziali}{39}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Social Engineering}{40}{subsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.2.1}Phishing e Spear Phishing}{40}{subsubsection.5.2.2.1}%
-\contentsline {section}{\numberline {5.3}Attacchi mirati al sistema}{41}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Versione non aggiornata}{42}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Exploit di vulnerabilità zero-day}{42}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Multi-factor authentication}{42}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Certificato}{43}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Username e password}{44}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}One Time Password}{44}{subsection.5.4.3}%
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{46}{chapter*.9}%
-\contentsline {section}{Quale è uscito vincitore}{46}{section*.10}%
-\contentsline {section}{Come migliorare le misure}{46}{section*.11}%
-\contentsline {section}{Test di VPN Peer-To-Peer}{46}{section*.12}%
-\contentsline {subsection}{Zero Tier}{46}{section*.13}%
-\contentsline {section}{PAM vs VPN}{48}{section*.14}%
-\contentsline {chapter}{Bibliografia}{49}{chapter*.15}%
+\contentsline {section}{\numberline {4.4}Misure con OpenVPN over TCP}{36}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Misure con WireGuard}{36}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Analisi delle misure}{37}{section.4.6}%
+\contentsline {chapter}{\chapternumberline {5}Security concerns}{39}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Principali problematiche di sicurezza}{39}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Attacchi mirati agli utenti}{39}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Furto di credenziali}{40}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Social Engineering}{41}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.1}Phishing e Spear Phishing}{41}{subsubsection.5.2.2.1}%
+\contentsline {section}{\numberline {5.3}Attacchi mirati al sistema}{42}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Versione non aggiornata}{43}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Exploit di vulnerabilità zero-day}{43}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Multi-factor authentication}{43}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Certificato}{44}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Username e password}{45}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}One Time Password}{45}{subsection.5.4.3}%
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{47}{chapter*.9}%
+\contentsline {section}{Quale è uscito vincitore}{47}{section*.10}%
+\contentsline {section}{Come migliorare le misure}{47}{section*.11}%
+\contentsline {section}{Test di VPN Peer-To-Peer}{47}{section*.12}%
+\contentsline {subsection}{Zero Tier}{47}{section*.13}%
+\contentsline {section}{PAM vs VPN}{49}{section*.14}%
+\contentsline {chapter}{Bibliografia}{50}{chapter*.15}%
