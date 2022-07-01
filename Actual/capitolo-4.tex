@@ -1,7 +1,7 @@
 \section{Modalità di esecuzione dei test}
 In questa sezione si andrà ad analizzare le performance delle tre soluzioni VPN descritte nei capitoli precedenti, al fine di valutare quale di esse offre le prestazioni migliori.
 Le prestazioni verranno valutate analizzando il throughput, la sua stabilità e la percentuale di packetloss.
-I software che sono stati utilizzati per effettuare le misurazioni questi dati sono \texttt{iPerf3} e \texttt{mrt}.
+I software che sono stati utilizzati per effettuare le misurazioni questi dati sono \texttt{iPerf3} e \texttt{mtr}.
 
 \subsection{Panoramica di \texttt{iPerf3}}
 \texttt{iPerf} è uno strumento open source che permette di misurare le prestazioni di una rete.
@@ -14,8 +14,8 @@ In questo modo, gli utenti possono determinare il throughput effettivamente util
     \caption{Esempio di output di iPerf3}
 \end{figure}
 
-\subsection{Panoramica di \texttt{mrt}}
-\texttt{mtr} è un altro software di misurazione delle performance di una rete, che sostanzialmente unisce i risultati di traceroute e ping.
+\subsection{Panoramica di \texttt{mtr}}
+\texttt{mtr} è un altro software di misurazione delle performance di una rete, che sostanzialmente unisce i risultati di \texttt{traceroute} e \texttt{ping}.
 I test effettuati da mtr sono unidirezionali, dunque è opportuno effettuare misurazioni manualmente in entrambe le direzioni, in quanto i risultati differire in maniera sostanziale. Per avere una misurazione affidabile, è consigliabile far durare il test almeno 10 minuti.
 
 MTR fa affidamento sui pacchetti Time Exceeded dell'Internet Control Message Protocol restituiti dai router, o sui pacchetti Echo Reply, quando il pacchetto raggiunge l'host destinatario.
@@ -23,19 +23,19 @@ MTR fa affidamento sui pacchetti Time Exceeded dell'Internet Control Message Pro
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/mtrSample.png}
-    \caption{Esempio di output di mrt}
+    \caption{Esempio di output di \texttt{mtr}}
 \end{figure}
 
 \subsubsection{Spiegazione del formato dell'output}
-Nella prima colonna, si legge un numero e un indirizzo IP: il numero corrisponde alla distanza in hop tra l'host da cui parte il test e l'IP indicato alla sua destra.
+Nella prima colonna, si legge un numero e un indirizzo IP: il numero corrisponde alla distanza in \emph{hop} tra l'host da cui parte il test e l'IP indicato alla sua destra.
 La seconda colonna, \texttt{Loss\%}, indica la percentuale di pacchetti che quell'IP ha perso. È auspicabile un valore inferiore all'1\% per una connessione affidabile.
 La terza colonna, \texttt{Snt}, indica il numero di pacchetti inviati a quell'IP.
-Le successive 4 colonne indicano il valore dell'ultimo, del medio, del migliore e del peggiore round-trip-time in millisencondi - ossia il tempo necessario affinché un pacchetto parta dal mittente, raggiunga il destinatario, e torni indietro.
+Le successive 4 colonne indicano il valore dell'ultimo, del medio, del migliore e del peggiore round-trip-time in millisecondi - ossia il tempo necessario affinché un pacchetto parta dal mittente, raggiunga il destinatario, e torni indietro.
 L'ultima colonna indica la deviazione standard tra questi ultimi 4 valori.
 I valori dalla terza colonna in poi forniscono dunque informazioni sulla latenza della rete. È desiderabile il valore più basso possibile. Tuttavia,  spesso la latenza dipende da fattori esterni alla rete locale.
 
 Nella misurazione di esempio, è stato richiesto l'invio di 10 pacchetti (\texttt{-c 10}) di dimensione 5000 byte (\texttt{-s 5000}).
-Per gli hop 9, 10 e 11, si ha un risultato anomalo: nessun IP restituito e 100\% di packet loss.
+Per gli hop 9, 10 e 11, si ha un risultato anomalo: nessun IP restituito e 100\% di packetloss.
 Questo risultato non mostra problemi di connessione, ma indica semplicemente che l'host non ha risposto alle richieste indirizzate a lui (per i motivi più disparati, da un carico di lavoro troppo altro, a un firewall che fa cadere quel tipo di pacchetto), e che però, visto che l'hop 12 risponde correttamente, ha inoltrato correttamente quelle destinate a chi gli succede.
 
 \subsection{Criteri di valutazione}
@@ -64,10 +64,10 @@ La perdita dei pacchetti viene misurata come la percentuale dei pacchetti che un
 \subsubsection{Latenza}
 La latenza di una rete, a volte chiamata anche lag, è un termine che descrive i ritardi di comunicazione attraverso una rete. In particolare, si intente il tempo necessario affinché un pacchetto venga catturato, trasmesso, processato attraverso molteplici apparati, ricevuto dal destinatario e decodificato.
 
-La latenza è generalmente misurata in millisecondi. Minore è la latenza, migliori sono le performance. Una latenza inferiore ai 100ms è considerata accettabile, ma per buone performace si desidera un valore inferiore ai 40ms. Ovviamente, un valore prossimo agli 0ms sarebbe ideale.
+La latenza è generalmente misurata in millisecondi. Minore è la latenza, migliori sono le performance. Una latenza inferiore ai 100ms è considerata accettabile, ma per buone performance si desidera un valore inferiore ai 40ms. Ovviamente, un valore prossimo agli 0ms sarebbe ideale.
 
 \subsection{Scelta della configurazione di test}
-Il dispositivo utilizzato per effettuare i test ha una scheda di rete che supporta fino a  1 Gbit/s, ed è collegato ad Internet via fibra ottica, che satura il gigabit a disposizione, in modo tale che la macchina per fare i test non sia il collo di bottiglia dell'ambiente.
+Il dispositivo utilizzato per effettuare i test ha una scheda di rete che supporta fino a  1 Gbit/s, ed è collegato a Internet via fibra ottica, che satura il gigabit a disposizione, in modo tale che la macchina per fare i test non sia il collo di bottiglia dell'ambiente.
 
 
 Per effettuare i test, sono stati scelti i seguenti parametri:
@@ -81,7 +81,7 @@ Si effettuerà un primo test con iperf3 lungo 300 secondi, con report ogni 5 sec
 \texttt{mtr [IP ADDRESS] -s 5000 -c 1000}
 
 
-Con mrt si effettuerà il secondo test, inviando 1000 pacchetti della dimensione di 5000 byte, che comporta una durata del test di oltre 15 minuti.
+Con mtr si effettuerà il secondo test, inviando 1000 pacchetti della dimensione di 5000 byte, che comporta una durata del test di oltre 15 minuti.
 
 \section{Misure senza VPN}
 \begin{figure}[ht]
@@ -89,15 +89,15 @@ Con mrt si effettuerà il secondo test, inviando 1000 pacchetti della dimensione
     \includegraphics[width=12cm]{figure/vpn_thr.png-1.png}
     \caption{Throughput senza VPN su 300 secondi}
 \end{figure}
-Nella configurazione base, senza VPN, si può osservare come il throughput sia stabile tra i 44 e i 45 Mbit/s, eccetto per i primi istanti, dovuti ad un periodo di assestamento.
+Nella configurazione base, senza VPN, si può osservare come il throughput sia stabile tra i 44 e i 45 Mbit/s, eccetto per i primi istanti, dovuti a un periodo di assestamento.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/mrt_16min_noVPN.png}
-    \caption{mrt senza VPN}
+    \caption{mtr senza VPN}
 \end{figure}
 
-In questo grafico invece, si può notare come, fino all'ottavo hop, la latenza sia generalmente bassa e la percentuale di packet loss irrisoria. Gli hop 9, 10 e 11 non rispondono, ma ciò non vuol dire che non funzionino. L'ultimo hop, quello del router di destinazione, ha una percentuale di packetloss molto elevata (più del 50\%) e una latenza più elevata, seppur ancora accettabile.
+In questo grafico invece, si può notare come, fino all'ottavo hop, la latenza sia generalmente bassa e la percentuale di packetloss irrisoria. Gli hop 9, 10 e 11 non rispondono, ma ciò non vuol dire che non funzionino. L'ultimo hop, quello del router di destinazione, ha una percentuale di packetloss molto elevata (più del 50\%) e una latenza più elevata, seppur ancora accettabile.
 
 \section{Misure con IPSec e IKEv2}
 \begin{figure}[ht]
@@ -110,7 +110,7 @@ Ripetendo lo stesso test attraverso un tunnel IPSec, si nota come il throughput 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/mtr_16min_ipsec.png}
-    \caption{mrt su IPSec}
+    \caption{mtr su IPSec}
 \end{figure}
 Il secondo test invece riporta una packetloss a destinazione nulla, ossia nessun pacchetto è stato perso, e una latenza media migliore rispetto a quella del test precedente.
 
@@ -126,7 +126,7 @@ Con OpenVPN, il primo test registra un throughput medio marginalmente più alto 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/mtr_16min_ovpn.png}
-    \caption{mrt su OpenVPN}
+    \caption{mtr su OpenVPN}
 \end{figure}
 Nel secondo test, si ha ugualmente lo 0\% di packetloss, ma una latenza media maggiore di 10ms; si tratta comunque di un valore ampiamente accettabile.
 
@@ -142,7 +142,7 @@ Utilizzando WireGuard, nel primo test si raggiunge il risultato migliore, con un
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/mrt_16min_wg.png}
-    \caption{mrt su WireGuard}
+    \caption{mtr su WireGuard}
 \end{figure}
 
 Nel secondo test, come nelle altre soluzioni VPN, la percentuale di packetloss è a 0, e la latenza è pari a quella ottenuta tramite la soluzione con IPSec, dunque molto buona.

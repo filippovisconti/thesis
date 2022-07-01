@@ -84,13 +84,13 @@
 \contentsline {subsection}{\numberline {3.1.2}VirtualBox}{23}{subsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.1.3}VMWare ESXi}{23}{subsection.3.1.3}%
 \contentsline {subsection}{\numberline {3.1.4}Installazione e configurazione dei servizi VPN}{23}{subsection.3.1.4}%
-\contentsline {section}{\numberline {3.2}Installazione e configurazione di IPSec - tunnelmode}{24}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Installazione e configurazione di IPSec - tunnel mode}{24}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Aggiunta dell'interfaccia di rete virtuale}{24}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Installazione di strongSwan}{24}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}Configurazione di strongSwan}{25}{subsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.2.4}Creazione del certificato per un client}{25}{subsection.3.2.4}%
 \contentsline {section}{\numberline {3.3}Installazione e configurazione di OpenVPN over TCP}{26}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Installazione di openvpn}{26}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.1}Installazione di OpenVPN}{26}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Certificati}{27}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Configurazione del profilo VPN per un client}{27}{subsection.3.3.3}%
 \contentsline {section}{\numberline {3.4}Installazione e configurazione WireGuard}{27}{section.3.4}%
@@ -99,7 +99,7 @@
 \contentsline {chapter}{\chapternumberline {4}Testing}{29}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Modalità di esecuzione dei test}{29}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Panoramica di \texttt {iPerf3}}{29}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Panoramica di \texttt {mrt}}{29}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Panoramica di \texttt {mtr}}{29}{subsection.4.1.2}%
 \contentsline {subsubsection}{\numberline {4.1.2.1}Spiegazione del formato dell'output}{30}{subsubsection.4.1.2.1}%
 \contentsline {subsection}{\numberline {4.1.3}Criteri di valutazione}{31}{subsection.4.1.3}%
 \contentsline {subsubsection}{\numberline {4.1.3.1}Throughput}{31}{subsubsection.4.1.3.1}%
@@ -124,10 +124,10 @@
 \contentsline {subsection}{\numberline {5.4.1}Certificato}{43}{subsection.5.4.1}%
 \contentsline {subsection}{\numberline {5.4.2}Username e password}{44}{subsection.5.4.2}%
 \contentsline {subsection}{\numberline {5.4.3}One Time Password}{44}{subsection.5.4.3}%
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{46}{chapter*.11}%
-\contentsline {section}{Quale è uscito vincitore}{46}{section*.12}%
-\contentsline {section}{Come migliorare le misure}{46}{section*.13}%
-\contentsline {section}{Test di VPN Peer-To-Peer}{46}{section*.14}%
-\contentsline {subsection}{Zero Tier}{46}{section*.15}%
-\contentsline {section}{PAM vs VPN}{48}{section*.16}%
-\contentsline {chapter}{Bibliografia}{49}{chapter*.17}%
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{45}{chapter*.11}%
+\contentsline {section}{Quale è uscito vincitore}{45}{section*.12}%
+\contentsline {section}{Come migliorare le misure}{45}{section*.13}%
+\contentsline {section}{Test di VPN Peer-To-Peer}{45}{section*.14}%
+\contentsline {subsection}{Zero Tier}{45}{section*.15}%
+\contentsline {section}{PAM vs VPN}{47}{section*.16}%
+\contentsline {chapter}{Bibliografia}{48}{chapter*.17}%

@@ -41,9 +41,9 @@ L'azienda ha necessità di pubblicare
     \item un mail server, che si occupa di inviare e ricevere i messaggi di posta elettronica
 \end{itemize}
 \subsubsection{Web servers}
-Il sito web è servito in HTTP sulla porta 80 e in HTTPS sulla porta 443, e la pubblicazione è affidata a un noto servizio, \emph{Apache Httpd} \cite{APACHE}.
+Il sito web è servito in HTTP sulla porta 80 e in HTTPS sulla porta 443, e la pubblicazione è affidata a un noto servizio, \emph{Apache httpd} \cite{APACHE}.
 \subsubsection{Mail servers}
-L'azienda ha un mail server che si occupa di inviare, ricevere ed archiviare i messaggi di posta dei dipendenti dell'azienda.
+L'azienda ha un mail server che si occupa di inviare, ricevere e archiviare i messaggi di posta dei dipendenti dell'azienda.
 
 \subsection{Servizi offerti all'interno}
 \subsubsection{DHCP server}
@@ -61,14 +61,14 @@ Il DNS è in grado di memorizzare anche altre informazioni riguardanti un certo 
     \item gli indirizzi IP dei mail exchanger di riferimento per quel dominio;
     \item degli alias, ossia un'associazione tra due nomi di dominio.
 \end{itemize}
-Nella configurazione corrente, il server DNS, che gira sullo stesso server del Firewall, lavora come relay e il suo IP viene distribuito a tutti i client della rete interna via DHCP come DNS resolver.
+Nella configurazione corrente, il server DNS, che gira sullo stesso server su cui è in esecuzione il Firewall, lavora come relay e il suo IP viene distribuito a tutti i client della rete interna via DHCP come DNS resolver.
 Ciò significa che tutti gli host della rete, nel momento in cui devono risolvere un nome, inviano una richiesta al server DNS interno, che si occuperà lui di risolverlo e, una volta ottenuto il risultato, lo restituisce al richiedente.
 Questo comporta diversi vantaggi, tra cui:
 \begin{itemize}
     \item la comunicazione verso l'esterno per la risoluzione dei nomi avviene da un unico punto della rete;
-    \item si può fare caching, ossia mantenere in memoria per un certo periodo di tempo (che viene specificato nella risposta che il server DNSriceve) le risposte delle varie risoluzioni, cosicché, se di una richiesta si era già trovata la risposta, non dovrà essere fatta di nuovo la risoluzione;
+    \item si può fare caching, ossia mantenere in memoria per un certo periodo di tempo (che viene specificato nella risposta ricevuta dal server DNS) le risposte delle varie risoluzioni, cosicché, se di una richiesta si era già trovata la risposta, non dovrà essere fatta di nuovo la risoluzione;
     \item si possono implementare dei filtri per bloccare la risoluzione di nomi a cui si vuole limitare l'accesso;
-    \item si possono facilmente loggare le varie richieste.
+    \item si possono facilmente tracciare le varie richieste.
 \end{itemize}
 
 \subsubsection{Web app interne}
@@ -81,7 +81,7 @@ Similmente al file server, c'è anche un database server a disposizione dei dipe
 
 \section{Necessità degli utenti}
 \subsection{Accesso ai servizi interni senza esposizione all'esterno}
-Per quel che riguarda i dipendenti dell'azienda, hanno necessità di poter lavorare in modo automo da casa. Dunque devono poter accedere in maniera sicura a tutte le risorse disponibili all'interno della rete privata da qualsiasi parte del mondo.
+Per quel che riguarda i dipendenti dell'azienda, hanno necessità di poter lavorare in modo autonomo da casa. Dunque devono poter accedere in maniera sicura a tutte le risorse disponibili all'interno della rete privata da qualsiasi parte del mondo.
 \subsubsection{Remote work}
 Lavorare da remoto è un qualcosa che sta prendendo sempre più piede nel mondo di oggi. Specialmente con la pandemia da Covid-19, si è visto come sia fondamenta offrire strumenti adeguati ai dipendenti per svolgere le proprie mansioni indipendentemente dalla loro posizione.
 Tutto ciò, tuttavia, non deve avvenire a discapito della sicurezza.
@@ -95,7 +95,7 @@ Un valido strumento per effettuare controllo del traffico e tenerne traccia tram
 Un proxy è un server che si pone come intermediario tra la LAN interna e la rete esterna, generalmente per le comunicazioni che avvengono sulle porte TCP 21, 80 e 443, ossia quelle che utilizzano i protocolli FTP, HTTP e HTTPS.
 Utilizzando un server proxy, i client, anziché comunicare direttamente con l'host di destinazione, inviano la richiesta al proxy, che si occupa di comunicare con l'host di destinazione e di restituire la risposta ottenuta all'iniziatore della richiesta.
 Con questo tipo di intermediazione, è triviale registrare tutta l'attività che avviene e filtrare richieste ritenute non opportune.
-Il filtraggio in questione è noto come url filtering. Il funzionamento si basa su delle blacklist (o whitelist, nel caso inverso), contenenti url a cui si vuole impedire ai client di accedere. Quando arriva una richiesta al server proxy, questa passerà e verrà inoltrata solo nel caso l'url della richiesta non sia contenuto nella blacklist.
+Il filtraggio in questione è noto come URL filtering. Il funzionamento si basa su delle blacklist (o whitelist, nel caso inverso), contenenti URL a cui si vuole impedire ai client di accedere. Quando arriva una richiesta al server proxy, questa passerà e verrà inoltrata solo nel caso l'URL della richiesta non sia contenuto nella blacklist.
 
 \subsection{Trasmissione sicura dei dati}
 Come è possibile immaginare, per un'azienda è fondamentale poter contare su di un'infrastruttura che garantisca che i dati che transitano su di essa non vengano compromessi.
@@ -103,10 +103,10 @@ Come è possibile immaginare, per un'azienda è fondamentale poter contare su di
 \subsubsection{Evitare intercettazioni}
 Vedi Cina con il Great Firewall
 
-Senza la garanzia di una trasmissione sicura dei dati, dove "sicura" si riferisce a tutte le diverse sfaccettature dell'ambito, si è esposti a eavesdropping attacks. Questi attacchi consistono nell'ascoltare, senza farsi notare, le comunicazioni altrui, tramite strumenti di sniffing posti a vari livelli. Un'analogia esplicativa è quella delle \emph{cimici} posizionate all'interno dell'abitazione di un indagato, per registrare le sue comunicazioni.
+Senza la garanzia di una trasmissione sicura dei dati, dove "sicura" si riferisce a tutte le diverse sfaccettature dell'ambito, si è esposti a "eavesdropping attacks". Questi attacchi consistono nell'ascoltare, senza farsi notare, le comunicazioni altrui, tramite strumenti di \emph{sniffing} posti a vari livelli. Un'analogia esplicativa è quella delle \emph{cimici} posizionate all'interno dell'abitazione di un indagato, per registrare le sue comunicazioni.
 
 \subsection{Controllo dei dispositivi}
-L'azienda ha bisogno di poter controllare e gestire i dispositivi concessi in uso ai suoi dipendenti, affinché il software installato sia sempre e solo quello autorizzato, e le loro configurazioni siano quelle più adatte agli elevati standard di sicurezzi richiesti.
+L'azienda ha bisogno di poter controllare e gestire i dispositivi concessi in uso ai suoi dipendenti, affinché il software installato sia sempre e solo quello autorizzato, e le loro configurazioni siano quelle più adatte agli elevati standard di sicurezza richiesti.
 
 \subsection{Compatibilità}
-Il sistema da realizzare deve garantire compatibilità con le ultime versioni dei 3 sistemi operativi per desktop principali - macOS, Windows e le distro principali linux -  e dei 2 sistemi operativi principali per mobile - iOS e Android.
+Il sistema da realizzare deve garantire compatibilità con le ultime versioni dei tre sistemi operativi per desktop principali - macOS, Windows e le distribuzioni principali Linux -  e dei due sistemi operativi principali per mobile - iOS e Android.
