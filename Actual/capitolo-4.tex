@@ -67,18 +67,21 @@ La latenza di una rete, a volte chiamata anche lag, è un termine che descrive i
 La latenza è generalmente misurata in millisecondi. Minore è la latenza, migliori sono le performance. Una latenza inferiore ai 100ms è considerata accettabile, ma per buone performace si desidera un valore inferiore ai 40ms. Ovviamente, un valore prossimo agli 0ms sarebbe ideale.
 
 \subsection{Scelta della configurazione di test}
+Il dispositivo utilizzato per effettuare i test ha una scheda di rete che supporta fino a  1 Gbit/s, ed è collegato ad Internet via fibra ottica, che satura il gigabit a disposizione, in modo tale che la macchina per fare i test non sia il collo di bottiglia dell'ambiente.
+
+
 Per effettuare i test, sono stati scelti i seguenti parametri:
 
 
 \texttt{iperf3 -c [IP ADDRESS] -p 5201 -t 300s -i 5}
 
 
-Si effettuerà un test lungo 300 secondi, con report ogni 5 secondi.
+Si effettuerà un primo test con iperf3 lungo 300 secondi, con report ogni 5 secondi.
 
 \texttt{mtr [IP ADDRESS] -s 5000 -c 1000}
 
 
-Si invi
+Con mrt si effettuerà il secondo test, inviando 1000 pacchetti della dimensione di 5000 byte, che comporta una durata del test di oltre 15 minuti.
 
 \section{Misure senza VPN}
 \begin{figure}[ht]
@@ -158,12 +161,19 @@ Campionando invece ogni 5 secondi, si riducono le oscillazioni, che essendo di l
 \begin{figure}[ht]
     \centering
     \includegraphics[width=14cm]{figure/fineThroughput.png}
+    \includegraphics[width=10cm]{figure/avg.png}
     \caption{Confronto dei throughput raffinati}
 \end{figure}
-In questo caso, escluso il caso senza VPN che ovviamente utilizza tutta la banda disponibile per trasferire dati, la soluzione più performante è WireGuard, seguita da OpenVPN e IPSec
+
+In questo caso, escluso il caso senza VPN che ovviamente utilizza tutta la banda disponibile per trasferire dati, la soluzione più performante è WireGuard, seguita da OpenVPN e IPSec.
+
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=10cm]{figure/avg.png}
-    \caption{Confronto dei throughput medi}
+    \includegraphics[width=7cm]{figure/avgLat.png}
+    \includegraphics[width=7cm]{figure/packetloss.png}
+    \caption{Confronto di latenza media e di packetloss}
 \end{figure}
+
+Questo confronto mostra come IPSec e WireGuard abbiano una latenza minore, e tutte e tre le soluzioni portino a 0 la percentuale di packetloss. Ciò comporta una trasmissione dei dati molto più affidabile.
+
