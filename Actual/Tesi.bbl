@@ -111,4 +111,8 @@ strongSwan.
 vmware.
 \newblock \url{https://www.vmware.com/it/products/esxi-and-esx.html}.
 
+\bibitem[Zer]{ZeroTier}
+ZeroTier.
+\newblock \url{https://www.zerotier.com/}.
+
 \end{thebibliography}
