@@ -1,20 +1,11 @@
-Questa è l'introduzione.
 
-% https://www.sciencedirect.com/topics/computer-science/security-architecture
-\section{Pericoli di esporre un server su internet}
-
-L'architettura di sicurezza del Modello OSI considera 5 classi principali di servizi di sicurezza. Tra queste si hanno: autenticazione, controllo degli accessi, confidenzialità, integrità e non ripudio.
-In particolare, questi servizi sono definiti come segue:
-\begin{itemize}
-    \item autenticazione - il servizio di autenticazione verifica l'identità di un utente o di un sistema
-    \item controllo degli accessi - il servizio protegge le risorse di sistema da utenti non autorizzati
-    \item confidenzialità - il servizio protegge i dati da rivelazioni non autorizzate
-    \item integrità - il servizio protegge i dati da modifiche, aggiunte o rimozioni non autorizzate
-    \item non ripudio \emph{a.k.a non-repudiation} - il servizio assicura che il mittente dell'informazione abbia una notifica di consegna e il destinatario riceva una prova di identità del mittente, in modo tale che nessuno dei due possa successivamente negare di aver processato tali dati
-\end{itemize}
-
+In questa tesi, si andranno a studiare i funzionamenti delle reti private virtuali, delle necessità che portano alla loro installazione e si andrà a misurare le performance ottenute con diverse soluzioni software.
+Prima di cominciare, è necessario fare un breve excursus definendo termini e concetti di base, fondamentali per comprendere i capitoli seguenti.
 
 \section{Concetti di base}
+\subsubsection{Server}
+Un server è una macchina, un computer in grado di erogare servizi di ogni genere agli utenti (detti \emph{client}). Tendenzialmente, hanno potenze di calcolo superiori di vari ordini di grandezza rispetto ai dispositivi comunemente utilizzati, e fanno della ridondanza e dell'affidabilità pilastri fondamentali.
+
 \subsubsection{Tipologie di reti}
 Parlando di una rete di calcolatori, si intende una rete a cui sono connessi due o più computer tramite cui è possibile condividere dati, dispositivi, connessione a internet, e via dicendo.
 
@@ -42,11 +33,26 @@ I compiti dei sette livelli sono, in breve, i seguenti:
     \item Livello di sessione, livello di presentazione, livello di applicazione: sono gli strati più prossimi all'utente finale, e si occupano di gestire la comunicazione dei processi utilizzati dall'utente con il livello di trasporto
 \end{enumerate}
 
+% https://www.sciencedirect.com/topics/computer-science/security-architecture
+\section{Pericoli di esporre un server su Internet}
+Rendere accessibile un server dalla rete Internet, affinché sia possibile sfruttare i servizi che offre dovunque nel mondo ci si trovi, porta con sé una serie di rischi e problematiche concrete e decisamente rilevanti.
+Infatti, i servizi pubblicati saranno esposti sia a utenti corretti che a malintenzionati, che potrebbero andare alla ricerca di vulnerabilità informatiche (ma non solo) col fine di ottenere accesso alle macchine e disporne a loro piacimento.
+
 
 \section{Necessità di un'infrastruttura di rete sicura}
+L'architettura di sicurezza del Modello OSI considera 5 classi principali di servizi di sicurezza. Tra queste si hanno: autenticazione, controllo degli accessi, confidenzialità, integrità e non ripudio.
+In particolare, questi servizi sono definiti come segue:
+\begin{itemize}
+    \item autenticazione - il servizio di autenticazione verifica l'identità di un utente o di un sistema
+    \item controllo degli accessi - il servizio protegge le risorse di sistema da utenti non autorizzati
+    \item confidenzialità - il servizio protegge i dati da rivelazioni non autorizzate
+    \item integrità - il servizio protegge i dati da modifiche, aggiunte o rimozioni non autorizzate
+    \item non ripudio \emph{a.k.a non-repudiation} - il servizio assicura che il mittente dell'informazione abbia una notifica di consegna e il destinatario riceva una prova di identità del mittente, in modo tale che nessuno dei due possa successivamente negare di aver processato tali dati
+\end{itemize}
 
-Ancora del testo. Come si afferma i
+
 \section{Organizzazione dei capitoli}
+I capitoli che seguono sono sviluppati come segue.
 
 Nel capitolo 1, vengono discussi i requisiti del sistema che andranno rispettati nello svolgimento della tesi.
 
