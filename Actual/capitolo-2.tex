@@ -1,5 +1,5 @@
 %-------------------------------------------------------------------------------------------------------------------------VPN
-\section{Virtual Private Networks }
+\section{Virtual Private Networks}
 Una rete privata virtuale consiste in una rete il cui accesso è regolamentato, che si appoggia a un protocollo di trasporto pubblico e condiviso, e che consente di garantire confidenzialità della comunicazione, accesso solo previa autenticazione, integrità dei dati e protezione da alcuni tipi di attacchi, ad esempio Man-in-the-middle o attacco replay.
 
 \subsection{Architetture disponibili}
@@ -18,14 +18,14 @@ Una VPN in configurazione Host-to-Gateway si prospetta come la soluzione più pr
     \caption{Modello logico di connessione con e senza VPN}
 \end{figure}
 
-\section{Soluzioni principali}
+\section{Soluzioni VPN più comuni}
 
 Tra le soluzioni VPN più comuni troviamo:
 \begin{itemize}
     \item Point-to-Point Tunneling Protocol (PPTP)
     \item Internet Protocol Security (IPSec)
     \item OpenVPN
-    \item Wireguard
+    \item WireGuard
 \end{itemize}
 
 %-----------------------------------------------------------------------------------------------------------------------IPSec
@@ -48,8 +48,7 @@ In molti contesti, rendere sicuro il livello di rete (L3 OSI) è una soluzione m
 IPSec supporta l'autenticazione a livello di rete, autenticazione del mittente, integrità dei dati, cifratura, e protezione dagli attacchi replay, protezione dall'analisi del traffico e controllo degli accessi.
 
 \subsubsection{Transport mode vs Tunnel mode}
-The IPsec protocols AH and ESP can be implemented in a host-to-host transport mode, as well as in a network tunneling mode.
-
+La suite IPSec può essere configurata per lavorare o in transport mode o in tunnel mode.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=8cm]{figure/ipsec_modes.png}
@@ -58,10 +57,13 @@ The IPsec protocols AH and ESP can be implemented in a host-to-host transport mo
 
 
 \noindent \textbf{Transport mode}
-In transport mode, generalmente solo il payload del pacchetto IP è cifrato o autenticato. L'indirizzamento non cambia, dato che l'header IP non è né modificato né cifrato; tuttavia, quanto si usa il protocollo Authentication Header - approfondito in seguito - l'indirizzo IP non può essere modificato da Network Address Translation, in quanto una modifica al campo invaliderebbe l'hash. Il livello di trasporto e di applicazione sono sempre certificati da un hash, quindi il loro contenuto non può essere modificato in alcun modo, ad esempio utilizzando una traduzione dei numeri delle porte.
+
+In transport mode, generalmente solo il payload del pacchetto IP è cifrato o autenticato. L'indirizzamento non cambia, dato che l'header IP non è né modificato né cifrato; tuttavia, quanto si usa il protocollo Authentication Header, approfondito in seguito, l'indirizzo IP non può essere modificato da Network Address Translation (NAT), in quanto una modifica al campo invaliderebbe l'hash. Il livello di trasporto e di applicazione sono sempre certificati da un hash, quindi il loro contenuto non può essere modificato in alcun modo, ad esempio utilizzando una traduzione dei numeri delle porte.
 Un superamento delle problematiche causate dall'attraversamento di NAT è definito dalle RFC che descrivono il meccanismo NAT-T, ma che va oltre gli scopi di questa tesi.
 
+\newpage
 \noindent \textbf{Tunnel mode}
+
 In tunnel mode, l'intero pacchetto è cifrato e autenticato. È dunque incapsulato all'interno di un nuovo pacchetto IP con un nuovo header IP.
 Generando un nuovo header IP, non si incontra nessuna difficoltà nell'attraversamento di NAT.
 
@@ -70,13 +72,14 @@ Generando un nuovo header IP, non si incontra nessuna difficoltà nell'attravers
 IPSec utilizza i seguenti protocolli per stabilire una connessione sicura. Sia AH che ESP, descritti in seguito, possono lavorare in tunnel mode o in transport mode.
 
 \noindent \textbf{Authentication Header}
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=10cm]{figure/ah_tun_trasp.png}
-    \caption{Formato del pacchetto di Authentication Header }
+    \caption{Formato del pacchetto di Authentication Header}
 \end{figure}
 
-Authentication Header \cite[RFC4302]{RFC4302} garantisce integrità per tutti gli header dei pacchetti, ad eccezione di alcuni campi dell'header IP, e autenticazione del mittente. Se configurato, è anche possibile utilizzarlo per offrire protezione dagli attacchi replay. AH si interfaccia direttamente con IP, utilizzamndo il protocollo IP numero 51.
+Authentication Header \cite[RFC4302]{RFC4302} (AH) garantisce integrità per tutti gli header dei pacchetti, ad eccezione di alcuni campi dell'header IP, e autenticazione del mittente. Se configurato, è anche possibile utilizzarlo per offrire protezione dagli attacchi replay. AH si interfaccia direttamente con IP, utilizzando il protocollo IP numero 51.
 AH autentica l'intero datagramma, ad eccezione dei campi variabili. Tuttavia, le informazioni contenute nel datagramma sono trasferite in chiaro e, dunque, leggibili da uno sniffer. Per questo motivo, AH non soddisfa i requisiti di sicurezza richiesti.
 
 \noindent \textbf{Encapsulating Security Payload}
@@ -87,22 +90,21 @@ AH autentica l'intero datagramma, ad eccezione dei campi variabili. Tuttavia, le
     \caption{Formato del pacchetto di Encapsulating Security Payload}
 \end{figure}
 
-Encapsulating Security Payload \cite[RFC4303]{RFC4303} offre confidenzialità dei fati, autenticazione del mittente, controllo di integrità e protezione da attacchi relay.
+Encapsulating Security Payload \cite[RFC4303]{RFC4303} (ESP) offre confidenzialità dei fati, autenticazione del mittente, controllo di integrità e protezione da attacchi relay.
 In Transport mode, non autentica né cifra l'header IP: cioè potrebbe esporre le informazioni contenute a potenziali attacchi mentre il pacchetto è in transito.
-Tuttavia, la Transport mode necessita di meno potenza computazionale, ottenendo un overhead minore della tunnel mode, rinunciando a una maggior sicurezza.
+Tuttavia, la Transport mode necessita di meno potenza computazionale, ottenendo un \emph{overhead} minore della tunnel mode, rinunciando a una maggior sicurezza.
 
-In Tunnel mode, viene creato un nuovo header IP e usato come header esterno del pacchetto, eguito dall'header ESP e poi il pacchetto originale (sia header IP che payload originale).
+In Tunnel mode, viene creato un nuovo header IP e usato come header esterno del pacchetto, seguito dall'header ESP e poi il pacchetto originale (sia header IP che payload originale).
 L'ESP Trailer e gli opzionali dati di autenticazione sono aggiunti dopo il payload.
-Quando si usano cifratura e autenticazione contemporaneamente, ESP protegge completamente il pacchetto orginale, perché diventa il payload del nuovo pacchetto ESP.
+Quando si usano cifratura e autenticazione contemporaneamente, ESP protegge completamente il pacchetto originale, perché diventa il payload del nuovo pacchetto ESP.
 Da notare è che non viene protetto il nuovo header IP.
 Un gateway deve necessariamente usare ESP in Tunnel mode.
 
 \noindent \textbf{Internet Key Exchange v2}
-Ancora del testo---IKE è un acronimo per Internet key exchange ed è il protocollo usato per stabilire una security association nella suite di protocolli IPsec. Questo protocollo è definito in RFC 4306.  ---
 
-Internet Key Exchange \cite[RFC4306]{RFC4306} è un protocollo che svolge la funzione di negoziazione, gestione e creazione delle Security Associations. Una SA è un insieme di regole necessarie a definire le funzionalità e i sistemi di sicurezza per stabilire una connessione IPSec. Può essere definita manualmente, anche se non scala dovutamente con VPN di grandi dimensioni. Un metodo più comune è quello di usare una delle cinque possibili modalità di scambio: main, aggressive, quick, informational e group.
-Le modalità sono differenti per velocità e l'uso di funzioni di cifratura. IKEv2 è la versione più recende di IKE e migliora il protocollo rendendolo più sempice, garantendo affidabilità nel recapito dei messaggi, protezione contro attacchi di tipo DenialOfService e migliora l'uso di IKE su gateways NAT.
-È un protocollo di livello applicazione e utilizza il protocollo UDP come protocollo di trasporto; la porta su cui viene stabilita la connessione è 500.
+Internet Key Exchange \cite[RFC4306]{RFC4306} (IKEv2) è un protocollo che svolge la funzione di negoziazione, gestione e creazione delle Security Associations. Una SA è un insieme di regole necessarie a definire le funzionalità e i sistemi di sicurezza per stabilire una connessione IPSec. Può essere definita manualmente, anche se non scala dovutamente con VPN di grandi dimensioni. Un metodo più comune è quello di usare una delle cinque possibili modalità di scambio: \emph{main}, \emph{aggressive}, \emph{quick}, \emph{informational} e \emph{group}.
+Le modalità sono differenti per velocità e l'uso di funzioni di cifratura. IKEv2 è la versione più recente di IKE e migliora il protocollo rendendolo più semplice, garantendo affidabilità nel recapito dei messaggi, protezione contro attacchi di tipo DenialOfService e migliora l'uso di IKE su gateways NAT.
+È un protocollo di livello applicazione e utilizza il protocollo UDP come protocollo di trasporto; la porta su cui viene stabilita la connessione è la $500$ UDP.
 
 \subsubsection{Cifratura}
 IPSec supporta diversi protocolli di cifratura, tra cui AES, Blowfish, Triple DES, ChaCha e DES-CBC. Inoltre, usa due tipi di cifratura: simmetrica e asimmetrica. In una codifica simmetrica, una chiave è condivisa tra gli utenti, mentre una asimmetrica fa affidamento su entrambe le chiavi pubbliche e private. La codifica asimmetrica è considerata più sicura: molti utenti condividono la chiave pubblica, ma la sicurezza fa affidamento sulla chiave privata - protetta a tutti costi - che non ha bisogno di essere condivisa con nessuno (a differenza di una chiave simmetrica).
@@ -113,7 +115,7 @@ IPSec usa la cifratura asimmetrica per instaurare una connessione sicura, per po
 L'autenticazione a chiave pubblica e privata assicura che mittenti e destinatari stiano effettivamente comunicando con il giusto partner. IPSec support molteplici sistemi di autenticazione, tra cui: HMAC-SHA1/SHA2, certificate authorities (CAs), RSA, ECDSA, e pre-shared key (PSK). Ogni tipologia ha i suoi pregi e difetti e casi d'uso in cui è preferibile. Ogni protocollo punta a garantire che i dati rimangano sicuri e affidabili attraverso il loro tragitto.
 
 \subsubsection{Implementazioni}
-StrongSwan è una implementazione open-source di IPSec per Linux. Supporta funzionalità come IPv6, certificati X.509 a chiave pubblica, liste di certificati revocati, storage di chiavi RSA private su smartcard e implementazione completa del protocollo IKEv2.re.
+StrongSwan è una implementazione open-source di IPSec per Linux. Supporta funzionalità come IPv6, certificati X.509 a chiave pubblica, liste di certificati revocati, storage di chiavi RSA private su smartcard e implementazione completa del protocollo IKEv2.
 
 \subsubsection{Considerazioni}
 Questa suite di protocolli consente di implementare una soluzione VPN accademicamente perfetta, robusta dal punto di vista della sicurezza ed efficace. L'unico impedimento che ha è che richiede l'utilizzo di due porte dedicate i due protocolli ausiliari utilizzati (AH/ESP e IKE), che potrebbero rendere l'utilizzo più difficoltoso in ambienti con firewall molto limitanti.
@@ -126,7 +128,7 @@ L'avere questo livello di personalizzazione consente sicuramente ai più esperti
 \subsubsection{Panoramica}
 Si tratta di uno dei più vecchi protocolli VPN in uso ancora oggi, ma in quanto tale ha alcune gravi criticità date dall'età. Ad esempio, la crittografia a 128 bit e il protocollo usato per l'autenticazione (MS-CHAP) contenente note vulnerabilità lo rendono ormai un protocollo insicuro, da evitare se le informazioni che transitano sono sensibili.
 Tuttavia, è estremamente semplice da configurare e il più veloce dal punto di vista prestazionale, il che lo rende ideale per usi quali streaming video o l'utilizzo di VPN su terminali con potenze di calcolo estremamente limitate.
-È stato sviluppato da Microsoft nel 1999 \cite[RFC2637]{RFC2637} e lavora instaurando un canale di controllo tra i due peers sulla porta 1723 TCP e un tunnel GRE  su cui transitano effettivamente i dati.
+È stato sviluppato da Microsoft nel $1999$ \cite[RFC2637]{RFC2637} e lavora instaurando un canale di controllo tra i due peers sulla porta $1723$ TCP e un tunnel GRE  su cui transitano effettivamente i dati.
 
 \subsubsection{Protocolli utilizzati}
 \noindent \textbf{Generic Routing Encapsulation (GRE)}
@@ -233,21 +235,22 @@ A partire dalla versione 5.6 del kernel Linux, WireGuard verrà incluso nel kern
 \subsubsection{Protocolli utilizzati}
 Nell'implementazione di WireGuard, sono utilizzati i seguenti protocolli:
 \begin{itemize}
-    \item \textbf{ChaCha20} per cifratura simmetrica, autenticata con Poly1305, utilizzando AEAD, come specificato in \cite[RFC7539]{RFC7539}
+    \item \textbf{ChaCha20} per la cifratura simmetrica, autenticata con Poly1305, utilizzando AEAD, come specificato in \cite[RFC7539]{RFC7539}
     \item \textbf{Curve25519} come Elliptic-curve Diffie-Hellman, un protocollo per la negoziazione delle chiavi
     \item \textbf{BLAKE2s} per hashing e hashing con chiave, descritto in \cite[RFC7693]{RFC7693}
     \item \textbf{SipHash24} come chiavi per hashtables
-    \item \textbf{HKDF} come funzione per la derivazione delle chiavi, come spiegato in \cite[RFC5869]{RFC5869}
+    \item \textbf{HKDF} come funzione per la derivazione delle chiavi, descritto in \cite[RFC5869]{RFC5869}
 \end{itemize}
 
 \subsubsection{Cifratura}
 Dal punto di vista della cifratura utilizzata da WireGuard, rompe la tradizione delle altre soluzioni. Infatti, è intenzionalmente privo di flessibilità per quel che riguarda la scelta dei cifratori e dei protocolli utilizzati. Se vengono trovate falle in quelli scelti in fase di progettazione, tutti i terminali avranno bisogno di essere aggiornati. Come dimostrato dalla continua scoperta di vulnerabilità all'interno del protocollo TLS, dare la possibilità di scegliere quale cifrario usare aumenta enormemente la complessità.
 
 \subsubsection{Autenticazione}
-Per la distribuzione delle chiavi, WireGuard si ispira a OpenSSH, dove i due peers si scambiano le proprie chiavi pubbliche statiche. Il meccanismo con cui lo scambio avviene è basato sull' handshake \texttt{Noise IK} di Noise \cite{Noise}. Dopo lo scambio delle chiavi, il peer che non ha iniziato la connessione deve aspettare ad usare la sessione fino a che non riceve un pacchetto cifrato dall'iniziatore, che dà conferma delle chiavi.
-Le chiavi pubbliche sono lunghe 32 bytes e possono essere facilmente rappresentate con una codifica Base64 in 44 caratteri, che semplificha il trasferimento di esse attraverso vari mezzi. È supportata anche la Perfect Forward Secrecy, illustrata precedentemente.
+Per la distribuzione delle chiavi, WireGuard si ispira a OpenSSH, dove i due peers si scambiano le proprie chiavi pubbliche statiche. Il meccanismo con cui lo scambio avviene è basato sull'handshake \texttt{Noise IK} di Noise \cite{Noise}. Dopo lo scambio delle chiavi, il peer che non ha iniziato la connessione deve aspettare ad usare la sessione fino a che non riceve un pacchetto cifrato dall'iniziatore, che dà conferma delle chiavi.
+Le chiavi pubbliche sono lunghe 32 bytes e possono essere facilmente rappresentate con una codifica Base64 in 44 caratteri, che semplifica il trasferimento di esse attraverso vari mezzi. È supportata anche la Perfect Forward Secrecy, illustrata precedentemente.
 
 \subsubsection{Considerazioni}
 La semplicità di installazione è sicuramente un fattore che in ambienti piccoli ha la sua rilevanza; insieme alle prestazioni elevate, la rendono una soluzione da valutare al momento di installare un servizio VPN.
 Le possibilità di configurazione sono estremamente minimali. Commettere un errore in fase di configurazione diventa così estremamente meno probabile, a discapito della possibilità di personalizzazione.
 Tuttavia, si può comunque contare su scelte di progettazione all'avanguardia e in grado di soddisfare, quantomeno al momento della scrittura della tesi, i più elevati requisiti di cifratura.
+Inoltre, l'integrazione di WireGuard all'interno del kernel Linux è simbolo del fatto che si tratta ormai di una soluzione matura e navigata.

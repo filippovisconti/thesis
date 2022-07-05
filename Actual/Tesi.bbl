@@ -149,6 +149,14 @@ vmware, \url{https://www.vmware.com/it/products/esxi-and-esx.html}.
 \bibitem{strongSwan}
 strongSwan, \url{https://www.strongswan.org}.
 
+\bibitem{RFC4960}
+\BIBentryALTinterwordspacing
+R.~Stewart, ``Stream control transmission protocol,'' Internet Requests for
+  Comments, RFC Editor, RFC 4960, September 2007,
+  \url{http://www.rfc-editor.org/rfc/rfc4960.txt}. [Online]. Available:
+  \url{http://www.rfc-editor.org/rfc/rfc4960.txt}
+\BIBentrySTDinterwordspacing
+
 \bibitem{ZeroTier}
 ZeroTier, \url{https://www.zerotier.com/}.
 

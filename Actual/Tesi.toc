@@ -33,9 +33,9 @@
 \contentsline {subsection}{\numberline {1.3.3}Controllo dei dispositivi}{7}{subsection.1.3.3}%
 \contentsline {subsection}{\numberline {1.3.4}Compatibilità}{7}{subsection.1.3.4}%
 \contentsline {chapter}{\chapternumberline {2}Stato dell'arte}{8}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Virtual Private Networks }{8}{section.2.1}%
+\contentsline {section}{\numberline {2.1}Virtual Private Networks}{8}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Architetture disponibili}{8}{subsection.2.1.1}%
-\contentsline {section}{\numberline {2.2}Soluzioni principali}{9}{section.2.2}%
+\contentsline {section}{\numberline {2.2}Soluzioni VPN più comuni}{9}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Internet Protocol Security}{9}{subsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.1.1}Panoramica}{9}{subsubsection.2.2.1.1}%
 \contentsline {subsubsection}{\numberline {2.2.1.2}Transport mode vs Tunnel mode}{10}{subsubsection.2.2.1.2}%
@@ -97,7 +97,7 @@
 \contentsline {section}{\numberline {4.4}Misure con OpenVPN over TCP}{35}{section.4.4}%
 \contentsline {section}{\numberline {4.5}Misure con WireGuard}{35}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Analisi delle misure}{36}{section.4.6}%
-\contentsline {chapter}{\chapternumberline {5}Security concerns}{38}{chapter.5}%
+\contentsline {chapter}{\chapternumberline {5}Criticità di sicurezza}{38}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Attacchi mirati agli utenti}{38}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}Furto di credenziali}{39}{subsection.5.1.1}%
 \contentsline {subsection}{\numberline {5.1.2}Social Engineering}{40}{subsection.5.1.2}%
