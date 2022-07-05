@@ -1,18 +1,18 @@
 \section{Caratteristiche della rete aziendale}
-La rete su cui siamo stati chiamati a lavorare è illustrata nel diagramma seguente.
+L'ambiente in cui verrà installato un servizio VPN è illustrato nel diagramma seguente.
 \subsection{Diagramma di rete}
 \begin{figure}[h]
     \centering
     \includegraphics[width=14cm]{figure/networkDiagram.pdf}
     \caption{Diagramma di rete}
 \end{figure}
-La porzione di diagramma che rappresenta l'infrastruttura di rete dell'azienda è quella sinistra della nuvola. La porzione destra raffigura, invece, un'altra sottorete, che per fini di testing immaginiamo sia la rete casalinga di un dipendente dell'azienda. La nuvola sta a rappresentare tutta la rete Internet.
+
 
 \subsection{Descrizione dei componenti fondamentali}
 \subsubsection{Router}
 Un componente essenziale all'interno dell'infrastruttura di rete è il router. Il router è un dispositivo di rete che lavora al livello 3 del modello OSI e che permette e gestisce l'instradamento dei pacchetti tra sottoreti diverse.
 Le tabelle d'instradamento, salvate nella memoria interna del router, contengono informazioni che riguardano come raggiungere gli altri nodi della rete e sono lo strumento che permette al router di instradare correttamente i pacchetti.
-Queste tabelle associano il prefisso IP ~\cite[RFC0791]{RFC0791} e relativa maschera della sottorete di destinazione con il \emph{next-hop}, l'indirizzo IP del prossimo router a cui deve essere destinato al pacchetto affinché si avvicini alla sua vera destinazione, e l'interfaccia di rete del router da cui il pacchetto deve essere inoltrato affinché possa raggiungere il \emph{next-hop}.
+Queste tabelle associano il prefisso IP~\cite[RFC0791]{RFC0791} e relativa maschera della sottorete di destinazione con il \emph{next-hop}, l'indirizzo IP del prossimo router a cui deve essere destinato al pacchetto affinché si avvicini alla sua vera destinazione, e l'interfaccia di rete del router da cui il pacchetto deve essere inoltrato affinché possa raggiungere il \emph{next-hop}.
 Generalmente la funzione di routing è svolta da un componente hardware dedicato, che, se di fascia alta, permette di raggiungere prestazioni pari alla velocità della linea - ossia, spedisce i pacchetti alla stessa velocità alla quale li riceve.
 Tuttavia, è possibile il compito venga svolto da server generici, a patto che siano dotati di un numero adatto di schede di rete, su cui gira un software apposito.
 
@@ -21,13 +21,17 @@ In entrambi i casi, è comune che il router abbia un firewall \cite{RFC2979} int
 Un firewall è un dispositivo fisico, o un software, che ha come obiettivo la regolazione del traffico di una rete.
 Ciò avviene applicando una serie di regole che coinvolgono lo stato, la porta e il protocollo dei pacchetti che lo attraversano.
 L'amministratore di rete ha la responsabilità di inserire regole appropriate al contesto, affinché, tutto ciò che non è strettamente necessario, non venga fatto passare.
-Un esempio di Firewall software molto conosciuto in ambienti UNIX, è \lstinline[columns=fixed]{iptables}.
+Un esempio di Firewall software molto conosciuto in ambienti UNIX, è \texttt{iptables}.
 Il seguente comando mostra una regola che \emph{consente} il passaggio di un pacchetto in entrata sul firewall dalla scheda di rete \texttt{eth0}, destinato alla porta 22 TCP, e che sia il primo di una comunicazione, o faccia parte di una comunicazione già instaurata.
 
-\begin{verbatim}
-iptables -A INPUT  -p tcp --dport 22 -i eth0 \
--m state --state NEW,ESTABLISHED -j ACCEPT
-\end{verbatim}
+\mbox{
+    \texttt{
+        iptables -A INPUT  -p tcp --dport 22 -i eth0 \
+        -m state --state NEW,ESTABLISHED -j ACCEPT
+    }
+}
+
+
 
 Il sistema a disposizione avrà un router/firewall installato su un server, che ha come sistema operativo CentOS 7 \cite{CENTOS} - la versione gratuita di Red Hat Enterprise Linux \cite{RHEL}.
 
@@ -40,19 +44,19 @@ L'azienda ha necessità di pubblicare
     \item un sito web, il cui hosting è effettuato sul web server interno;
     \item un mail server, che si occupa di inviare e ricevere i messaggi di posta elettronica
 \end{itemize}
-\subsubsection{Web servers}
+\noindent \textbf{Web servers}
 Il sito web è servito in HTTP sulla porta 80 e in HTTPS sulla porta 443, e la pubblicazione è affidata a un noto servizio, \emph{Apache httpd} \cite{APACHE}.
-\subsubsection{Mail servers}
+\noindent \textbf{Mail servers}
 L'azienda ha un mail server che si occupa di inviare, ricevere e archiviare i messaggi di posta dei dipendenti dell'azienda.
 
 \subsection{Servizi offerti all'interno}
 \subsubsection{DHCP server}
 Il Dynamic Host Configuration Protocol \cite[RFC2131]{RFC2131} è un protocollo ausiliario che permette l'assegnazione automatica degli indirizzi IP e altri parametri di configurazione ai dispositivi connessi alla rete usando una architettura client-server.
-Il DHCP offre un servizio non connesso e utilizza UDP come protocollo di trasporto. Il server ascolta le richieste (che saranno broadcast, destinate per convenzione all'IP 255.255.255.255) sulla porta 67 UDP, e inoltra le risposte al client sulla porta 68 UDP.
+Il DHCP offre un servizio non connesso e utilizza UDP come protocollo di trasporto. Il server ascolta le richieste (che saranno broadcast, destinate per convenzione all'indirizzo IP 255.255.255.255) sulla porta 67 UDP, e inoltra le risposte al client sulla porta 68 UDP.
 Altri parametri di configurazione che comunemente accompagnano l'appena assegnato indirizzo IP sono i server DNS \cite[RFC1034]{RFC1034} di default, l'indirizzo IP del default gateway, e la durata per il quale l'IP assegnato è valido.
 
 \subsubsection{DNS server}
-Il Domain Name System è il sistema di assegnazione gerarchico e decentralizzato dei nomi che identificano gli host in rete. Un'analogia che aiuta a comprendere la funzione del DNS è quella della rubrica telefonica.
+Il Domain Name System (DNS) è il sistema di assegnazione gerarchico e decentralizzato dei nomi che identificano gli host in rete. Un'analogia che aiuta a comprendere la funzione del DNS è quella della rubrica telefonica.
 Infatti, come nella rubrica telefonica viene mantenuta un'associazione tra un nome - facile da ricordare per una persona -  e il relativo numero di telefono - più difficile da ricordare, e facile da confondere -, così il DNS conserva dei \emph{resource records} composti da un nome - \texttt{example.com} - associato a un indirizzo IPv4 o IPv6 -  \texttt{93.130.23.53}.
 Si tratta di un protocollo di livello 7, che generalmente comunica sulla porta 53 UDP, ma potrebbe sfruttare anche VPN o tunnel, TLS, HTTPS, Tor. È una potenzialità interessante, in quanto le richieste non sono criptate e si potrebbe andare incontro a problemi di sicurezza.
 Il DNS è in grado di memorizzare anche altre informazioni riguardanti un certo dominio, tra cui:
@@ -71,13 +75,19 @@ Questo comporta diversi vantaggi, tra cui:
     \item si possono facilmente tracciare le varie richieste.
 \end{itemize}
 
-\subsubsection{Web app interne}
+\subsubsection{Altri servizi comunemente offerti}
+\noindent \textbf{Web app interne}
 All'interno della rete locale dell'azienda, sono accessibili degli applicativi che permettono la gestione di alcuni sistemi, ad esempio degli apparati di rete.
-\subsubsection{File servers}
+
+\noindent \textbf{File servers}
 Affinché i dipendenti autorizzati possano collaborare e accedere a file condivisi, è stato predisposto un file server, a cui si può accedere con protocolli quali FTP \cite[RFC0791]{RFC0959} e SFTP. Tuttavia, i file in questione possono contenere dati sensibili. Per questo motivo, è necessario che la risorsa sia adeguatamente protetta, non esposta alla rete esterna e che l'accesso sia regolamentato.
 
-\subsubsection{Database servers}
+\noindent \textbf{Database servers}
 Similmente al file server, c'è anche un database server a disposizione dei dipendenti, le cui necessità di sicurezza rispecchiano quelle del file server.
+
+\noindent \textbf{Active Directory}
+Active Directory (AD) è un insieme di servizi di rete utilizzati dai sistemi operativi Microsoft. È fondato sui concetti di dominio (uno spazio in cui sono raggruppate tutte le risorse della rete, gli account utente, cartelle condivise, dispositivi in rete, etc) e di directory.
+L'utilizzo di AD, e del suo sistema di autenticazione Kerberos, è utile specialmente a realizzare il Single-Sign-On, un meccanismo attraverso il quale un utente, una volta effettuato il login nel dominio, ha accesso a tutti i servizi direttamente, senza dover effettuare login separati per ogni servizio.
 
 \section{Necessità degli utenti}
 \subsection{Accesso ai servizi interni senza esposizione all'esterno}
@@ -103,7 +113,7 @@ Come è possibile immaginare, per un'azienda è fondamentale poter contare su di
 \subsubsection{Evitare intercettazioni}
 Vedi Cina con il Great Firewall
 
-Senza la garanzia di una trasmissione sicura dei dati, dove "sicura" si riferisce a tutte le diverse sfaccettature dell'ambito, si è esposti a "eavesdropping attacks". Questi attacchi consistono nell'ascoltare, senza farsi notare, le comunicazioni altrui, tramite strumenti di \emph{sniffing} posti a vari livelli. Un'analogia esplicativa è quella delle \emph{cimici} posizionate all'interno dell'abitazione di un indagato, per registrare le sue comunicazioni.
+Senza la garanzia di una trasmissione sicura dei dati, dove ``sicura'' si riferisce a tutte le diverse sfaccettature dell'ambito, si è esposti a ``eavesdropping attacks''. Questi attacchi consistono nell'ascoltare, senza farsi notare, le comunicazioni altrui, tramite strumenti di \emph{sniffing} posti a vari livelli. Un'analogia esplicativa è quella delle \emph{cimici} posizionate all'interno dell'abitazione di un indagato, per registrare le sue comunicazioni.
 
 \subsection{Controllo dei dispositivi}
 L'azienda ha bisogno di poter controllare e gestire i dispositivi concessi in uso ai suoi dipendenti, affinché il software installato sia sempre e solo quello autorizzato, e le loro configurazioni siano quelle più adatte agli elevati standard di sicurezza richiesti.

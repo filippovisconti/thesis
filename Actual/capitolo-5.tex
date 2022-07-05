@@ -1,5 +1,3 @@
-\section{Principali problematiche di sicurezza}
-
 Combinare una soluzione VPN sicura con una suddivisione della rete interna in compartimenti isolati sarebbe certamente ideale dal punto di vista della sicurezza.
 Tuttavia, l'accesso di terze parti alla rete interna di un'organizzazione - siano essi dipendenti, clienti esterni, o altro, aggiunge delle sfide impegnative nel garantire sicurezza.
 Ad esempio, se il dispositivo di un dipendente o di un cliente viene compromesso, e questa persona aveva instaurato una connessione VPN con l'azienda, coloro che hanno portato a termine l'attacco possono sfruttare il tunnel VPN come ponte per effettuare attività di ricognizione sulla rete interna dell'azienda, nonostante tutte le misure di sicurezza possibilmente implementate dall'azienda stessa.
@@ -66,8 +64,46 @@ Di seguito, alcune bandiere rosse per identificare un messaggio fraudolento:
     \item messaggi estremamente urgenti: ad esempio, un messaggio inaspettato contenente una minaccia di chiudere l'account della vittima
     \item email contenenti mittenti sospetti: ad esempio, una email proveniente da
 
-          john@mybankofamerica.com, quando il dominio usuale è @bankofamerica.com
+          \texttt{john@mybankofamerica.com}, quando il dominio usuale è \texttt{@bankofamerica.com}
 \end{itemize}
+
+\subsection{Una possibile soluzione: multi-factor authentication}
+A seguito di un tentativo di phishing riuscito, un malintenzionato è in possesso delle credenziali di accesso di un utente a un servizio. Se il servizio in questione è quello della VPN aziendale, egli ha accesso alla porzione di rete a cui è autorizzato ad accedere l'utente vittima.
+Per diminuire drasticamente l'efficacia del phishing, uno strumento potente ed efficace è quello dell'autenticazione a più fattori.
+L'autenticazione a più fattori richiede che, affinché il login abbia successo, vengano inseriti, oltre a email e password, altre ``proof of identity'', che possono essere un certificato, un'impronta digitale, una smart card, o una password monouso temporanea.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=12cm]{figure/mfa.jpeg}
+    \caption{MFA}
+\end{figure}
+
+\subsubsection{Certificato}
+
+I certificati possono essere utilizzati per autenticare sia i server VPN che i client. Generalmente, è sempre richiesto che un client che si vuole connettere sia autorizzato da un certificato.
+
+Essi non contengono informazioni specifiche di una particolare VPN. Sono rilasciati da una Certificate Authority come prova di identità. I gateway che realizzano il tunnel VPN sono configurati in modo tale da accettare la CA che ha firmato il certificato partner come fidata. Tutti i certificati rilasciati da una CA autorizzata sono ritenuti validi, dunque si possono aggiungere e rinnovare senza alcun effetto collaterale sulla VPN. Lo stesso certificato potrebbe, anche se dipende dalla configurazione, essere utilizzato su diversi dispositivi.
+
+I certificati riducono la manutenzione richiesta perché non devono essere cambiati così frequentemente come le Pre-Shared Keys. Tutti i certificati nascono con una data di scadenza, oltre la quale il certificato non è più valido. Dopo la scadenza, è necessario creare un nuovo certificato.
+
+I certificati per VPN possono essere generati sia da una CA esterna che da una interna, a patto che i gateway siano configurati in modo tale da accettarla come fidata.
+
+Come controindicazione, si ha che tutti i client VPN devono supportare l'algoritmo della CA, altrimenti è impossibile instaurare una comunicazione.
+
+
+\subsubsection{Username e password}
+
+L'autenticazione con username e password è il metodo più semplice per identificare e autenticare gli utenti. Se la password immessa dall'utente non corrisponde a quella memorizzata nel sistema, l'accesso è ovviamente negato.
+
+La password non viene mai memorizzata in chiaro, bensì viene memorizzato il suo hash, tramite un algoritmo di hashing scelto. Un algoritmo di hash consiste in una funzione che prende un input e restituisce un output indecifrabile e incomprensibile, da cui è impossibile ricostruire l'input, se non tramite brute-force. Tuttavia, ogni volta che l'algoritmo viene eseguito con uno stesso input, l'output è sempre uguale.
+Quando l'utente inserisce la password, dunque, viene calcolato l'hash e viene confrontato l'hash calcolato con quello memorizzato sul server.
+
+Gli svantaggi consistono principalmente nel fatto che, se il numero di utenti cresce, la manutenzione diventa particolarmente complessa. Infatti, in quei casi si è soliti ricorrere a soluzioni quali l'autenticazione di Active Directory.
+
+\subsubsection{One Time Password}
+L'autenticazione a due fattori impedisce a malintenzionati di avere accesso ai sistemi della vittima utilizzando le credenziali rubate. Infatti, l'autenticazione con OTP richiede all'utente di validare la propria identificazione inserendo una password monouso temporanea (One-Time-Password).
+Questa OTP viene mostrata su qualcosa che l'utente possiede (un device apposito o una applicazione sul suo smartphone) noto come \emph{authenticator}.
+
 
 \section{Attacchi mirati al sistema}
 Nel mirino dei malintenzionati, non c'è solo l'utente finale. Un altro punto di ingresso possibile si ottiene sfruttando le possibili vulnerabilità non mitigate presenti sui sistemi della vittima, sia essa un utente singolo o un'intera azienda.
@@ -84,42 +120,6 @@ Inoltre, potendo inserire modifiche, la platea di sviluppatori che potenzialment
 \subsection{Exploit di vulnerabilità zero-day}
 Una vulnerabilità senza patch è tra i casi più gravi e potenzialmente difficili da gestire. Una vulnerabilità zero-day è proprio questo, una vulnerabilità conosciuta ma senza una patch disponibile.
 
-\section{Multi-factor authentication}
-A seguito di un tentativo di phishing riuscito, un malintenzionato è in possesso delle credenziali di accesso di un utente a un servizio. Se il servizio in questione è quello della VPN aziendale, egli ha accesso alla porzione di rete a cui è autorizzato ad accedere l'utente vittima.
-Per diminuire drasticamente l'efficacia del phishing, uno strumento potente ed efficace è quello dell'autenticazione a più fattori.
-L'autenticazione a più fattori richiede che, affinché il login abbia successo, vengano inseriti, oltre a email e password, altre "proof of identity", che possono essere un certificato, un'impronta digitale, una smart card, o una password monouso temporanea.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=12cm]{figure/mfa.jpeg}
-    \caption{MFA}
-\end{figure}
-
-\subsection{Certificato}
-
-I certificati possono essere utilizzati per autenticare sia i server VPN che i client. Generalmente, è sempre richiesto che un client che si vuole connettere sia autorizzato da un certificato.
-
-Essi non contengono informazioni specifiche di una particolare VPN. Sono rilasciati da una Certificate Authority come prova di identità. I gateway che realizzano il tunnel VPN sono configurati in modo tale da accettare la CA che ha firmato il certificato partner come fidata. Tutti i certificati rilasciati da una CA autorizzata sono ritenuti validi, dunque si possono aggiungere e rinnovare senza alcun effetto collaterale sulla VPN. Lo stesso certificato potrebbe, anche se dipende dalla configurazione, essere utilizzato su diversi dispositivi.
-
-I certificati riducono la manutenzione richiesta perché non devono essere cambiati così frequentemente come le Pre-Shared Keys. Tutti i certificati nascono con una data di scadenza, oltre la quale il certificato non è più valido. Dopo la scadenza, è necessario creare un nuovo certificato.
-
-I certificati per VPN possono essere generati sia da una CA esterna che da una interna, a patto che i gateway siano configurati in modo tale da accettarla come fidata.
-
-Come controindicazione, si ha che tutti i client VPN devono supportare l'algoritmo della CA, altrimenti è impossibile instaurare una comunicazione.
-
-
-\subsection{Username e password}
-
-L'autenticazione con username e password è il metodo più semplice per identificare e autenticare gli utenti. Se la password immessa dall'utente non corrisponde a quella memorizzata nel sistema, l'accesso è ovviamente negato.
-
-La password non viene mai memorizzata in chiaro, bensì viene memorizzato il suo hash, tramite un algoritmo di hashing scelto. Un algoritmo di hash consiste in una funzione che prende un input e restituisce un output indecifrabile e incomprensibile, da cui è impossibile ricostruire l'input, se non tramite brute-force. Tuttavia, ogni volta che l'algoritmo viene eseguito con uno stesso input, l'output è sempre uguale.
-Quando l'utente inserisce la password, dunque, viene calcolato l'hash e viene confrontato l'hash calcolato con quello memorizzato sul server.
-
-Gli svantaggi consistono principalmente nel fatto che, se il numero di utenti cresce, la manutenzione diventa particolarmente complessa. Infatti, in quei casi si è soliti ricorrere a soluzioni quali l'autenticazione di Active Directory.
-
-\subsection{One Time Password}
-L'autenticazione a due fattori impedisce a malintenzionati di avere accesso ai sistemi della vittima utilizzando le credenziali rubate. Infatti, l'autenticazione con OTP richiede all'utente di validare la propria identificazione inserendo una password monouso temporanea (One-Time-Password).
-Questa OTP viene mostrata su qualcosa che l'utente possiede (un device apposito o una applicazione sul suo smartphone) noto come \emph{authenticator}.
 
 
 

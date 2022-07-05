@@ -9,7 +9,7 @@
 \contentsline {section}{Necessità di un'infrastruttura di rete sicura}{vii}{section*.8}%
 \contentsline {section}{Organizzazione dei capitoli}{vii}{section*.9}%
 \contentsline {chapter}{Indice}{viii}{section*.10}%
-\contentsline {chapter}{Elenco delle figure}{xii}{section*.11}%
+\contentsline {chapter}{Elenco delle figure}{xi}{section*.11}%
 \contentsline {chapter}{\chapternumberline {1}Requisiti}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Caratteristiche della rete aziendale}{1}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Diagramma di rete}{1}{subsection.1.1.1}%
@@ -18,67 +18,52 @@
 \contentsline {subsubsection}{\numberline {1.1.2.2}Firewall}{2}{subsubsection.1.1.2.2}%
 \contentsline {subsubsection}{\numberline {1.1.2.3}Le LAN utilizzate}{3}{subsubsection.1.1.2.3}%
 \contentsline {subsection}{\numberline {1.1.3}Servizi offerti all'esterno}{3}{subsection.1.1.3}%
-\contentsline {subsubsection}{\numberline {1.1.3.1}Web servers}{3}{subsubsection.1.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.1.3.2}Mail servers}{3}{subsubsection.1.1.3.2}%
-\contentsline {subsection}{\numberline {1.1.4}Servizi offerti all'interno}{4}{subsection.1.1.4}%
-\contentsline {subsubsection}{\numberline {1.1.4.1}DHCP server}{4}{subsubsection.1.1.4.1}%
+\contentsline {subsection}{\numberline {1.1.4}Servizi offerti all'interno}{3}{subsection.1.1.4}%
+\contentsline {subsubsection}{\numberline {1.1.4.1}DHCP server}{3}{subsubsection.1.1.4.1}%
 \contentsline {subsubsection}{\numberline {1.1.4.2}DNS server}{4}{subsubsection.1.1.4.2}%
-\contentsline {subsubsection}{\numberline {1.1.4.3}Web app interne}{5}{subsubsection.1.1.4.3}%
-\contentsline {subsubsection}{\numberline {1.1.4.4}File servers}{5}{subsubsection.1.1.4.4}%
-\contentsline {subsubsection}{\numberline {1.1.4.5}Database servers}{6}{subsubsection.1.1.4.5}%
-\contentsline {section}{\numberline {1.2}Necessità degli utenti}{6}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Accesso ai servizi interni senza esposizione all'esterno}{6}{subsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.1.4.3}Altri servizi comunemente offerti}{5}{subsubsection.1.1.4.3}%
+\contentsline {section}{\numberline {1.2}Necessità degli utenti}{5}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Accesso ai servizi interni senza esposizione all'esterno}{5}{subsection.1.2.1}%
 \contentsline {subsubsection}{\numberline {1.2.1.1}Remote work}{6}{subsubsection.1.2.1.1}%
 \contentsline {section}{\numberline {1.3}Requisiti di sicurezza}{6}{section.1.3}%
 \contentsline {subsection}{\numberline {1.3.1}Controllo del traffico}{6}{subsection.1.3.1}%
 \contentsline {subsubsection}{\numberline {1.3.1.1}Proxy interno obbligatorio}{6}{subsubsection.1.3.1.1}%
-\contentsline {subsection}{\numberline {1.3.2}Trasmissione sicura dei dati}{7}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.2}Trasmissione sicura dei dati}{6}{subsection.1.3.2}%
 \contentsline {subsubsection}{\numberline {1.3.2.1}Evitare intercettazioni}{7}{subsubsection.1.3.2.1}%
 \contentsline {subsection}{\numberline {1.3.3}Controllo dei dispositivi}{7}{subsection.1.3.3}%
 \contentsline {subsection}{\numberline {1.3.4}Compatibilità}{7}{subsection.1.3.4}%
 \contentsline {chapter}{\chapternumberline {2}Stato dell'arte}{8}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Virtual Private Networks }{8}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Architetture disponibili}{8}{subsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.1.1}Gateway-to-Gateway}{8}{subsubsection.2.1.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.1.2}Host-to-Host}{9}{subsubsection.2.1.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.1.3}Host-to-Gateway}{9}{subsubsection.2.1.1.3}%
-\contentsline {subsection}{\numberline {2.1.2}Perché soddisfano i requisiti}{9}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Soluzioni principali}{9}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Internet Protocol Security}{10}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Panoramica}{10}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Transport mode vs Tunnel mode}{10}{subsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.2.1}Transport mode}{10}{subsubsection.2.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2.2}Tunnel mode}{11}{subsubsection.2.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Protocolli utilizzati}{11}{subsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.3.1}Authentication Header}{11}{subsubsection.2.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.2.3.2}Encapsulating Security Payload}{12}{subsubsection.2.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.2.3.3}Internet Key Exchange v2}{13}{subsubsection.2.2.3.3}%
-\contentsline {subsection}{\numberline {2.2.4}Cifratura}{13}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Autenticazione}{14}{subsection.2.2.5}%
-\contentsline {subsection}{\numberline {2.2.6}Implementazioni}{14}{subsection.2.2.6}%
-\contentsline {subsection}{\numberline {2.2.7}Considerazioni}{14}{subsection.2.2.7}%
-\contentsline {section}{\numberline {2.3}PPTP}{14}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Panoramica}{14}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Protocolli utilizzati}{15}{subsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.2.1}Generic Routing Encapsulation}{15}{subsubsection.2.3.2.1}%
-\contentsline {subsection}{\numberline {2.3.3}Cifratura}{15}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Autenticazione}{15}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Considerazioni}{16}{subsection.2.3.5}%
-\contentsline {section}{\numberline {2.4}OpenVPN}{16}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Panoramica}{16}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Protocolli utilizzati}{16}{subsection.2.4.2}%
-\contentsline {subsubsection}{\numberline {2.4.2.1}Secure Socket Layer/Transport Layer Security VPNs}{17}{subsubsection.2.4.2.1}%
-\contentsline {subsection}{\numberline {2.4.3}Tunnel TCP vs UDP}{18}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Cifratura}{18}{subsection.2.4.4}%
-\contentsline {subsection}{\numberline {2.4.5}Autenticazione}{19}{subsection.2.4.5}%
-\contentsline {subsection}{\numberline {2.4.6}Misure di sicurezza aggiuntive}{19}{subsection.2.4.6}%
-\contentsline {subsection}{\numberline {2.4.7}Considerazioni}{19}{subsection.2.4.7}%
-\contentsline {section}{\numberline {2.5}WireGuard}{20}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Panoramica}{20}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Protocolli utilizzati}{20}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}Cifratura}{21}{subsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.5.4}Autenticazione}{21}{subsection.2.5.4}%
-\contentsline {subsection}{\numberline {2.5.5}Considerazioni}{21}{subsection.2.5.5}%
+\contentsline {section}{\numberline {2.2}Soluzioni principali}{9}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Internet Protocol Security}{9}{subsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.1.1}Panoramica}{9}{subsubsection.2.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.2.1.2}Transport mode vs Tunnel mode}{10}{subsubsection.2.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.2.1.3}Protocolli utilizzati}{11}{subsubsection.2.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.2.1.4}Cifratura}{13}{subsubsection.2.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.2.1.5}Autenticazione}{13}{subsubsection.2.2.1.5}%
+\contentsline {subsubsection}{\numberline {2.2.1.6}Implementazioni}{13}{subsubsection.2.2.1.6}%
+\contentsline {subsubsection}{\numberline {2.2.1.7}Considerazioni}{13}{subsubsection.2.2.1.7}%
+\contentsline {subsection}{\numberline {2.2.2}Point-to-Point Tunneling Protocol}{14}{subsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2.1}Panoramica}{14}{subsubsection.2.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2.2}Protocolli utilizzati}{14}{subsubsection.2.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2.3}Cifratura}{14}{subsubsection.2.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.2.4}Autenticazione}{15}{subsubsection.2.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.2.5}Considerazioni}{15}{subsubsection.2.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.3}OpenVPN}{15}{subsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.3.1}Panoramica}{15}{subsubsection.2.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.2.3.2}Protocolli utilizzati}{16}{subsubsection.2.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.2.3.3}Tunnel TCP vs UDP}{17}{subsubsection.2.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.2.3.4}Cifratura}{18}{subsubsection.2.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.2.3.5}Autenticazione}{18}{subsubsection.2.2.3.5}%
+\contentsline {subsubsection}{\numberline {2.2.3.6}Misure di sicurezza aggiuntive}{19}{subsubsection.2.2.3.6}%
+\contentsline {subsubsection}{\numberline {2.2.3.7}Considerazioni}{19}{subsubsection.2.2.3.7}%
+\contentsline {subsection}{\numberline {2.2.4}WireGuard}{19}{subsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.4.1}Panoramica}{19}{subsubsection.2.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.2.4.2}Protocolli utilizzati}{20}{subsubsection.2.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.2.4.3}Cifratura}{21}{subsubsection.2.2.4.3}%
+\contentsline {subsubsection}{\numberline {2.2.4.4}Autenticazione}{21}{subsubsection.2.2.4.4}%
+\contentsline {subsubsection}{\numberline {2.2.4.5}Considerazioni}{21}{subsubsection.2.2.4.5}%
 \contentsline {chapter}{\chapternumberline {3}Realizzazione}{22}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Virtualizzatore}{22}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Caratteristiche e funzionamento}{22}{subsection.3.1.1}%
@@ -113,22 +98,22 @@
 \contentsline {section}{\numberline {4.5}Misure con WireGuard}{35}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Analisi delle misure}{36}{section.4.6}%
 \contentsline {chapter}{\chapternumberline {5}Security concerns}{38}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Principali problematiche di sicurezza}{38}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Attacchi mirati agli utenti}{38}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Furto di credenziali}{39}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Social Engineering}{40}{subsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.2.1}Phishing e Spear Phishing}{40}{subsubsection.5.2.2.1}%
-\contentsline {section}{\numberline {5.3}Attacchi mirati al sistema}{41}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Versione non aggiornata}{42}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Exploit di vulnerabilità zero-day}{42}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Multi-factor authentication}{42}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Certificato}{43}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Username e password}{44}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}One Time Password}{44}{subsection.5.4.3}%
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{45}{chapter*.12}%
+\contentsline {section}{\numberline {5.1}Attacchi mirati agli utenti}{38}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Furto di credenziali}{39}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Social Engineering}{40}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}Phishing e Spear Phishing}{40}{subsubsection.5.1.2.1}%
+\contentsline {subsection}{\numberline {5.1.3}Una possibile soluzione: multi-factor authentication}{41}{subsection.5.1.3}%
+\contentsline {subsubsection}{\numberline {5.1.3.1}Certificato}{42}{subsubsection.5.1.3.1}%
+\contentsline {subsubsection}{\numberline {5.1.3.2}Username e password}{43}{subsubsection.5.1.3.2}%
+\contentsline {subsubsection}{\numberline {5.1.3.3}One Time Password}{43}{subsubsection.5.1.3.3}%
+\contentsline {section}{\numberline {5.2}Attacchi mirati al sistema}{44}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Versione non aggiornata}{44}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Exploit di vulnerabilità zero-day}{44}{subsection.5.2.2}%
+\contentsline {chapter}{Conclusioni}{45}{chapter*.12}%
 \contentsline {section}{Quale è uscito vincitore}{45}{section*.13}%
 \contentsline {section}{Come migliorare le misure}{45}{section*.14}%
-\contentsline {section}{Test di VPN Peer-To-Peer}{46}{section*.15}%
-\contentsline {subsection}{Zero Tier}{46}{section*.16}%
-\contentsline {section}{PAM vs VPN}{47}{section*.17}%
-\contentsline {chapter}{Bibliografia}{48}{chapter*.18}%
+\contentsline {chapter}{Sviluppi futuri}{46}{chapter*.15}%
+\contentsline {section}{Test di altre architetture VPN}{46}{section*.16}%
+\contentsline {subsection}{Zero Tier}{46}{section*.17}%
+\contentsline {section}{PAM vs VPN}{47}{section*.18}%
+\contentsline {chapter}{Bibliografia}{48}{chapter*.19}%

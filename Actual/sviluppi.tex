@@ -1,0 +1,26 @@
+\section{Test di altre architetture VPN}
+Nel panorama delle soluzioni VPN disponibili, esiste una ulteriore tipologia che sfrutta la tecnologia Peer-To-Peer, su cui instaura una overlay network virtuale e privata.
+
+\subsection{Zero Tier}
+ZeroTier One \cite{ZeroTier} è una soluzione open source che usa alcuni dei più recenti sviluppi nel Software-defined networking per permettere agli utenti di creare reti private virtuali sicure e facilmente gestibili. Offre una console web per la gestione della rete e software da installare sui client.
+Si tratta di una connessione cifrata Peer-To-Peer. Ciò significa che la comunicazione tra due host non deve passare da un server centrale, bensì può avvenire direttamente, mantenendo un'elevata efficienza e una minima latenza.
+
+ZeroTier è hypervisor di rete distribuito, costruito sopra una rete globale Peer-To-Peer crittograficamente sicura.
+
+L'hypervisor di rete di ZeroTier è un virtualizzatore di reti auto-contenuto che implementa un livello 2 virtuale al di sopra di una rete Peer-To-Peer cifrata globale.
+
+Il protocollo utilizzato da ZeroTier è originale, anche se alcuni suoi aspetti sono simili a VXLAN e IPSec. Consiste in due livelli concettualmente separati ma fortemente accoppiati: VL1 e VL2, che corrispondono ai livelli 1 e 2 del modello OSI. VL1 è formato dal livello di trasporto Peer-To-Peer, il "cavo virtuale"; VL2 è un livello 2 emulato che offre ai sistemi operativi e agli applicativi un mezzo di comunicazione familiare.
+
+Nelle reti tradizionali, il livello 1 del modello OSI rappresenta il cavo fisico virtuale o il canale radio di comunicazione attraverso il quale i dati sono trasmessi. VL1 svolge lo stesso compito, utilizzando cifratura e autenticazione, oltre a un'altra serie di artifici per creare cavi virtuali al bisogno, in maniera dinamica.
+
+Per raggiungere questo scopo, VL1 è organizzato con uno schema simile al DNS. Alla base della rete c'è una collezione di root server sempre attivi, il cui ruolo è simile a quello dei DNS root name server. Sui root server gira lo stesso software degli endpoint, ma la loro posizione è fissa e nota, e hanno performance elevatissime.
+
+
+\section{PAM vs VPN}
+Una soluzione alternativa alle VPN per garantire un accesso remoto sicuro a risorse interne è un meccanismo chiamato Privileged Access Management (PAM).
+Per minimizzare i rischi correlati all'accesso con VPN, è opportuno che ogni client che si colleghi abbia accesso solo ed esclusivamente ai sistemi di cui effettivamente necessitano per portare a termine il loro lavoro con successo.
+Purtroppo, questo controllo a grana fine non è raggiungibile in maniera efficente utilizzando soltanto una soluzione VPN. In soccorso arrivano soluzioni per gestire gli accessi privilegiati, quali PAM - privileged access management.
+PAM permette alle aziende di dare ai dipendenti o ai clienti accesso alla propria rete interna senza una connessione VPN e permette allo staff IT di controllare, monitorare e gestire l'accesso a risorse critiche. Questo consente alle aziende di sapere con precisione quali account sono responsibili di quali attività.
+Introducendo diversi livelli di privilegi, PAM riduce anche la superficie esposta ad attacchi.
+
+% https://www.gb-advisors.com/vpn-vs-pam-which-remote-access-technologies-more-secure-business/

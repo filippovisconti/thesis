@@ -131,7 +131,7 @@
 % Comandi riguardanti l'inserimento di capitoli
 \newcommand{\ringraziamenti}[1]{\newpage \chapter*{Ringraziamenti} \input{#1}}
 \newcommand{\introduzione}[1]{\newpage \chapter{Introduzione} \input{#1}}
-\newcommand{\conclusioni}[1]{\newpage \chapter{Conclusioni e sviluppi futuri} \markboth{CONCLUSIONI E SVILUPPI FUTURI}{CONCLUSIONI E SVILUPPI FUTURI} \input{#1}}
+\newcommand{\conclusioni}[1]{\newpage \chapter{Conclusioni} \markboth{CONCLUSIONI}{CONCLUSIONI} \input{#1}}
 \newcommand{\capitolo}[2]{\newpage \chapter{#1}\label{cap:#2}\input{#2}}
 
 % Comandi riguardanti la generazione di indici
@@ -148,4 +148,4 @@
 % Bibliografia in ordine alfabetico
 \let \OldBib \bibliography
 \renewcommand{\bibliography}[1]{\newpage \markboth{Bibliografia}{Bibliografia} \OldBib{#1}}
-\bibliographystyle{alpha}
+\bibliographystyle{IEEEtran}
