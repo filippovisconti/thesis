@@ -28,11 +28,11 @@ Tutti e sette i livelli collaborano per rendere possibile il funzionamento della
 
 I compiti dei sette livelli sono, in breve, i seguenti:
 \begin{enumerate}
-    \item \textbf{Livello fisico}: è composto dall'infrastruttura fisica - cavi in rame, fibra ottica, ponti radio - e dai componenti hardware che codificano e decodificano i bit
-    \item \textbf{Livello data-link}: si occupa di effettuare controlli sul livello fisico, specialmente sull'integrità dei dati
-    \item \textbf{Livello di rete}: è il regno del protocollo IP, pilastro delle reti di calcolatori, che si occupa dello smistamento dei pacchetti e di portarli a destinazione; di particolare interesse sono gli indirizzi IP, che identificano in modo univoco un dispositivo collegato in rete
-    \item \textbf{Livello di trasporto}: astrae il funzionamento del protocollo IP, offrendo alle applicazioni vari protocolli che si occupano della comunicazione tra due host, indipendentemente da come sono collegati o da quanto sono distanti; può garantire il recapito corretto delle informazioni
-    \item \textbf{Livello di sessione, livello di presentazione, livello di applicazione}: sono gli strati più prossimi all'utente finale, e si occupano di gestire la comunicazione dei processi utilizzati dall'utente con il livello di trasporto
+    \item \textbf{Livello fisico}: è composto dall'infrastruttura fisica - cavi in rame, fibra ottica, ponti radio - e dai componenti hardware che codificano e decodificano i bit;
+    \item \textbf{Livello data-link}: si occupa di effettuare controlli sul livello fisico, specialmente sull'integrità dei dati;
+    \item \textbf{Livello di rete}: è il regno del protocollo IP, pilastro delle reti di calcolatori, che si occupa dello smistamento dei pacchetti e di portarli a destinazione; di particolare interesse sono gli indirizzi IP, che identificano in modo univoco un dispositivo collegato in rete;
+    \item \textbf{Livello di trasporto}: astrae il funzionamento del protocollo IP, offrendo alle applicazioni vari protocolli che si occupano della comunicazione tra due host, indipendentemente da come sono collegati o da quanto sono distanti; può garantire il recapito corretto delle informazioni;
+    \item \textbf{Livello di sessione, livello di presentazione, livello di applicazione}: sono gli strati più prossimi all'utente finale, e si occupano di gestire la comunicazione dei processi utilizzati dall'utente con il livello di trasporto.
 \end{enumerate}
 
 % https://www.sciencedirect.com/topics/computer-science/security-architecture
@@ -45,11 +45,11 @@ Infatti, i servizi pubblicati saranno esposti sia a utenti corretti che a malint
 L'architettura di sicurezza del Modello OSI considera cinque classi principali di servizi di sicurezza. Tra queste si hanno: autenticazione, controllo degli accessi, confidenzialità, integrità e non ripudio.
 In particolare, questi servizi sono definiti come segue:
 \begin{itemize}
-    \item \textbf{autenticazione} - il servizio di autenticazione verifica l'identità di un utente o di un sistema
-    \item \textbf{controllo degli accessi} - il servizio protegge le risorse di sistema da utenti non autorizzati
-    \item \textbf{confidenzialità} - il servizio protegge i dati da rivelazioni non autorizzate
-    \item \textbf{integrità} - il servizio protegge i dati da modifiche, aggiunte o rimozioni non autorizzate
-    \item \textbf{non ripudio} \emph{a.k.a non-repudiation} - il servizio assicura che il mittente dell'informazione abbia una notifica di consegna e il destinatario riceva una prova di identità del mittente, in modo tale che nessuno dei due possa successivamente negare di aver processato tali dati
+    \item \textbf{autenticazione} - il servizio di autenticazione verifica l'identità di un utente o di un sistema;
+    \item \textbf{controllo degli accessi} - il servizio protegge le risorse di sistema da utenti non autorizzati;
+    \item \textbf{confidenzialità} - il servizio protegge i dati da rivelazioni non autorizzate;
+    \item \textbf{integrità} - il servizio protegge i dati da modifiche, aggiunte o rimozioni non autorizzate;
+    \item \textbf{non ripudio} \emph{alias non-repudiation} - il servizio assicura che il mittente dell'informazione abbia una notifica di consegna e il destinatario riceva una prova di identità del mittente, in modo tale che nessuno dei due possa successivamente negare di aver processato tali dati;
 \end{itemize}
 Un'architettura sicura deve garantire tutti e cinque i servizi.
 

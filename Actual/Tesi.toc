@@ -22,13 +22,13 @@
 \contentsline {subsubsection}{\numberline {1.1.4.1}DHCP server}{3}{subsubsection.1.1.4.1}%
 \contentsline {subsubsection}{\numberline {1.1.4.2}DNS server}{4}{subsubsection.1.1.4.2}%
 \contentsline {subsubsection}{\numberline {1.1.4.3}Altri servizi comunemente offerti}{5}{subsubsection.1.1.4.3}%
-\contentsline {section}{\numberline {1.2}Necessità degli utenti}{5}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Accesso ai servizi interni senza esposizione all'esterno}{5}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.2}Necessità degli utenti}{6}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Accesso ai servizi interni senza esposizione all'esterno}{6}{subsection.1.2.1}%
 \contentsline {subsubsection}{\numberline {1.2.1.1}Remote work}{6}{subsubsection.1.2.1.1}%
 \contentsline {section}{\numberline {1.3}Requisiti di sicurezza}{6}{section.1.3}%
 \contentsline {subsection}{\numberline {1.3.1}Controllo del traffico}{6}{subsection.1.3.1}%
 \contentsline {subsubsection}{\numberline {1.3.1.1}Proxy interno obbligatorio}{6}{subsubsection.1.3.1.1}%
-\contentsline {subsection}{\numberline {1.3.2}Trasmissione sicura dei dati}{6}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.2}Trasmissione sicura dei dati}{7}{subsection.1.3.2}%
 \contentsline {subsubsection}{\numberline {1.3.2.1}Evitare intercettazioni}{7}{subsubsection.1.3.2.1}%
 \contentsline {subsection}{\numberline {1.3.3}Controllo dei dispositivi}{7}{subsection.1.3.3}%
 \contentsline {subsection}{\numberline {1.3.4}Compatibilità}{7}{subsection.1.3.4}%
@@ -110,10 +110,10 @@
 \contentsline {subsection}{\numberline {5.2.1}Versione non aggiornata}{44}{subsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.2.2}Exploit di vulnerabilità zero-day}{44}{subsection.5.2.2}%
 \contentsline {chapter}{Conclusioni}{45}{chapter*.12}%
-\contentsline {section}{Quale è uscito vincitore}{45}{section*.13}%
-\contentsline {section}{Come migliorare le misure}{45}{section*.14}%
-\contentsline {chapter}{Sviluppi futuri}{46}{chapter*.15}%
-\contentsline {section}{Test di altre architetture VPN}{46}{section*.16}%
-\contentsline {subsection}{Zero Tier}{46}{section*.17}%
-\contentsline {section}{PAM vs VPN}{47}{section*.18}%
-\contentsline {chapter}{Bibliografia}{48}{chapter*.19}%
+\contentsline {section}{Riepilogo dei test}{45}{section*.13}%
+\contentsline {section}{Ulteriori possibili valutazioni}{45}{section*.14}%
+\contentsline {chapter}{Sviluppi futuri}{47}{chapter*.15}%
+\contentsline {section}{Test di altre architetture VPN}{47}{section*.16}%
+\contentsline {subsection}{Zero Tier}{47}{section*.17}%
+\contentsline {section}{Privileged Access Management vs VPN}{48}{section*.18}%
+\contentsline {chapter}{Bibliografia}{49}{chapter*.19}%

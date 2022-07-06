@@ -9,7 +9,7 @@ Tuttavia, implementando una soluzione VPN moderna, è possibile monitorare il tr
 Il primo step per ridurre i rischi e proteggere i dati sensibili dell'azienda è assicurarsi che tutti i dipendenti, o chiunque altro sia coinvolto nell'uso delle VPN, sappia che la sicurezza dei dati è una priorità.
 Per fare questo, è necessario assicurare un'adeguata formazione a tutti loro, che copra tutti i maggiori pericoli, e le misure di difesa, che potrebbero incontrare.
 
-È indiscutibile il fatto che alla base ci deve essere un'infrastruttura adeguata e che i dispositivi utilizzati supportino i più elevati standard di sicurezza. Infatti, i conduttori di un potenziale attacco vanno appositamente alla ricerca di, ad esempio, reti WiFI non protette, o cifrature banali da rompere.
+È indiscutibile il fatto che alla base ci deve essere un'infrastruttura adeguata e che i dispositivi utilizzati supportino i più elevati standard di sicurezza. Infatti, i conduttori di un potenziale attacco vanno appositamente alla ricerca di, ad esempio, reti Wi-Fi non protette, o cifrature banali da rompere.
 
 \subsection{Furto di credenziali}
 Il furto di credenziali è un tipo di crimine che consiste nel trafugare qualcosa che permette alla vittima di certificare la propria identità - ad esempio, email e password.
@@ -56,13 +56,13 @@ Lo Spear Phishing è un caso particolare di phishing in cui il malintenzionato h
 
 Nonostante alcuni tentativi di phishing siano effettivamente ben costruiti, la maggior parte è facilmente riconoscibile.
 
-Di seguito, alcune bandiere rosse per identificare un messaggio fraudolento:
+Di seguito, alcuni campanelli di allarme per identificare un messaggio fraudolento:
 
 \begin{itemize}
-    \item errori ortografici e grammaticali: ad esempio, è difficile che una banca invii un messaggio non curato
-    \item messaggi contenenti richieste di infromazioni personali: ad esempio richieste di credenziali per accedere a un servizio
-    \item messaggi estremamente urgenti: ad esempio, un messaggio inaspettato contenente una minaccia di chiudere l'account della vittima
-    \item email contenenti mittenti sospetti: ad esempio, una email proveniente da
+    \item \textbf{errori ortografici e grammaticali}: ad esempio, è difficile che una banca invii un messaggio non curato
+    \item \textbf{messaggi contenenti richieste di infromazioni personali}: ad esempio richieste di credenziali per accedere a un servizio
+    \item \textbf{messaggi estremamente urgenti}: ad esempio, un messaggio inaspettato contenente una minaccia di chiudere l'account della vittima
+    \item \textbf{email contenenti mittenti sospetti}: ad esempio, una email proveniente da
 
           \texttt{john@mybankofamerica.com}, quando il dominio usuale è \texttt{@bankofamerica.com}
 \end{itemize}
@@ -101,8 +101,8 @@ Quando l'utente inserisce la password, dunque, viene calcolato l'hash e viene co
 Gli svantaggi consistono principalmente nel fatto che, se il numero di utenti cresce, la manutenzione diventa particolarmente complessa. Infatti, in quei casi si è soliti ricorrere a soluzioni quali l'autenticazione di Active Directory.
 
 \subsubsection{One Time Password}
-L'autenticazione a due fattori impedisce a malintenzionati di avere accesso ai sistemi della vittima utilizzando le credenziali rubate. Infatti, l'autenticazione con OTP richiede all'utente di validare la propria identificazione inserendo una password monouso temporanea (One-Time-Password).
-Questa OTP viene mostrata su qualcosa che l'utente possiede (un device apposito o una applicazione sul suo smartphone) noto come \emph{authenticator}.
+L'autenticazione a due fattori impedisce a malintenzionati di avere accesso ai sistemi della vittima utilizzando le credenziali rubate. Infatti, l'autenticazione con One Time Password (OTP) richiede all'utente di validare la propria identificazione inserendo una password monouso temporanea oltre alle standard username a password.
+Questa OTP viene mostrata su qualcosa che l'utente possiede (sia esso un dispositivo apposito o una applicazione sul suo smartphone) noto come \emph{authenticator}.
 
 
 \section{Attacchi mirati al sistema}

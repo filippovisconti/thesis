@@ -24,14 +24,11 @@ L'amministratore di rete ha la responsabilità di inserire regole appropriate al
 Un esempio di Firewall software molto conosciuto in ambienti UNIX, è \texttt{iptables}.
 Il seguente comando mostra una regola che \emph{consente} il passaggio di un pacchetto in entrata sul firewall dalla scheda di rete \texttt{eth0}, destinato alla porta 22 TCP, e che sia il primo di una comunicazione, o faccia parte di una comunicazione già instaurata.
 
-\mbox{
-    \texttt{
-        iptables -A INPUT  -p tcp --dport 22 -i eth0 \
-        -m state --state NEW,ESTABLISHED -j ACCEPT
-    }
+\newpage
+\texttt{
+    iptables -A INPUT  -p tcp --dport 22 -i eth0 \linebreak
+    -m state --state NEW,ESTABLISHED -j ACCEPT
 }
-
-
 
 Il sistema a disposizione avrà un router/firewall installato su un server, che ha come sistema operativo CentOS 7 \cite{CENTOS} - la versione gratuita di Red Hat Enterprise Linux \cite{RHEL}.
 
@@ -42,7 +39,7 @@ Nella configurazione della rete aziendale corrente è presente soltanto una sott
 L'azienda ha necessità di pubblicare
 \begin{itemize}
     \item un sito web, il cui hosting è effettuato sul web server interno;
-    \item un mail server, che si occupa di inviare e ricevere i messaggi di posta elettronica
+    \item un mail server, che si occupa di inviare e ricevere i messaggi di posta elettronica.
 \end{itemize}
 \noindent \textbf{Web servers}
 Il sito web è servito in HTTP sulla porta 80 e in HTTPS sulla porta 443, e la pubblicazione è affidata a un noto servizio, \emph{Apache httpd} \cite{APACHE}.
@@ -111,8 +108,6 @@ Il filtraggio in questione è noto come URL filtering. Il funzionamento si basa 
 Come è possibile immaginare, per un'azienda è fondamentale poter contare su di un'infrastruttura che garantisca che i dati che transitano su di essa non vengano compromessi.
 
 \subsubsection{Evitare intercettazioni}
-Vedi Cina con il Great Firewall
-
 Senza la garanzia di una trasmissione sicura dei dati, dove ``sicura'' si riferisce a tutte le diverse sfaccettature dell'ambito, si è esposti a ``eavesdropping attacks''. Questi attacchi consistono nell'ascoltare, senza farsi notare, le comunicazioni altrui, tramite strumenti di \emph{sniffing} posti a vari livelli. Un'analogia esplicativa è quella delle \emph{cimici} posizionate all'interno dell'abitazione di un indagato, per registrare le sue comunicazioni.
 
 \subsection{Controllo dei dispositivi}

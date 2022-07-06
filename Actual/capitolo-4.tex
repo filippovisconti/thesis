@@ -28,35 +28,35 @@ MTR fa affidamento sui pacchetti Time Exceeded dell'Internet Control Message Pro
 
 \subsubsection{Spiegazione del formato dell'output}
 Nella prima colonna, si legge un numero e un indirizzo IP: il numero corrisponde alla distanza in \emph{hop} tra l'host da cui parte il test e l'IP indicato alla sua destra.
-La seconda colonna, \texttt{Loss\%}, indica la percentuale di pacchetti che quell'IP ha perso. È auspicabile un valore inferiore all'1\% per una connessione affidabile.
+La seconda colonna, \texttt{Loss\%}, indica la percentuale di pacchetti che quell'IP ha perso. È auspicabile un valore inferiore all'$1$\% per una connessione affidabile.
 La terza colonna, \texttt{Snt}, indica il numero di pacchetti inviati a quell'IP.
-Le successive 4 colonne indicano il valore dell'ultimo, del medio, del migliore e del peggiore round-trip-time in millisecondi - ossia il tempo necessario affinché un pacchetto parta dal mittente, raggiunga il destinatario, e torni indietro.
+Le successive $4$ colonne indicano il valore dell'ultimo, del medio, del migliore e del peggiore Round-Trip-Time (RTT) in millisecondi - ossia il tempo necessario affinché un pacchetto parta dal mittente, raggiunga il destinatario, e torni indietro.
 L'ultima colonna indica la deviazione standard tra questi ultimi 4 valori.
 I valori dalla terza colonna in poi forniscono dunque informazioni sulla latenza della rete. È desiderabile il valore più basso possibile. Tuttavia,  spesso la latenza dipende da fattori esterni alla rete locale.
 
 Nella misurazione di esempio, è stato richiesto l'invio di 10 pacchetti (\texttt{-c 10}) di dimensione 5000 byte (\texttt{-s 5000}).
-Per gli hop 9, 10 e 11, si ha un risultato anomalo: nessun IP restituito e 100\% di packetloss.
-Questo risultato non mostra problemi di connessione, ma indica semplicemente che l'host non ha risposto alle richieste indirizzate a lui (per i motivi più disparati, da un carico di lavoro troppo altro, a un firewall che fa cadere quel tipo di pacchetto), e che però, visto che l'hop 12 risponde correttamente, ha inoltrato correttamente quelle destinate a chi gli succede.
+Per gli hop $9$, $10$ e $11$, si ha un risultato anomalo: nessun IP restituito e $100$\% di packetloss.
+Questo risultato non mostra problemi di connessione, ma indica semplicemente che l'host non ha risposto alle richieste indirizzate a lui (per i motivi più disparati, da un carico di lavoro troppo altro, a un firewall che fa cadere quel tipo di pacchetto). Tuttavia, visto che l'hop 12 risponde correttamente, gli host precedenti hanno inoltrato correttamente quelle destinate a chi gli succede.
 
 \subsection{Criteri di valutazione}
-Per dare una valutazione complessiva alle tre soluzioni testate, si andranno a tenere in considerazione i seguenti parametri: throughput, percentuale di packet loss per un pacchetto di grandi dimensioni e latenza media.
+Per dare una valutazione complessiva alle tre soluzioni testate, si andranno a tenere in considerazione i seguenti parametri: throughput, percentuale di packetloss per un pacchetto di grandi dimensioni e latenza media.
 
 \subsubsection{Throughput}
 Il throughput di un canale di comunicazione misura la quantità di dati che può essere trasferita tra mittente e destinatario in una data unità di tempo. In ambito reti, si è soliti utilizzare come unità di tempo il secondo e come quantità di dati il bit, o suoi multipli (Kbit, Mbit, Gbit).
-La velocità e l'affidabilità di trasmissione dei pacchetti sono parametri fondamentali ed è necessario che siano in grado di soddisfare le necessità dell'azienda proprietaria della rete. Packet loss, latenza e jitter influenzano il throughput di una rete, e più sono elevati, più le performance degradano. Minimizzare tutti questi fattori è un punto cardine della progettazione e ottimizzazione di una rete.
+La velocità e l'affidabilità di trasmissione dei pacchetti sono parametri fondamentali ed è necessario che siano in grado di soddisfare le necessità dell'azienda proprietaria della rete. Packetloss, latenza e jitter influenzano il throughput di una rete, e più sono elevati, più le performance degradano. Minimizzare tutti questi fattori è un punto cardine della progettazione e ottimizzazione di una rete.
 La larghezza di banda potrebbe essere confusa con il throughput; è un valore che misura sempre una quantità di bit trasferiti in un'unità di tempo, ma misura il limite massimo teorico, e non quello reale.
 
 È importante sottolineare che una larghezza di banda maggiore non conferisce più velocità, bensì dà soltanto la possibilità di trasferire allo stesso momento una quantità di dati maggiore. Se si hanno problemi di latenza e di perdita dei pacchetti, questi non verranno risolti aumentando la larghezza di banda.
 
 
 \subsubsection{Packetloss}
-Quando un pacchetto non riesce a raggiungere la destinazione prevista, si verifica il fenomeno della perdita di pacchetti, packet loss.
+Quando un pacchetto non riesce a raggiungere la destinazione prevista, si verifica il fenomeno della perdita di pacchetti, packetloss.
 Un utente avverte questo problema come interruzioni della rete, perdita di connettività e una velocità di connessione rallentata.
 Le situazioni in cui si soffre maggiormente questo problema sono tutte quelle in cui è richiesta elaborazione di dati in real-time, dove i ritardi non sono tollerati.
 
 Nel caso di una connessione TCP, la perdita di un pacchetto non comporta perdita di dati, in quanto il protocollo è in grado di chiedere la ritrasmissione del pacchetto perduto; tuttavia, ciò comporta comunque un aumento della latenza e una riduzione del throughput generale.
 
-Un pacchetto potrebbe essere scartato anche se, ad esempio, l'IPv4 header checksum o l'Ethernet frame check sequence indicano che il pacchetto è stato corrotto.
+Un pacchetto potrebbe essere scartato anche se, ad esempio, l'IPv4 \emph{header checksum} o l'\emph{Ethernet frame check sequence} indicano che il pacchetto è stato corrotto.
 
 La perdita dei pacchetti viene misurata come la percentuale dei pacchetti che una rete ha effettivamente gestito, rispetto a quanti ne avrebbe in teoria dovuto gestire.
 
@@ -64,7 +64,7 @@ La perdita dei pacchetti viene misurata come la percentuale dei pacchetti che un
 \subsubsection{Latenza}
 La latenza di una rete, a volte chiamata anche lag, è un termine che descrive i ritardi di comunicazione attraverso una rete. In particolare, si intente il tempo necessario affinché un pacchetto venga catturato, trasmesso, processato attraverso molteplici apparati, ricevuto dal destinatario e decodificato.
 
-La latenza è generalmente misurata in millisecondi. Minore è la latenza, migliori sono le performance. Una latenza inferiore ai 100ms è considerata accettabile, ma per buone performance si desidera un valore inferiore ai 40ms. Ovviamente, un valore prossimo agli 0ms sarebbe ideale.
+La latenza è generalmente misurata in millisecondi. Minore è la latenza, migliori sono le performance. Una latenza inferiore ai 100ms è considerata accettabile, ma per buone performance si desidera un valore inferiore ai $40$ ms. Ovviamente, un valore prossimo agli 0ms sarebbe ideale.
 
 \subsection{Scelta della configurazione di test}
 Il dispositivo utilizzato per effettuare i test ha una scheda di rete che supporta fino a  1 Gbit/s, ed è collegato a Internet via fibra ottica, che satura il gigabit a disposizione, in modo tale che la macchina per fare i test non sia il collo di bottiglia dell'ambiente.
@@ -76,12 +76,12 @@ Per effettuare i test, sono stati scelti i seguenti parametri:
 \texttt{iperf3 -c [IP ADDRESS] -p 5201 -t 300s -i 5}
 
 
-Si effettuerà un primo test con iperf3 lungo 300 secondi, con report ogni 5 secondi.
+Si effettuerà un primo test con \texttt{iperf3} lungo $300$ secondi, con report ogni $5$ secondi.
 
 \texttt{mtr [IP ADDRESS] -s 5000 -c 1000}
 
 
-Con mtr si effettuerà il secondo test, inviando 1000 pacchetti della dimensione di 5000 byte, che comporta una durata del test di oltre 15 minuti.
+Con \texttt{mtr} si effettuerà il secondo test, inviando $1000$ pacchetti della dimensione di $5000$ byte, che comporta una durata del test di oltre $15$ minuti.
 
 \section{Misure senza VPN}
 \begin{figure}[ht]
@@ -89,7 +89,8 @@ Con mtr si effettuerà il secondo test, inviando 1000 pacchetti della dimensione
     \includegraphics[width=12cm]{figure/vpn_thr.png-1.png}
     \caption{Throughput senza VPN su 300 secondi}
 \end{figure}
-Nella configurazione base, senza VPN, si può osservare come il throughput sia stabile tra i 44 e i 45 Mbit/s, eccetto per i primi istanti, dovuti a un periodo di assestamento.
+
+Nella configurazione base, senza VPN, si può osservare come il throughput sia stabile tra i $44$ e i $45$ Mbit/s, eccetto per i primi istanti, dovuti a un periodo di assestamento.
 
 \begin{figure}[ht]
     \centering
@@ -97,7 +98,7 @@ Nella configurazione base, senza VPN, si può osservare come il throughput sia s
     \caption{mtr senza VPN}
 \end{figure}
 
-In questo grafico invece, si può notare come, fino all'ottavo hop, la latenza sia generalmente bassa e la percentuale di packetloss irrisoria. Gli hop 9, 10 e 11 non rispondono, ma ciò non vuol dire che non funzionino. L'ultimo hop, quello del router di destinazione, ha una percentuale di packetloss molto elevata (più del 50\%) e una latenza più elevata, seppur ancora accettabile.
+In questo grafico invece, si può notare come, fino all'ottavo hop, la latenza sia generalmente bassa e la percentuale di packetloss irrisoria. Gli hop $9$, $10$ e $11$ non rispondono, ma ciò non vuol dire che non funzionino. L'ultimo hop, quello del router di destinazione, ha una percentuale di packetloss molto elevata (più del $50$\%) e una latenza più elevata, seppur ancora accettabile.
 
 \section{Misure con IPSec e IKEv2}
 \begin{figure}[ht]
@@ -105,7 +106,7 @@ In questo grafico invece, si può notare come, fino all'ottavo hop, la latenza s
     \includegraphics[width=12cm]{figure/vpn_thr.png-2.png}
     \caption{IPSec Throughput su 300 secondi}
 \end{figure}
-Ripetendo lo stesso test attraverso un tunnel IPSec, si nota come il throughput sia calato e oscilli tra i 41 e i 42 Mbit/s.
+Ripetendo lo stesso test attraverso un tunnel IPSec, si nota come il throughput sia calato e oscilli tra i $41$ e i $42$ Mbit/s.
 
 \begin{figure}[ht]
     \centering
@@ -128,7 +129,7 @@ Con OpenVPN, il primo test registra un throughput medio marginalmente più alto 
     \includegraphics[width=10cm]{figure/mtr_16min_ovpn.png}
     \caption{mtr su OpenVPN}
 \end{figure}
-Nel secondo test, si ha ugualmente lo 0\% di packetloss, ma una latenza media maggiore di 10ms; si tratta comunque di un valore ampiamente accettabile.
+Nel secondo test, si ha ugualmente lo $0$\% di packetloss, ma una latenza media maggiore di $10$ ms; si tratta comunque di un valore ampiamente accettabile.
 
 
 \section{Misure con WireGuard}
@@ -137,7 +138,7 @@ Nel secondo test, si ha ugualmente lo 0\% di packetloss, ma una latenza media ma
     \includegraphics[width=12cm]{figure/vpn_thr.png-4.png}
     \caption{WireGuard Throughput su 300 secondi}
 \end{figure}
-Utilizzando WireGuard, nel primo test si raggiunge il risultato migliore, con un throughput medio che sfiora i 43 Mbit/s.
+Utilizzando WireGuard, nel primo test si raggiunge il risultato migliore, con un throughput medio che sfiora i $43$ Mbit/s.
 
 \begin{figure}[ht]
     \centering
@@ -145,7 +146,7 @@ Utilizzando WireGuard, nel primo test si raggiunge il risultato migliore, con un
     \caption{mtr su WireGuard}
 \end{figure}
 
-Nel secondo test, come nelle altre soluzioni VPN, la percentuale di packetloss è a 0, e la latenza è pari a quella ottenuta tramite la soluzione con IPSec, dunque molto buona.
+Nel secondo test, come nelle altre soluzioni VPN, la percentuale di packetloss è a $0$, e la latenza è pari a quella ottenuta tramite la soluzione con IPSec, dunque molto buona.
 
 \section{Analisi delle misure}
 Questo grafico sovrappone i dati grezzi del primo test, riguardante il throughput medio. Essendo campionato ogni secondo, sono presenti molte oscillazioni che rendono il grafico confuso.
@@ -155,7 +156,7 @@ Questo grafico sovrappone i dati grezzi del primo test, riguardante il throughpu
     \caption{Confronto dei throughput grezzi}
 \end{figure}
 
-Campionando invece ogni 5 secondi, si riducono le oscillazioni, che essendo di lieve entità sono poco significative, e diventa chiara la classifica di performance in termini di throughput tra i 4 casi.
+Campionando invece ogni $5$ secondi, si riducono le oscillazioni, che essendo di lieve entità sono poco significative, e diventa chiara la classifica di performance in termini di throughput tra i $4$ casi.
 
 
 \begin{figure}[ht]
