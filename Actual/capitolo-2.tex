@@ -14,7 +14,7 @@ Una VPN in configurazione Host-to-Gateway si prospetta come la soluzione più pr
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=10cm]{figure/vpn_noVPN.pdf}
+    \includegraphics[width=14cm]{figure/vpn_noVPN.pdf}
     \caption{Modello logico di connessione con e senza VPN}
 \end{figure}
 
@@ -182,6 +182,7 @@ La struttura mostrata si applica a tutti i pacchetti OpenVPN; tuttavia, differen
 
 
 \noindent \textbf{Secure Socket Layer/Transport Layer Security VPNs}
+
 Il protocollo Transport Layer Security, originariamente noto come Secure Socket Layer, è un protocollo progettato per garantire una connessione sicura attraverso una rete non sicura. TLS permette autenticazione di client e server, integrità dei dati e confidenzialità. Per l'autenticazione usa i certificati X.509 \cite[RFC5280]{RFC5280} con una crittografia asimmetrica e si occupa di negoziare una chiave di sessione simmetrica.
 Un vantaggio delle VPN SSL rispetto a quelle basate su IPSec è che riescono a lavorare anche in reti protette da firewall molto stringenti, in quanto la maggior parte delle aziende non filtra il traffico TCP sulla porta 443, essendo normalmente usato dai dipendenti per accedere a Internet. OpenVPN di default utilizza la porta 1194 UDP, ma, nel caso quella porta fosse chiusa, può utilizzare la 443 TCP.
 

@@ -1,12 +1,14 @@
-In questa tesi sono state analizzate tre soluzioni VPN tra le più comuni - IPSec, OpenVPN e WireGuard - e sono state valutate in base al throughput medio, alla latenza media e alla percentuale di packetloss a destinazione.
+In questa tesi sono state analizzate tre delle soluzioni VPN tra le più comuni - IPSec, OpenVPN e WireGuard - e sono state valutate in base al throughput medio, alla latenza media e alla percentuale di packetloss a destinazione.
 
-\section{Riepilogo dei test}
+%\section{Riepilogo dei test}
 Dal punto di vista del throughput medio, la soluzione con migliori performance è quella di WireGuard, rispecchiando le affermazioni fatte sulla documentazione ufficiale.
 Per quel che riguarda la percentuale di packetloss, nonostante siano stati utilizzati pacchetti di grandi dimensioni per fare i test, tutte le soluzioni hanno riportato una perdita di pacchetti nulla, a dimostrazione della loro affidabilità.
+
 Sulla latenza media, si vede OpenVPN al secondo posto con uno svantaggio di $10$ millisecondi rispetto a IPSec e WireGuard.
+
 Ultimo aspetto che si può tenere in considerazione è la necessità di un client software da installare sui dispositivi che devono collegarsi in VPN.
 IPSec è integrato direttamente in tutti i sistemi operativi, dunque, nel caso si abbiano restrizioni sui software che è possibile installare, rimane l'unica scelta possibile.
 OpenVPN e WireGuard hanno entrambe bisogno di un client installato, in cui si importa il profilo di configurazione. Da notare è che WireGuard, a partire dalla versione 5.6 del kernel Linux, è parte del kernel stesso.
 
-\section{Ulteriori possibili valutazioni}
+%\section{Ulteriori possibili valutazioni}
 Altre informazioni che potrebbero essere interessanti nella valutazione della soluzione VPN da installare potrebbero essere l'overhead per pacchetto aggiunto da ogni soluzione, e di conseguenza anche la Maximum Transmission Unit.
