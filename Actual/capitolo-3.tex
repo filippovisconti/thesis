@@ -1,6 +1,6 @@
 \section{Virtualizzatore}
 Un virtualizzatore è un software che si occupa di astrarre le risorse hardware di un computer/server, facendo da intermediario tra esse e il software che deve girarci sopra. Astraendo le risorse, è possibile distribuirle in maniera agile e ottimizzata tra i vari software che le richiedono.
-In ambito di virtualizzazioni server, la situazione più comune è la seguente: sulla macchina fisica è installato un \texttt{hypervisor}, che crea, gestisce e assegna risorse alle macchine virtuali, su cui viene installato un sistema operativo completo; sono poi queste macchine virtuali a offrire effettivamente i servizi.
+In ambito di virtualizzazioni server, la situazione più comune è la seguente: sulla macchina fisica è installato un \texttt{hypervisor}, che crea, gestisce e assegna risorse alle macchine virtuali, su cui viene installato un sistema operativo completo; sono poi le macchine virtuali a offrire effettivamente i servizi.
 
 \subsection{Caratteristiche e funzionamento}
 Gli hypervisor rendono la virtualizzazione possibile attraverso una traduzione delle richieste tra le risorse fisiche e quelle virtuali.
@@ -33,7 +33,7 @@ Prima di installare strongSwan, è necessario predisporre l'interfaccia di rete 
 A questo punto è possibile aggiungerla e configurarla, assegnandole:
 \begin{itemize}
     \item un nome (e.g.: \texttt{strongswan0})
-    \item un MAC Address qualunque - a patto che sia diverso da tutti quelli presenti nella subnet (e.g.: \texttt{C8:D7:4A:4E:47:50}),
+    \item un MAC Address qualunque - a patto che sia diverso da tutti quelli presenti nella sottorete (e.g.: \texttt{C8:D7:4A:4E:47:50}),
     \item un indirizzo IP con la relativa maschera (e.g.: \texttt{10.0.2.1/24})
 \end{itemize}
 e abilitarla.
@@ -131,4 +131,4 @@ Ogni client avrà sempre lo stesso IP, in quanto vengono assegnati nella fase di
 Affinché un client possa connettersi alla VPN, è necessario che nel file di configurazione del server sia presente la chiave pubblica del client, e nel profilo di connessione del client sia presente l'IP pubblico del server, la sua chiave pubblica e l'indirizzo IP che il client assumerà.
 
 \section{Configurazione del Firewall}
-Nelle policies del firewall, sono state aggiunte delle voci che autorizzano il traffico proveniente dalle interfacce di rete virtuali strongswan0, tun0 e wg0 a navigare su Internet e a comunicare sulla porta 5201 TCP/UDP con la LAN dei server. Questa sarà la porta utilizzata da un servizio di misura delle performance che sarà in esecuzione sul Web Server, iperf3.
+Nelle politiche del firewall, sono state aggiunte delle voci che autorizzano il traffico proveniente dalle interfacce di rete virtuali strongswan0, tun0 e wg0 a navigare su Internet e a comunicare sulla porta 5201 TCP/UDP con la LAN dei server. Questa sarà la porta utilizzata da un servizio di misura delle performance che sarà in esecuzione sul Web Server, iperf3.

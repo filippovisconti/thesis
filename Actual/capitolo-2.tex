@@ -5,8 +5,8 @@ Una rete privata virtuale consiste in una rete il cui accesso è regolamentato, 
 \subsection{Architetture disponibili}
 Una rete VPN può realizzare diversi tipi di collegamenti, per soddisfare esigenze diverse. Nei paragrafi successivi, si andranno ad analizzare i 3 tipi di architetture più comuni:
 \begin{itemize}
-    \item \textbf{Gateway-to-Gateway}: consiste in una VPN che connette in maniera stabile due reti. Questa configurazione permette ad esempio di estendere una rete privata tra diverse location geograficamente separati e distanti a piacere, oppure di garantire a una serie di uffici un accesso sicuro a un data center.
-    \item \textbf{Host-to-Host}: questa configurazione è la meno comune. Consiste nello stabilire una comunicazione diretta tra due host, in cui uno fa da server VPN e l'altro da client VPN. Un caso d'uso potrebbe essere un amministratore di sistema che deve fare gestione remota di un apparecchio.
+    \item \textbf{Gateway-to-Gateway}: consiste in una VPN che connette in maniera stabile due reti. Questa configurazione permette ad esempio di estendere una rete privata tra diverse location geograficamente separati e distanti a piacere, oppure di garantire a una serie di uffici un accesso sicuro a un data center;
+    \item \textbf{Host-to-Host}: questa configurazione è la meno comune. Consiste nello stabilire una comunicazione diretta tra due host, in cui uno fa da server VPN e l'altro da client VPN. Un caso d'uso potrebbe essere un amministratore di sistema che deve fare gestione remota di un apparecchio;
     \item \textbf{Host-to-Gateway}: in questa modalità, il risultato che si ottiene è lo stesso che si avrebbe connettendo un host alla rete locale in cui risiede il server VPN. È usata principalmente per offrire un accesso sicuro da remoto alla rete. Quando l'host vuole instaurare una connessione VPN con il server, gli viene richiesto di autenticarsi.
 \end{itemize}
 
@@ -22,10 +22,10 @@ Una VPN in configurazione Host-to-Gateway si prospetta come la soluzione più pr
 
 Tra le soluzioni VPN più comuni troviamo:
 \begin{itemize}
-    \item Point-to-Point Tunneling Protocol (PPTP)
-    \item Internet Protocol Security (IPSec)
-    \item OpenVPN
-    \item WireGuard
+    \item Point-to-Point Tunneling Protocol (PPTP);
+    \item Internet Protocol Security (IPSec);
+    \item OpenVPN;
+    \item WireGuard.
 \end{itemize}
 
 %-----------------------------------------------------------------------------------------------------------------------IPSec
@@ -138,12 +138,12 @@ GRE \cite[RFC2784]{RFC2784} è un protocollo di tunneling sviluppato da Cisco Sy
 Con PPTP, è possibile usare Microsoft Point-to-Point Encryption (MPPE) per instaurare una connessione cifrata, ma PPTP di base non usa cifratura. MMPE usa l'algoritmo RC4 con chiavi da 40 o 128-bit. Tutte le chiavi sono derivate dalla password in chiaro dell'utente. Tuttavia, la RFC7465 proibisce l'uso di RC4 in quanto non robusto a sufficienza
 
 \subsubsection{Autenticazione}
-Per quel che riguarda l'autenticazione degi utenti, PPTP può usare uno dei seguenti protocolli:
+Per quel che riguarda l'autenticazione degli utenti, PPTP può usare uno dei seguenti protocolli:
 \begin{itemize}
-    \item Extensible Authentication Protocol (EAP),
-    \item Microsoft Challenge Handshake Authentication Protocol (MSCHAP) version 1 and version 2,
-    \item Challenge Handshake Authentication Protocol (CHAP),
-    \item Shiva Password Authentication Protocol (SPAP),
+    \item Extensible Authentication Protocol (EAP);
+    \item Microsoft Challenge Handshake Authentication Protocol (MSCHAP) version 1 and version 2;
+    \item Challenge Handshake Authentication Protocol (CHAP);
+    \item Shiva Password Authentication Protocol (SPAP);
     \item Password Authentication Protocol (PAP).
 \end{itemize}
 
@@ -159,17 +159,17 @@ Non offrendo una cifratura adeguata, PPTP non è una soluzione ritenuta accettab
 OpenVPN è una VPN SSL che permette di incanalare tutto il traffico di una sottorete attraverso una unica porta UDP o TCP, e fa affidamento su OpenSSL. Come le altre soluzioni VPN, OpenVPN servizi essenziali di sicurezza quali autenticazione, cifratura, integrità dei dati e controllo degli accessi.
 Supporta due modalità di lavoro, routing e bridging:
 \begin{itemize}
-    \item \textbf{Routing}: consiste nell'interconnessione di due sottoreti indipendenti, dove il server VPN (generalmente installato sul router) inoltra i pacchetti all'indirizzo IP specificato in fase di configurazione. Si tratta quindi di un collegamento a livello $3$ del modello OSI.
-    \item \textbf{Bridging}: è una modalità che lavora esclusivamente all'interno di una sottorete; il funzionamento è analogo a quello di uno switch ethernet fisico.
+    \item \textbf{Routing}: consiste nell'interconnessione di due sottoreti indipendenti, dove il server VPN (generalmente attivo sul router) inoltra i pacchetti all'indirizzo IP specificato in fase di configurazione. Si tratta quindi di un collegamento a livello $3$ del modello OSI.
+    \item \textbf{Bridging}: è una modalità che lavora esclusivamente all'interno di una sottorete; il funzionamento è analogo a quello di uno switch Ethernet fisico.
 \end{itemize}
 
-OpenVPN è una soluzione che lavora in user space, dunque l'overhead generato è maggiore in quanto sono necessarie molteplici copie dei pacchetti affiché siano trasferiti dal kernel space allo user space. Supporta l'intero insieme delle funzionalità di TLS, necessitando di una ampia code base, mostrando un maggior potenziale a soffrire di vulnerabilità.
+OpenVPN è una soluzione che lavora in user space, dunque l'overhead generato è maggiore in quanto sono necessarie molteplici copie dei pacchetti affinché siano trasferiti dal kernel space allo user space. Supporta l'intero insieme delle funzionalità di TLS, necessitando di una ampia code base, mostrando un maggior potenziale a soffrire di vulnerabilità.
 
 \subsubsection{Protocolli utilizzati}
-Come precedentemente acccennato, OpenVPN usa la libreria di OpenSSL, che implementa il protocollo Transport Layer Security, progettato per offrire una connessione sicura attraverso una rete non sicura.
+Come precedentemente accennato, OpenVPN usa la libreria di OpenSSL, che implementa il protocollo Transport Layer Security, progettato per offrire una connessione sicura attraverso una rete non sicura.
 A differenza del puro TLS, OpenVPN offre all'utente la possibilità di utilizzare una pre-shared key per generare quel che è noto come HMAC firewall, che autentica tutta la sequenza di handshake TLS.
 
-Essendo UDP un protocolllo non connesso, i pacchetti IP criptati e firmati che sono incanalati tramite UDP, non hanno nessuna garanzia di affidabilità. L'affidabilità necessaria per una sicura autenticazione è garantita, però, dal protocollo TLS che utlizza TCP come protocollo di trasporto.
+Essendo UDP un protocollo non connesso, i pacchetti IP criptati e firmati che sono incanalati tramite UDP, non hanno nessuna garanzia di affidabilità. L'affidabilità necessaria per una sicura autenticazione è garantita, però, dal protocollo TLS che utilizza TCP come protocollo di trasporto.
 È importante notare che il canale dati e il canale di controllo transitano all'interno dello stesso tunnel UDP (o TCP). L'incapsulamento dei pacchetti è descritto dal seguente diagramma.
 
 \begin{figure}
@@ -182,14 +182,14 @@ La struttura mostrata si applica a tutti i pacchetti OpenVPN; tuttavia, differen
 
 
 \noindent \textbf{Secure Socket Layer/Transport Layer Security VPNs}
-Il protocollo Transport Layes Security, originariamente noto come Secure Socket Layer, è un protocollo progettato per garantire una connessione sicura attraverso una rete non sicura. TLS permette autenticazione di client e server, integrità dei dati e confidenzialità. Per l'autenticazione usa i certificati X.509 \cite[RFC5280]{RFC5280} con una crittografia asimmetrica e si occupa di negoziare una chiave di sessione simmetrica.
+Il protocollo Transport Layer Security, originariamente noto come Secure Socket Layer, è un protocollo progettato per garantire una connessione sicura attraverso una rete non sicura. TLS permette autenticazione di client e server, integrità dei dati e confidenzialità. Per l'autenticazione usa i certificati X.509 \cite[RFC5280]{RFC5280} con una crittografia asimmetrica e si occupa di negoziare una chiave di sessione simmetrica.
 Un vantaggio delle VPN SSL rispetto a quelle basate su IPSec è che riescono a lavorare anche in reti protette da firewall molto stringenti, in quanto la maggior parte delle aziende non filtra il traffico TCP sulla porta 443, essendo normalmente usato dai dipendenti per accedere a Internet. OpenVPN di default utilizza la porta 1194 UDP, ma, nel caso quella porta fosse chiusa, può utilizzare la 443 TCP.
 
 
 \subsubsection{Tunnel TCP vs UDP}
 Premesso che attraverso i tunnel VPN passa traffico sia TCP che UDP, anche i tunnel stessi possono essere realizzati con connessioni TCP o UDP.
 
-Il protocollo TCP utilizza notevoli algoritmi per assicurare un recapito correto dei dati al destinatario. Avere due connessioni TCP una dentro l'altra forzera gli algoritmi di entrambe le connessioni a lavorare in parallelo. Non essendo TCP progettato per lavorare in quella condizione, si potrebbe andare incontro a problemi quali il \emph{retransmission problem}, \emph{TCP meltdown} e doppia ritrasmissione. Questi problemi potrebbero verificarsi nel momento in cui entrambe le connessioni stanno tentando di ritrasmettere pacchetti.
+Il protocollo TCP utilizza notevoli algoritmi per assicurare un recapito corretto dei dati al destinatario. Avere due connessioni TCP una dentro l'altra forzerà gli algoritmi di entrambe le connessioni a lavorare in parallelo. Non essendo TCP progettato per lavorare in quella condizione, si potrebbe andare incontro a problemi quali il \emph{retransmission problem}, \emph{TCP meltdown} e doppia ritrasmissione. Questi problemi potrebbero verificarsi nel momento in cui entrambe le connessioni stanno tentando di ritrasmettere pacchetti.
 
 Tutto ciò non vale per il protocollo UDP, che come descritto precedentemente, è un protocollo non connesso senza nessuna garanzia che il messaggio raggiunga correttamente il destinatario. A discapito dell'affidabilità, si possono ottenere velocità di trasmissione notevolmente superiori.
 
@@ -205,8 +205,8 @@ Questo aspetto della modalità TLS offre ciò che è chiamato Perfect Forward Se
 I due step principali del protocollo TLS, a grandi linee, sono:
 
 \begin{enumerate}
-    \item Negoziazione della connessione TLS: entrambi i lati della connessione si autenticano scambiandosi i certificati e verificando i certificati del lato opposto; se l'autenticazione ha successo, il protocollo procede allo step due; altrimenti, la connessione viene terminata.
-    \item Le chiavi di sessione sono negoziate attraverso il canale TLS sicuro appena stabilito.
+    \item negoziazione della connessione TLS: entrambi i lati della connessione si autenticano scambiandosi i certificati e verificando i certificati del lato opposto; se l'autenticazione ha successo, il protocollo procede allo step due; altrimenti, la connessione viene terminata;
+    \item le chiavi di sessione sono negoziate attraverso il canale TLS sicuro appena stabilito.
 \end{enumerate}
 
 
@@ -216,20 +216,20 @@ OpenVPN offre diverse funzionalità di sicurezza: cifratura fino a 256-bit attra
 \subsubsection{Considerazioni}
 Si tratta di una soluzione per VPN matura e flessibile, con supporto a meccanismi di sicurezza all'altezza delle richieste.
 Essendo una VPN che lavora al livello $7$ del modello OSI, fa un uso intensivo della CPU. Questo, tuttavia, al giorno d'oggi non è più un grave problema, visto che di potenza computazionale se ne può avere in abbondanza con costi moderati.
-Un fattore invece più penalizzante è l'overhead generato dal fatto che si tratta di un software che esegue in userspace, richiedendo dunque molteplici copie dei dati tra kernel-space e user-space.
+Un fattore invece più penalizzante è l'overhead generato dal fatto che si tratta di un software che esegue in user-space, richiedendo dunque molteplici copie dei dati tra kernel-space e user-space.
 OpenVPN è più semplice da installare e configurare rispetto a IPSec; tuttavia, le personalizzazioni possibili sono moltissime, che mantengono considerevole il rischio di errori di configurazione.
 
 %--------------------------------------------------------------------------------------------------------------------------------------------Wireguard
 \subsection{WireGuard}
 WireGuard è una soluzione VPN open-source, che fa della semplicità di configurazione e delle prestazioni i suoi pilastri fondamentali.
 \subsubsection{Panoramica}
-In IPSec, si ha una separazione netta tra il livello che si occupa dello scambio dati (IKE) e il livello di trasformazione (AH/ESP). Seppure sia una saggia separazione del punto di vista semantico, e decisamente corretta da un punto di vista di rete, ha lo svantaggio di aumentare la compessità implementativa.
+In IPSec, si ha una separazione netta tra il livello che si occupa dello scambio dati (IKE) e il livello di trasformazione (AH/ESP). Seppure sia una saggia separazione del punto di vista semantico, e decisamente corretta da un punto di vista di rete, ha lo svantaggio di aumentare la complessità implementativa.
 WireGuard, anziché implementare questa separazione, crea un'interfaccia di rete virtuale che può essere amministrata con le utility standard \texttt{ip} e \texttt{ifconfig}. Dopo aver configurato questa interfaccia con una chiave privata (e opzionalmente una PSK) e le varie chiavi pubbliche dei peers con cui dovrà comunicare in maniera sicura, la connessione è pronta ad essere instaurata. Scambio di chiavi, connessioni, disconnessioni e via dicendo avvengono dietro le quinte, e l'amministratore non deve configurare nessuno di questi aspetti.
-Le regole di firewalling possono essere configurate usando i tool standard, con la garanzia che i pacchetti che provengono da un'interfaccia di WireGuard saranno autenticati e cifrati. Per la sua semplicità, WireGuard è apparentemente meno incline a errori di configurazione rispetto ad IPSec.
+Le regole di firewalling possono essere configurate usando i tool standard, con la garanzia che i pacchetti che provengono da un'interfaccia di WireGuard saranno autenticati e cifrati. Per la sua semplicità, WireGuard è apparentemente meno incline a errori di configurazione rispetto a IPSec.
 
 WireGuard è in grado di instaurare esclusivamente tunnel di livello 3. Con questo approccio è infatti più semplice assicurare autenticità e origine dei pacchetti. Supporta sia IPv4 che IPv6 e può incapsulare sia v4-in-v6 che v6-in-v4.
 
-WireGuard si concentra sulla semplicità e su una codebase facilmente ispezionabile, essendo allo stesso tempo estremamente performante e adatto a diversi ambienti. Combinando lo scambio di chiavi e la cifratura a livello 3 in un unico meccanismo e utilizzando un'interfaccia di rete virtuale anzichè un livello di trasformazione, WireGuard rompe con la tradizione per perseguire una soluzione ingegneristicamente solida apparentemente più pratica e sicura.
+WireGuard si concentra sulla semplicità e su una codebase facilmente ispezionabile, essendo allo stesso tempo estremamente performante e adatto a diversi ambienti. Combinando lo scambio di chiavi e la cifratura a livello 3 in un unico meccanismo e utilizzando un'interfaccia di rete virtuale anziché un livello di trasformazione, WireGuard rompe con la tradizione per perseguire una soluzione  solida dal punto di vista progettuale, apparentemente più pratica e sicura.
 
 A partire dalla versione 5.6 del kernel Linux, WireGuard verrà incluso nel kernel stesso.
 \subsubsection{Protocolli utilizzati}

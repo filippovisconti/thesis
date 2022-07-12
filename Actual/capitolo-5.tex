@@ -2,11 +2,11 @@ Combinare una soluzione VPN sicura con una suddivisione della rete interna in co
 Tuttavia, l'accesso di terze parti alla rete interna di un'organizzazione - siano essi dipendenti, clienti esterni, o altro, aggiunge delle sfide impegnative nel garantire sicurezza.
 Ad esempio, se il dispositivo di un dipendente o di un cliente viene compromesso, e questa persona aveva instaurato una connessione VPN con l'azienda, coloro che hanno portato a termine l'attacco possono sfruttare il tunnel VPN come ponte per effettuare attività di ricognizione sulla rete interna dell'azienda, nonostante tutte le misure di sicurezza possibilmente implementate dall'azienda stessa.
 
-Tuttavia, implementando una soluzione VPN moderna, è possibile monitorare il traffico, chi lo ha generato, che tipo di traffico è, e come viene usato. Tenere traccia di queste attività tramite il monitoring delle sessioni riduce i rischi, in quanto permette alle organizzazioni di identificare la sorgente del traffico sospetto e terminarlo se ritenuto opportuno.
+Tuttavia, implementando una soluzione VPN moderna, è possibile monitorare il traffico, chi lo ha generato, che tipo di traffico è, e come viene usato. Tenere traccia di queste attività tramite il monitoraggio delle sessioni riduce i rischi, in quanto permette alle organizzazioni di identificare la sorgente del traffico sospetto e terminarlo se ritenuto opportuno.
 
 \section{Attacchi mirati agli utenti}
 
-Il primo step per ridurre i rischi e proteggere i dati sensibili dell'azienda è assicurarsi che tutti i dipendenti, o chiunque altro sia coinvolto nell'uso delle VPN, sappia che la sicurezza dei dati è una priorità.
+Il primo passo per ridurre i rischi e proteggere i dati sensibili dell'azienda è assicurarsi che tutti i dipendenti, o chiunque altro sia coinvolto nell'uso delle VPN, sappia che la sicurezza dei dati è una priorità.
 Per fare questo, è necessario assicurare un'adeguata formazione a tutti loro, che copra tutti i maggiori pericoli, e le misure di difesa, che potrebbero incontrare.
 
 È indiscutibile il fatto che alla base ci deve essere un'infrastruttura adeguata e che i dispositivi utilizzati supportino i più elevati standard di sicurezza. Infatti, i conduttori di un potenziale attacco vanno appositamente alla ricerca di, ad esempio, reti Wi-Fi non protette, o cifrature banali da rompere.
@@ -26,13 +26,13 @@ Nel caso di furto di credenziali aziendali, i criminali effettuano una ricognizi
 
 Alcuni modi per prevenire il furto di credenziali sono:
 \begin{itemize}
-    \item Autenticazione a più fattori
-    \item Formazione degli utenti su come riconoscere i tentativi di Phishing
-    \item Formazione degli utenti su come impostare password sicurezza
-    \item Limitare l'utilizzo delle credenziali aziendali ad applicativi sicuri e controllati
-    \item Mantenere aggiornati i sistemi operativi e i software utilizzati
-    \item Effettuare regolarmente valutazioni sulle vulnerabilità
-    \item Utilizzare strumenti di monitoring del traffico
+    \item Autenticazione a più fattori;
+    \item Formazione degli utenti su come riconoscere i tentativi di Phishing;
+    \item Formazione degli utenti su come impostare password sicurezza;
+    \item Limitare l'utilizzo delle credenziali aziendali ad applicativi sicuri e controllati;
+    \item Mantenere aggiornati i sistemi operativi e i software utilizzati;
+    \item Effettuare regolarmente valutazioni sulle vulnerabilità;
+    \item Utilizzare strumenti di monitoraggio del traffico.
 \end{itemize}
 
 \subsection{Social Engineering}
@@ -44,12 +44,12 @@ Con social engineering si intende quell'insieme di tecniche di manipolazione che
 Il phishing è un tipo di truffa facente parte delle tecniche di social engineering che è comunemente camuffata in email o SMS fraudolenti. La truffa consiste nel far raggiungere alla vittima la pagina di login di un sito web, dall'aspetto identica a quella del servizio di cui si vogliono rubare le credenziali, che però, anziché portare correttamente a termine il login, inoltra le credenziali al truffatore.
 Tra le informazioni nel mirino dei truffatori si ha:
 \begin{itemize}
-    \item Username
-    \item Password
-    \item Indirizzo Email
-    \item Residenza
-    \item Numeri di carte di credito
-    \item Data di nascita
+    \item Username;
+    \item Password;
+    \item Indirizzo Email;
+    \item Residenza;
+    \item Numeri di carte di credito;
+    \item Data di nascita.
 \end{itemize}
 
 Lo Spear Phishing è un caso particolare di phishing in cui il malintenzionato ha studiato la vittima e le sue abitudini. Per aumentare le possibilità di successo, infatti, includerà nel messaggio fraudolento quante più informazioni personalizzate possibili in modo da far abbassare la guardia della vittima.
@@ -59,16 +59,16 @@ Nonostante alcuni tentativi di phishing siano effettivamente ben costruiti, la m
 Di seguito, alcuni campanelli di allarme per identificare un messaggio fraudolento:
 
 \begin{itemize}
-    \item \textbf{errori ortografici e grammaticali}: ad esempio, è difficile che una banca invii un messaggio non curato
-    \item \textbf{messaggi contenenti richieste di infromazioni personali}: ad esempio richieste di credenziali per accedere a un servizio
-    \item \textbf{messaggi estremamente urgenti}: ad esempio, un messaggio inaspettato contenente una minaccia di chiudere l'account della vittima
+    \item \textbf{errori ortografici e grammaticali}: ad esempio, è difficile che una banca invii un messaggio non curato;
+    \item \textbf{messaggi contenenti richieste di infromazioni personali}: ad esempio richieste di credenziali per accedere a un servizio;
+    \item \textbf{messaggi estremamente urgenti}: ad esempio, un messaggio inaspettato contenente una minaccia di chiudere l'account della vittima;
     \item \textbf{email contenenti mittenti sospetti}: ad esempio, una email proveniente da
 
-          \texttt{john@mybankofamerica.com}, quando il dominio usuale è \texttt{@bankofamerica.com}
+          \texttt{john@mybankofamerica.com}, quando il dominio usuale è \texttt{@bankofamerica.com}.
 \end{itemize}
 
 \subsection{Una possibile soluzione: multi-factor authentication}
-A seguito di un tentativo di phishing riuscito, un malintenzionato è in possesso delle credenziali di accesso di un utente a un servizio. Se il servizio in questione è quello della VPN aziendale, egli ha accesso alla porzione di rete a cui è autorizzato ad accedere l'utente vittima.
+In seguito a un tentativo di phishing riuscito, un malintenzionato è in possesso delle credenziali di accesso di un utente a un servizio. Se il servizio in questione è quello della VPN aziendale, egli ha accesso alla porzione di rete a cui è autorizzato ad accedere l'utente vittima.
 Per diminuire drasticamente l'efficacia del phishing, uno strumento potente ed efficace è quello dell'autenticazione a più fattori.
 L'autenticazione a più fattori richiede che, affinché il login abbia successo, vengano inseriti, oltre a email e password, altre ``proof of identity'', che possono essere un certificato, un'impronta digitale, una smart card, o una password monouso temporanea.
 
