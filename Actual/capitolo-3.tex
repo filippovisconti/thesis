@@ -50,7 +50,7 @@ Per installare il daemon di strongSwan è sufficiente lanciare il comando \textt
 
 \subsection{Configurazione di strongSwan}
 Per adattare il comportamento del servizio alle proprie esigenze, è necessario modificare il file di configurazione del servizio, che nel caso di strongSwan si trova nella directory \texttt{/etc/strongswan/}.
-Al suo interno, andremo a inserire i parametri adatti. Di particolare rilievo sono i seguenti:
+Al suo interno, andremo a inserire i parametri opportuni. Di particolare rilievo sono i seguenti:
 
 \begin{verbatim}
 
@@ -81,14 +81,14 @@ L'installazione avviene tramite il comando \texttt{dnf install openvpn}, che sca
 Al file di configurazione di OpenVPN, sono state apportate alcune modifiche. Quelle più rilevanti sono le seguenti:
 
 \begin{verbatim}
-    port 1194, proto tcp    # Porta e procotollo da utilizzare
+    port 443, proto tcp    # Porta e procotollo da utilizzare
     
-    # Dopo l'avvio, si disabilitino i privilegi di root
+    # Dopo l'avvio, si rilascino i privilegi di root
     user nobody, group nobody   
 
     # Rende la VPN una sottorete, con prefisso e maschera
     topology subnet         
-    server 10.8.0.0 255.255.255.0
+    server   10.8.0.0 255.255.255.0
 
     push "dhcp-option DNS 8.8.8.8"   # DNS primario per i clients
     push "dhcp-option DNS 8.8.4.4"   # DNS secondario per i clients
@@ -99,15 +99,15 @@ Al file di configurazione di OpenVPN, sono state apportate alcune modifiche. Que
 
     # Nomi dei file della CA, del certificato pubblico del server 
     #     e della relativa chiave privata
-    ca ca.crt
+    ca   ca.crt
     cert server_jH2NKwoak6pDEBoQ.crt
-    key server_jH2NKwoak6pDEBoQ.key
+    key  server_jH2NKwoak6pDEBoQ.key
     
     cipher AES-128-GCM  # Algoritmo scelto per la cifratura del canale
 
-    tls-version-min 1.2 # Versione minima di TLS
-    tls-crypt tls-crypt.key
-    tls-cipher TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256  
+    tls-version-min 1.2            # Versione minima di TLS
+    tls-crypt       tls-crypt.key
+    tls-cipher      TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256  
 \end{verbatim}
 
 \subsection{Certificati}
@@ -131,4 +131,4 @@ Ogni client avrà sempre lo stesso IP, in quanto vengono assegnati nella fase di
 Affinché un client possa connettersi alla VPN, è necessario che nel file di configurazione del server sia presente la chiave pubblica del client, e nel profilo di connessione del client sia presente l'IP pubblico del server, la sua chiave pubblica e l'indirizzo IP che il client assumerà.
 
 \section{Configurazione del Firewall}
-Nelle politiche del firewall, sono state aggiunte delle voci che autorizzano il traffico proveniente dalle interfacce di rete virtuali strongswan0, tun0 e wg0 a navigare su Internet e a comunicare sulla porta 5201 TCP/UDP con la LAN dei server. Questa sarà la porta utilizzata da un servizio di misura delle performance che sarà in esecuzione sul Web Server, iperf3.
+Nelle politiche del firewall, sono state aggiunte delle voci che autorizzano il traffico proveniente dalle interfacce di rete virtuali \texttt{strongswan0}, \texttt{tun0} e \texttt{wg0} a navigare su Internet e a comunicare sulla porta $5201$ TCP/UDP con la LAN dei server. Questa sarà la porta utilizzata da un servizio di misura delle performance che sarà in esecuzione sul Web Server, \texttt{iPerf3}.

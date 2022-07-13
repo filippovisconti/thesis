@@ -67,6 +67,7 @@ Il DNS è in grado di memorizzare anche altre informazioni riguardanti un certo 
 \end{itemize}
 Nella configurazione corrente, il server DNS, che gira sullo stesso server su cui è in esecuzione il Firewall, lavora come relay e il suo IP viene distribuito a tutti i client della rete interna via DHCP come DNS resolver.
 Ciò significa che tutti gli host della rete, nel momento in cui devono risolvere un nome, inviano una richiesta al server DNS interno, che si occuperà lui di risolverlo e, una volta ottenuto il risultato, lo restituisce al richiedente.
+\newpage
 Questo comporta diversi vantaggi, tra cui:
 \begin{itemize}
     \item la comunicazione verso l'esterno per la risoluzione dei nomi avviene da un unico punto della rete;

@@ -8,17 +8,18 @@ I software che sono stati utilizzati per effettuare le misurazioni questi dati s
 Per effettuare le misurazioni, iPerf crea dei flussi di dati su TCP, UDP o SCTP \cite[RFC4960]{RFC4960} e invia traffico da un host all'altro; al termine del trasferimento, oltre a un report dettagliato in base al tipo di misurazione richiesta, mostra la larghezza di banda media disponibile.
 In questo modo, gli utenti possono determinare il throughput effettivamente utilizzabile.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=10cm]{figure/iperfSample.png}
-    \caption{Esempio di output di iPerf3}
-\end{figure}
 
 \subsection{Panoramica di \texttt{mtr}}
 \texttt{mtr} è un altro software di misurazione delle performance di una rete, che sostanzialmente unisce i risultati di \texttt{traceroute} e \texttt{ping}.
 I test effettuati da mtr sono unidirezionali, dunque è opportuno effettuare misurazioni manualmente in entrambe le direzioni, in quanto i risultati differire in maniera sostanziale. Per avere una misurazione affidabile, è consigliabile far durare il test almeno 10 minuti.
 
 MTR fa affidamento sui pacchetti Time Exceeded dell'Internet Control Message Protocol restituiti dai router, o sui pacchetti Echo Reply, quando il pacchetto raggiunge l'host destinatario.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=10cm]{figure/iperfSample.png}
+    \caption{Esempio di output di iPerf3}
+\end{figure}
 
 \begin{figure}[ht]
     \centering
